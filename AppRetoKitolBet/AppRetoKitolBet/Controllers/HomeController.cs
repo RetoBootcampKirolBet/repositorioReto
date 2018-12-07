@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using AppRetoKitolBet.Models;
 using System.Net.Http;
+using System.Net.Http.Headers;
+using Newtonsoft.Json;
 
 namespace AppRetoKitolBet.Controllers
 {
@@ -24,36 +26,49 @@ namespace AppRetoKitolBet.Controllers
             Response items = null;
             //INICIALIZAMOS EL CLIENTE HTTP
             HttpClient client = new HttpClient();
+
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/hal+json"));
+            client.DefaultRequestHeaders.Accept.Clear();
+
             //VARIABLE ITERADORA QUE RECORRERA LAS PAGINAS DE LA API
             int i = 1;
             //INICIAMOS LA LISTA DE PERSONAJES QUE LUEGO PASAREMOS A LA LISTA
             List<WorkPackage> workPackages = new List<WorkPackage>();
+            
             //MIENTRAS HAYA PAGINAS SEGUIRA EN EL BUCLE
             while (next)
             {
                 //LA VARIABLE RESPONSE GUARDARA LA LLAMADA A LA API
-                HttpResponseMessage response = await client.GetAsync("http://192.168.99.100:32769/api/v3/projects/4/work_packages" + i);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/hal+json"));
+                client.DefaultRequestHeaders.Accept.Clear();
+                HttpResponseMessage response = await client.GetAsync("http://192.168.99.100:32769/api/v3/projects/4/work_packages/?offset=" + i);
                 //SI RECIBIMOS UNA RESPUESTA
                 if (response.IsSuccessStatusCode)
                 {
                     //GUARDAREMOS EN EL OBJETO(MODELO RESPONSE) EL CONTENIDO DE LA RESPUESTA
-                    items = await response.Content.ReadAsAsync<Response>();
+                    string wtfEnJson = await response.Content.ReadAsStringAsync();
+                    Response wtf = JsonConvert.DeserializeObject<Response>(wtfEnJson);
+                    items = wtf;
+                    //items = await response.Content.ReadAsAsync<Response>();
                     //SI EL ATRIBUTO NEXT(MIRA LA URL DE LA SIGUIENTE PAGINA) ES NULL, SALDREMOS DEL BUCLE PORQUE NO HAY MAS PERSONAJES
-                    if (items.Next == null)
+                    if (items.Total>20||items.Count>20)
                     {
                         //PONEMOS NEXT A FALSO PARA QUE SALGA DEL BUCLE
                         next = false;
                     }
                 }
                 //RECORREMOS EL ARRAY RESULTS QUE ES EL QUE CONTIENE TODOS LOS DATOS QUE NECESITAMOS
-                foreach (var item in items.Results)
-                {    
-                   
+                foreach (var item in items.WorkPackagesContainer.WorkPackages)
+                {
+
                     //CREAMOS UN PERSONAJE POR CADA ELEMENTO EN EL ARRAY RESULTS Y CREAMOS UN PERSONAJE
                     WorkPackage p = new WorkPackage
                     {
-                        Name = item.Name,
-                       
+                        Id = item.Id,
+                        Subject = item.Subject,
+                        Type = item.Type,
+                        Status = item.Status,
+                        Assignee = item.Assignee
                     };
 
                     //ANADIMOS EL PERSONAJE CREADO A LA LISTA DE PERSONAJES
