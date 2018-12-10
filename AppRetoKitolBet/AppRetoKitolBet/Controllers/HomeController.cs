@@ -74,7 +74,7 @@ namespace AppRetoKitolBet.Controllers
                         
                     };
                     _Links l = p._Links;
-                   
+                   //
                     //ANADIMOS EL PERSONAJE CREADO A LA LISTA DE PERSONAJES
                     workPackages.Add(p);
                 }
