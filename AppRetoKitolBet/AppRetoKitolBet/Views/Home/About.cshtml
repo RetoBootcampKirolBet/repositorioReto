@@ -11,10 +11,15 @@
     foreach (WorkPackage p in Model)
     {
 
-        <p>@p.Id</p>
-        <p>@p.Subject</p>
-        <p>@p.Type</p>
-        <p>@p.Status</p>
-        <p>@p.Assignee</p>
+        <p>KsoftProject:@p.Subject</p>
+        <p>Type:@p._Links.Type.Tipo</p>
+        <p>Id:@p.Id</p>
+        <p>Status:@p._Links.Status.Estado</p>
+        <p>Estimated Time:@p.EstimatedTime</p>
+        <p>Spent Time:@p.RemainingTime</p>
+        <p>Start Date:@p.StartDate</p>
+        <p>Due Date:@p.DueDate</p>
+        <p>Assignee:@p._Links.Assignee.Name</p>
     }
+
 }

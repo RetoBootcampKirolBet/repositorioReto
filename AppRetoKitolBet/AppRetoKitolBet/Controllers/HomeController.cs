@@ -34,7 +34,7 @@ namespace AppRetoKitolBet.Controllers
             int i = 1;
             //INICIAMOS LA LISTA DE PERSONAJES QUE LUEGO PASAREMOS A LA LISTA
             List<WorkPackage> workPackages = new List<WorkPackage>();
-            
+
             //MIENTRAS HAYA PAGINAS SEGUIRA EN EL BUCLE
             while (next)
             {
@@ -51,7 +51,7 @@ namespace AppRetoKitolBet.Controllers
                     items = wtf;
                     //items = await response.Content.ReadAsAsync<Response>();
                     //SI EL ATRIBUTO NEXT(MIRA LA URL DE LA SIGUIENTE PAGINA) ES NULL, SALDREMOS DEL BUCLE PORQUE NO HAY MAS PERSONAJES
-                    if (items.Total>20||items.Count>20)
+                    if (items.Total > 20 || items.Count > 20)
                     {
                         //PONEMOS NEXT A FALSO PARA QUE SALGA DEL BUCLE
                         next = false;
@@ -66,11 +66,15 @@ namespace AppRetoKitolBet.Controllers
                     {
                         Id = item.Id,
                         Subject = item.Subject,
-                        Type = item.Type,
-                        Status = item.Status,
-                        Assignee = item.Assignee
+                        EstimatedTime = item.EstimatedTime,
+                        StartDate = item.StartDate,
+                        DueDate = item.DueDate,
+                        RemainingTime = item.RemainingTime,
+                        _Links = item._Links,
+                        
                     };
-
+                    _Links l = p._Links;
+                   
                     //ANADIMOS EL PERSONAJE CREADO A LA LISTA DE PERSONAJES
                     workPackages.Add(p);
                 }

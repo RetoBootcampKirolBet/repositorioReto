@@ -7,7 +7,8 @@ namespace AppRetoKitolBet.Models
     {
         [JsonProperty(PropertyName = "elements")]
         public List<WorkPackage> WorkPackages { get; set; }
-        
+
         public _Links _links { get; set; }
+        
     }
 }

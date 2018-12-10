@@ -9,8 +9,13 @@ namespace AppRetoKitolBet.Models
     {
         public int Id { get; set; }
         public string Subject { get; set; }
-        public string Type { get; set; }
-        public string Status { get; set; }
-        public string Assignee { get; set; }
+        public string EstimatedTime { get; set; }
+        public string RemainingTime { get; set; }
+        public string StartDate { get; set; }
+        public string DueDate { get; set; }
+
+        public _Links _Links { get; set; }
+        
+
     }
 }
