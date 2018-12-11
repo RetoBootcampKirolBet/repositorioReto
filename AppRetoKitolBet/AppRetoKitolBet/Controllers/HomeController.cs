@@ -46,9 +46,9 @@ namespace AppRetoKitolBet.Controllers
                 if (response.IsSuccessStatusCode)
                 {
                     //GUARDAREMOS EN EL OBJETO(MODELO RESPONSE) EL CONTENIDO DE LA RESPUESTA
-                    string wtfEnJson = await response.Content.ReadAsStringAsync();
-                    Response wtf = JsonConvert.DeserializeObject<Response>(wtfEnJson);
-                    items = wtf;
+                    string wpEnJson = await response.Content.ReadAsStringAsync();
+                    Response wp = JsonConvert.DeserializeObject<Response>(wpEnJson);
+                    items = wp;
                     //items = await response.Content.ReadAsAsync<Response>();
                     //SI EL ATRIBUTO NEXT(MIRA LA URL DE LA SIGUIENTE PAGINA) ES NULL, SALDREMOS DEL BUCLE PORQUE NO HAY MAS PERSONAJES
                     if (items.Total > 20 || items.Count > 20)
@@ -72,10 +72,12 @@ namespace AppRetoKitolBet.Controllers
                         DueDate = item.DueDate,
                         RemainingTime = item.RemainingTime,
                         _Links = item._Links,
+                        Description=item.Description
 
                     };
                     _Links l = p._Links;
-                    //
+                    Description d = p.Description;
+                    
                     //ANADIMOS EL PERSONAJE CREADO A LA LISTA DE PERSONAJES
                     workPackages.Add(p);
                 }

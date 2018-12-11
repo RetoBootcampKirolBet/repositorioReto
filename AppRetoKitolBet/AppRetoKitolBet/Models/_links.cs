@@ -11,5 +11,7 @@ namespace AppRetoKitolBet.Models
         public Assignee Assignee { get; set; }
         public Type Type { get; set; }
         public Status Status { get; set; }
+        public Priority Priority { get; set; }
+
     }
 }

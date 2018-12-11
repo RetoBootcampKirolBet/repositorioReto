@@ -5,7 +5,7 @@
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
 
-<p>Holi</p>
+
 
 @{
     foreach (WorkPackage p in Model)
@@ -14,12 +14,14 @@
         <p>KsoftProject:@p.Subject</p>
         <p>Type:@p._Links.Type.Tipo</p>
         <p>Id:@p.IdWPOpenProject</p>
+        <p>Subject:@p.Description.Raw</p>
         <p>Status:@p._Links.Status.Estado</p>
         <p>Estimated Time:@p.EstimatedTime</p>
         <p>Spent Time:@p.RemainingTime</p>
         <p>Start Date:@p.StartDate</p>
         <p>Due Date:@p.DueDate</p>
         <p>Assignee:@p._Links.Assignee.Name</p>
+        <p>Priority:@p._Links.Priority.Title</p>
     }
 
 }

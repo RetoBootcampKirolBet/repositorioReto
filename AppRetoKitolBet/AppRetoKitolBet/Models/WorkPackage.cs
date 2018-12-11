@@ -18,6 +18,7 @@ namespace AppRetoKitolBet.Models
         public string DueDate { get; set; }
 
         public _Links _Links { get; set; }
+        public Description Description{ get; set; }
         public List<UserWorkPackage> UserWorkPackages { get; set; }
 
     }
