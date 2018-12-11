@@ -62,14 +62,14 @@ namespace AppRetoKitolBet.Services
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", encoded);
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/hal+json"));
                 //client.DefaultRequestHeaders.Accept.Clear();
-                HttpResponseMessage response = await client.GetAsync("https://carbar.openproject.com/api/v3/project/3/work_packages/?offset=" + i);
+                HttpResponseMessage response = await client.GetAsync("https://carbar.openproject.com/api/v3/projects/3/work_packages/?offset=" + i);
                 //SI RECIBIMOS UNA RESPUESTA
                 if (response.IsSuccessStatusCode)
                 {
                     //GUARDAREMOS EN EL OBJETO(MODELO RESPONSE) EL CONTENIDO DE LA RESPUESTA
-                    string wtfEnJson = await response.Content.ReadAsStringAsync();
-                    ResponseWP wtf = JsonConvert.DeserializeObject<ResponseWP>(wtfEnJson);
-                    items = wtf;
+                    string wpEnJson = await response.Content.ReadAsStringAsync();
+                    ResponseWP wp = JsonConvert.DeserializeObject<ResponseWP>(wpEnJson);
+                    items = wp;
                     //items = await response.Content.ReadAsAsync<Response>();
                     //SI EL ATRIBUTO NEXT(MIRA LA URL DE LA SIGUIENTE PAGINA) ES NULL, SALDREMOS DEL BUCLE PORQUE NO HAY MAS PERSONAJES
                     if (items.Total <= 20 || items.Count <= 20)
@@ -86,15 +86,17 @@ namespace AppRetoKitolBet.Services
                     WorkPackage p = new WorkPackage
                     {
                         Id = item.Id,
+                        IdWPOpenProject = item.IdWPOpenProject,
                         Subject = item.Subject,
                         EstimatedTime = item.EstimatedTime,
                         StartDate = item.StartDate,
                         DueDate = item.DueDate,
                         RemainingTime = item.RemainingTime,
                         _Links = item._Links,
-
+                        Description = item.Description
                     };
                     _Links l = p._Links;
+                    Description d = p.Description;
 
                     //ANADIMOS EL PERSONAJE CREADO A LA LISTA DE PERSONAJES
                     workPackages.Add(p);
@@ -103,6 +105,63 @@ namespace AppRetoKitolBet.Services
                 i++;
             }
             //PASAMOS POR PARAMETRO LA LISTA DE PERSONAJES A LA VISTA
+            return workPackages;
+        }
+
+        public async Task<List<WorkPackage>> GetWorkPackagesDevApi()
+        {
+            bool next = true;
+            ResponseWP items = null;
+            string username = "apikey";
+            string password = "5cab265015ace048e4d5a72b3e9891c61a7b5cb9a6bca5460ebd5ccd2c95a7ba";
+            string encoded = System.Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
+            HttpClient client = new HttpClient();
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", encoded);
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/hal+json"));
+            //client.DefaultRequestHeaders.Accept.Clear();
+
+            int i = 1;
+            List<WorkPackage> workPackages = new List<WorkPackage>();
+
+            while (next)
+            {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", encoded);
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/hal+json"));
+                //client.DefaultRequestHeaders.Accept.Clear();
+                HttpResponseMessage response = await client.GetAsync("https://carbar.openproject.com/api/v3/projects/3/work_packages/?offset=" + i);
+                if (response.IsSuccessStatusCode)
+                {
+                    string wpEnJson = await response.Content.ReadAsStringAsync();
+                    ResponseWP wp = JsonConvert.DeserializeObject<ResponseWP>(wpEnJson);
+                    items = wp;
+                    if (items.Total <= 20 || items.Count <= 20)
+                    {
+                        next = false;
+                    }
+                }
+                foreach (var item in items.WorkPackagesContainer.WorkPackages)
+                {
+
+                    WorkPackage p = new WorkPackage
+                    {
+                        Id = item.Id,
+                        IdWPOpenProject = item.IdWPOpenProject,
+                        Subject = item.Subject,
+                        EstimatedTime = item.EstimatedTime,
+                        StartDate = item.StartDate,
+                        DueDate = item.DueDate,
+                        RemainingTime = item.RemainingTime,
+                        _Links = item._Links,
+                        Description = item.Description
+                    };
+                    _Links l = p._Links;
+                    Description d = p.Description;
+
+                    workPackages.Add(p);
+                }
+                i++;
+            }
             return workPackages;
         }
 
@@ -132,9 +191,9 @@ namespace AppRetoKitolBet.Services
 
                 if (response.IsSuccessStatusCode)
                 {
-                    string wtfEnJson = await response.Content.ReadAsStringAsync();
-                    ResponseUser wtf = JsonConvert.DeserializeObject<ResponseUser>(wtfEnJson);
-                    items = wtf;
+                    string usEnJson = await response.Content.ReadAsStringAsync();
+                    ResponseUser us = JsonConvert.DeserializeObject<ResponseUser>(usEnJson);
+                    items = us;
                     if (items.Total <= 30 || items.Count <= 30)
                     {
                         next = false;
@@ -154,6 +213,22 @@ namespace AppRetoKitolBet.Services
             }
             return users;
         }
+
+        //public async Task InsertInBDAsync()
+        //{
+        //    List<User> users = await GetUserApi();
+           
+        //    foreach(User u in users)
+        //    {
+        //        User user = new User();
+        //         user = _context.User.Single(x => x.Id == u.Id);
+        //        if (user==null)
+        //        {
+        //            _context.User.Add(u);
+        //        }
+        //    }
+
+        //}
 
     }
 }

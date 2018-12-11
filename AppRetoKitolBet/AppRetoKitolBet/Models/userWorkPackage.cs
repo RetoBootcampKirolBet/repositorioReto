@@ -15,5 +15,7 @@ namespace AppRetoKitolBet.Models
         public int UserId { get; set; }
         [ForeignKey("WorkPackage")]
         public int WorkPackageId { get; set; }
+        public User User { get; set; }
+        public WorkPackage WorkPackage { get; set; }
     }
 }

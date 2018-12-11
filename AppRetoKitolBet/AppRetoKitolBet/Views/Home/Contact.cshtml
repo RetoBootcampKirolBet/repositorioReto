@@ -1,20 +1,50 @@
-﻿@model IEnumerable<User>;
+﻿@inject AppRetoKitolBet.Services.KirolBetServices KirolBetServices
+@*@model IEnumerable<User>;*@
 @{
     ViewData["Title"] = "Contact";
 }
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
 
-<p>Los miembros del proyecto son:</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-sm-2">
+            <p>Los miembros del proyecto son:</p>
+            @{
+                List<User> users = await KirolBetServices.GetUserApi();
+                <ul>
+                    @foreach (User user in users)
+                    {
+                        <li>@user.Id</li>
+                        <li>@user.Name</li>
+                        <li>@user.Login</li>
+                    }
+                </ul>
+            }
+        </div>
+        <div class="col-md-offset-6 col-sm-2">
+            <p>Los proyectos de Carbar son:</p>
+            @{
+                List<WorkPackage> workPackages = await KirolBetServices.GetWorkPackagesApi();
+                <ul>
+                    @foreach (WorkPackage workP in workPackages)
+                    {
+                        <li>@workP.Id</li>
+                        <li>@workP.IdWPOpenProject</li>
+                        <li>@workP.Subject</li>
+                        <li>@workP.EstimatedTime</li>
+                        <li>@workP.StartDate</li>
+                        <li>@workP.DueDate</li>
+                        <li>@workP.RemainingTime</li>
+                        <li>@workP._Links</li>
+                        <li>@workP.Description</li>
+                    }
+                </ul>
+            }
+        </div>
+    </div>
+</div>
 
-@{
-    foreach (User u in Model)
-    {
 
-        <p>@u.Id</p>
-        <p>@u.Name</p>
-        <p>@u.Login</p>
-        
-    }
-}
+
 

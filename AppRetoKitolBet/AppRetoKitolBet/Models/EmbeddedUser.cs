@@ -8,6 +8,7 @@ namespace AppRetoKitolBet.Models
 {
     public class EmbeddedUser
     {
+        public int Id { get; set; }
         [JsonProperty(PropertyName = "elements")]
         //public List<WorkPackage> WorkPackages { get; set; }
         public List<User> Users { get; set; }

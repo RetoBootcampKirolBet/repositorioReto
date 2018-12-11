@@ -1,20 +1,29 @@
-﻿@model IEnumerable<WorkPackage>;
+﻿@inject AppRetoKitolBet.Services.KirolBetServices KirolBetServices
+@*@model IEnumerable<WorkPackage>;*@
 @{
     ViewData["Title"] = "About";
 }
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
 
-<p>Holi</p>
-
-@{
-    foreach (WorkPackage p in Model)
-    {
-
-        <p>@p.Id</p>
-        <p>@p.Subject</p>
-        <p>@p.Type</p>
-        <p>@p.Status</p>
-        <p>@p.Assignee</p>
+<div class="container">
+    <p>Los proyectos del Developer son:</p>
+    @{
+        List<WorkPackage> workPackages = await KirolBetServices.GetWorkPackagesDevApi();
+        <ul>
+            @foreach (WorkPackage workP in workPackages)
+            {
+                <li>@workP.Id</li>
+                <li>@workP.IdWPOpenProject</li>
+                <li>@workP.Subject</li>
+                <li>@workP.EstimatedTime</li>
+                <li>@workP.StartDate</li>
+                <li>@workP.DueDate</li>
+                <li>@workP.RemainingTime</li>
+                <li>@workP._Links</li>
+                <li>@workP.Description</li>
+            }
+        </ul>
     }
-}
+</div>
+

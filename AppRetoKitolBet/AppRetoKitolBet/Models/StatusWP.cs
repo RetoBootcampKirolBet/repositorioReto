@@ -8,7 +8,8 @@ namespace AppRetoKitolBet.Models
 {
     public class StatusWP
     {
-        public List<Assignee> assignee { get; set; }
+        public int Id { get; set; }
+        public List<AssigneeWP> assignee { get; set; }
         [JsonProperty(PropertyName = "Title")]
         public string Estado { get; set; }
     }

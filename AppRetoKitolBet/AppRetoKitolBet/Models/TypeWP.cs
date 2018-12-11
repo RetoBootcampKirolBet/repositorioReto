@@ -8,7 +8,8 @@ namespace AppRetoKitolBet.Models
 {
     public class TypeWP
     {
-        public List<Type> type { get; set; }
+        public int Id { get; set; }
+        public List<TypeWP> Type { get; set; }
         [JsonProperty(propertyName: "Title")]
         public string Tipo { get; set; }
     }

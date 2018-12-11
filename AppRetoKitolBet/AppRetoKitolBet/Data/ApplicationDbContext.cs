@@ -13,9 +13,10 @@ namespace AppRetoKitolBet.Data
             : base(options)
         {
         }
-        public DbSet<KirolBetServices.Models.WorkPackage> WorkPackage { get; set; }
-        public DbSet<KirolBetServices.Models.User> User { get; set; }
-        public DbSet<KirolBetServices.Models.ResponseWP> ResponseWP { get; set; }
-        public DbSet<KirolBetServices.Models.ResponseUser> ResponseUser { get; set; }
+        public DbSet<AppRetoKitolBet.Models.WorkPackage> WorkPackage { get; set; }
+        public DbSet<AppRetoKitolBet.Models.User> User { get; set; }
+        public DbSet<AppRetoKitolBet.Models.ResponseWP> ResponseWP { get; set; }
+        public DbSet<AppRetoKitolBet.Models.ResponseUser> ResponseUser { get; set; }
+        public DbSet<AppRetoKitolBet.Models.UserWorkPackage> UserWorkPackage { get; set; }
     }
 }

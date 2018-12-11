@@ -34,6 +34,8 @@ namespace AppRetoKitolBet
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddTransient<Services.KirolBetServices>();
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
