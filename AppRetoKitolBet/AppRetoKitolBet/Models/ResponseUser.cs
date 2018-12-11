@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AppRetoKitolBet.Models
 {
-    public class Response
+    public class ResponseUser
     {
         public int Count { get; set; }
         public int Offset { get; set; }

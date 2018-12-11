@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AppRetoKitolBet.Models
 {
-    public class Embedded
+    public class EmbeddedUser
     {
         [JsonProperty(PropertyName = "elements")]
         //public List<WorkPackage> WorkPackages { get; set; }
