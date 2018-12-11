@@ -40,7 +40,7 @@ namespace AppRetoKitolBet.Controllers
             {
                 //LA VARIABLE RESPONSE GUARDARA LA LLAMADA A LA API
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/hal+json"));
-                client.DefaultRequestHeaders.Accept.Clear();
+                //client.DefaultRequestHeaders.Accept.Clear();
                 HttpResponseMessage response = await client.GetAsync("http://192.168.99.100:32769/api/v3/projects/4/work_packages/?offset=" + i);
                 //SI RECIBIMOS UNA RESPUESTA
                 if (response.IsSuccessStatusCode)
@@ -64,17 +64,18 @@ namespace AppRetoKitolBet.Controllers
                     //CREAMOS UN PERSONAJE POR CADA ELEMENTO EN EL ARRAY RESULTS Y CREAMOS UN PERSONAJE
                     WorkPackage p = new WorkPackage
                     {
-                        Id = item.Id,
+                        IdWPLocal = item.IdWPLocal,
+                        IdWPOpenProject = item.IdWPOpenProject,
                         Subject = item.Subject,
                         EstimatedTime = item.EstimatedTime,
                         StartDate = item.StartDate,
                         DueDate = item.DueDate,
                         RemainingTime = item.RemainingTime,
                         _Links = item._Links,
-                        
+
                     };
                     _Links l = p._Links;
-                   //
+                    //
                     //ANADIMOS EL PERSONAJE CREADO A LA LISTA DE PERSONAJES
                     workPackages.Add(p);
                 }
