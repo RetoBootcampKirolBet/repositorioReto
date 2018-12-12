@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AppRetoKitolBet.Data.Migrations
 {
-    public partial class _3 : Migration
+    public partial class _4 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -466,3 +466,4 @@ namespace AppRetoKitolBet.Data.Migrations
         }
     }
 }
+

@@ -41,7 +41,7 @@ namespace AppRetoKitolBet.Services
             //OBJETO RESPUESTA (DEPENDERA DE COMO ESTA ORGANIZADA LA API)
             ResponseWP items = null;
             string username = "apikey";
-            string password = "e091a02b90c3c0714b0a589b3deac0472cb565bb5fdddb89d9e9ab622964ffa3";
+            string password = "dfcea59da8a7aea1adb6ae079556478eba8c259c292cb4a9518d283282dacb1a";
             string encoded = System.Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
             //INICIALIZAMOS EL CLIENTE HTTP
             HttpClient client = new HttpClient();
@@ -113,7 +113,7 @@ namespace AppRetoKitolBet.Services
             bool next = true;
             ResponseWP items = null;
             string username = "apikey";
-            string password = "5cab265015ace048e4d5a72b3e9891c61a7b5cb9a6bca5460ebd5ccd2c95a7ba";
+            string password = "dfcea59da8a7aea1adb6ae079556478eba8c259c292cb4a9518d283282dacb1a";
             string encoded = System.Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
             HttpClient client = new HttpClient();
 
@@ -170,7 +170,7 @@ namespace AppRetoKitolBet.Services
             bool next = true;
             ResponseUser items = null;
             string username = "apikey";
-            string password = "e091a02b90c3c0714b0a589b3deac0472cb565bb5fdddb89d9e9ab622964ffa3";
+            string password = "dfcea59da8a7aea1adb6ae079556478eba8c259c292cb4a9518d283282dacb1a";
             string encoded = System.Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
 
             HttpClient client = new HttpClient();
