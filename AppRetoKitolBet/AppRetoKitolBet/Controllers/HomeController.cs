@@ -11,22 +11,23 @@ using Newtonsoft.Json;
 using System.Net;
 using System.Text;
 using AppRetoKitolBet.Services;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace AppRetoKitolBet.Controllers
 {
+    //[Authorize]
     public class HomeController : Controller
     {
-        //private readonly KirolBetServices _services;
+        private readonly KirolBetServices _services;
 
-        //public HomeController(KirolBetServices services)
-        //{
-        //    _services = services;
-        //}
-
-        public IActionResult Index()
+        public HomeController(KirolBetServices services)
         {
-            //await _services.InsertInBDAsync();
+            _services = services;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            await _services.InsertWPInBD();
             return View(User);
         }
 
@@ -47,6 +48,7 @@ namespace AppRetoKitolBet.Controllers
             return View();
         }
 
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

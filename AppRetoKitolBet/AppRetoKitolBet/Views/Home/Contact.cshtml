@@ -11,7 +11,7 @@
         <div class="col-md-6 col-sm-2">
             <p>Los miembros del proyecto son:</p>
             @{
-                List<User> users = await KirolBetServices.GetUserApi();
+                List<User> users = await KirolBetServices.GetUsersApi();
                 <ul>
                     @foreach (User user in users)
                     {

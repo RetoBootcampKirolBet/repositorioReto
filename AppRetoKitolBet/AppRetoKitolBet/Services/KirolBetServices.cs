@@ -165,7 +165,7 @@ namespace AppRetoKitolBet.Services
             return workPackages;
         }
 
-        public async Task<List<User>> GetUserApi()
+        public async Task<List<User>> GetUsersApi()
         {
             bool next = true;
             ResponseUser items = null;
@@ -214,21 +214,21 @@ namespace AppRetoKitolBet.Services
             return users;
         }
 
-        //public async Task InsertInBDAsync()
-        //{
-        //    List<User> users = await GetUserApi();
-           
-        //    foreach(User u in users)
-        //    {
-        //        User user = new User();
-        //         user = _context.User.Single(x => x.Id == u.Id);
-        //        if (user==null)
-        //        {
-        //            _context.User.Add(u);
-        //        }
-        //    }
+        public async Task InsertWPInBD()
+        {
+            List<WorkPackage> workPackages = await GetWorkPackagesApi();
 
-        //}
+            foreach (WorkPackage workP in workPackages)
+            {
+                WorkPackage workPackage = new WorkPackage();
+                workPackage = _context.WorkPackage.Single(x => x.Id == workP.Id);
+                if (workP == null)
+                {
+                    _context.WorkPackage.Add(workP);
+                }
+            }
+
+        }
 
     }
 }
