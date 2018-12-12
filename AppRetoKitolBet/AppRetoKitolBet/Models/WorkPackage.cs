@@ -8,8 +8,8 @@ namespace AppRetoKitolBet.Models
 {
     public class WorkPackage
     {
-        public int IdWPLocal { get; set; }
-        [JsonProperty(PropertyName = "Id")]
+        public int Id { get; set; }
+        [JsonProperty(PropertyName = "id")]
         public int IdWPOpenProject { get; set; }
         public string Subject { get; set; }
         public string EstimatedTime { get; set; }

@@ -1,27 +1,31 @@
-﻿@model IEnumerable<WorkPackage>;
+﻿@inject AppRetoKitolBet.Services.KirolBetServices KirolBetServices
+@model IEnumerable<WorkPackage>;
 @{
     ViewData["Title"] = "About";
 }
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
 
+<div class="container">
+    <p>Los proyectos del Developer son:</p>
+    @{
+        List<WorkPackage> workPackages = await KirolBetServices.GetWorkPackagesDevApi();
+    <ul>
+        @foreach (WorkPackage workP in workPackages)
+        {
+            <li>Id:@workP.Id</li>
+            <li>IdOP:@workP.IdWPOpenProject</li>
+            <li>NombreWP:@workP.Subject</li>
+            <li>TiempoEstimado:@workP.EstimatedTime</li>
+            <li>Tiempo hecho:@workP.RemainingTime</li>
+            <li>Fecha inicio:@workP.StartDate</li>
+            <li>Fecha fin:@workP.DueDate</li>
+            <li>Asignee:@workP._Links.Assignee.Name</li>
+            <li>Description:@workP.Description.Raw</li>
+            <li>Status:@workP._Links.Status.Estado</li>
+            <li>Type:@workP._Links.Type.Tipo</li>
 
-
-@{
-    foreach (WorkPackage p in Model)
-    {
-
-        <p>KsoftProject:@p.Subject</p>
-        <p>Type:@p._Links.Type.Tipo</p>
-        <p>Id:@p.IdWPOpenProject</p>
-        <p>Subject:@p.Description.Raw</p>
-        <p>Status:@p._Links.Status.Estado</p>
-        <p>Estimated Time:@p.EstimatedTime</p>
-        <p>Spent Time:@p.RemainingTime</p>
-        <p>Start Date:@p.StartDate</p>
-        <p>Due Date:@p.DueDate</p>
-        <p>Assignee:@p._Links.Assignee.Name</p>
-        <p>Priority:@p._Links.Priority.Title</p>
+        }
+    </ul>
     }
-
-}
+</div>

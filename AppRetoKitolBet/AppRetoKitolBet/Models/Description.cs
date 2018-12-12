@@ -7,6 +7,7 @@ namespace AppRetoKitolBet.Models
 {
     public class Description
     {
+        public int Id { get; set; }
         public List<Description> Descriptions { get; set; }
         public string Raw { get; set; }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using AppRetoKitolBet.Models;
 
 namespace AppRetoKitolBet.Data
 {
@@ -12,5 +13,8 @@ namespace AppRetoKitolBet.Data
             : base(options)
         {
         }
+        public DbSet<AppRetoKitolBet.Models.User> User { get; set; }
+        public DbSet<AppRetoKitolBet.Models.WorkPackage> WorkPackage { get; set; }
+        public DbSet<AppRetoKitolBet.Models.UserWorkPackage> UserWorkPackage { get; set; }
     }
 }

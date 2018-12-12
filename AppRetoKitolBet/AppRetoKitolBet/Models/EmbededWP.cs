@@ -3,8 +3,9 @@ using System.Collections.Generic;
 
 namespace AppRetoKitolBet.Models
 {
-    public class Embeded
+    public class EmbededWP
     {
+        public int Id { get; set; }
         [JsonProperty(PropertyName = "elements")]
         public List<WorkPackage> WorkPackages { get; set; }
 

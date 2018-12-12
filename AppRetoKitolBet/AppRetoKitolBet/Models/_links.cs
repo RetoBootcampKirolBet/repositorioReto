@@ -7,10 +7,11 @@ namespace AppRetoKitolBet.Models
 {
     public class _Links
     {
-        //public List<_Links> _links { get; set; }
-        public Assignee Assignee { get; set; }
-        public Type Type { get; set; }
-        public Status Status { get; set; }
+        public int Id { get; set; }
+        
+        public AssigneeWP Assignee { get; set; }
+        public TypeWP Type { get; set; }
+        public StatusWP Status { get; set; }
         public Priority Priority { get; set; }
 
     }

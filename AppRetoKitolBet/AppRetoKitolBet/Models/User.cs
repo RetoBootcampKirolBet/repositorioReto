@@ -8,7 +8,7 @@ namespace AppRetoKitolBet.Models
 {
     public class User
     {
-        public int IdUserLocal { get; set; }
+        public int Id { get; set; }
         [JsonProperty(PropertyName = "Id")]//falta hacer esto
         public int IdUserOpenProject { get; set; }
         public string Name { get; set; }

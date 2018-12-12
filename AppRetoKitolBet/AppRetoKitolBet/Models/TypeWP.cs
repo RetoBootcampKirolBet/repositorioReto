@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace AppRetoKitolBet.Models
 {
-    public class Type
+    public class TypeWP
     {
-        public List<Type> type { get; set; }
+        public int Id { get; set; }
+        public List<TypeWP> type { get; set; }
         [JsonProperty(propertyName: "Title")]
         public string Tipo { get; set; }
     }

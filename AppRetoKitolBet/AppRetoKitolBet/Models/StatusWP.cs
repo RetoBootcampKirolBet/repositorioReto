@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace AppRetoKitolBet.Models
 {
-    public class Status
+    public class StatusWP
     {
-        public List<Assignee> assignee { get; set; }
+        public int Id { get; set; }
+        public List<StatusWP> status { get; set; }
         [JsonProperty(PropertyName = "Title")]
         public string Estado { get; set; }
     }

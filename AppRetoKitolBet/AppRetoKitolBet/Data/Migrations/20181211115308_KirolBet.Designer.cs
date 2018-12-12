@@ -4,14 +4,16 @@ using AppRetoKitolBet.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AppRetoKitolBet.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181211115308_KirolBet")]
+    partial class KirolBet
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,21 +48,21 @@ namespace AppRetoKitolBet.Data.Migrations
                     b.ToTable("_Links");
                 });
 
-            modelBuilder.Entity("AppRetoKitolBet.Models.AssigneeWP", b =>
+            modelBuilder.Entity("AppRetoKitolBet.Models.Assignee", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AssigneeWPId");
+                    b.Property<int?>("AssigneeId");
 
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AssigneeWPId");
+                    b.HasIndex("AssigneeId");
 
-                    b.ToTable("AssigneeWP");
+                    b.ToTable("Assignee");
                 });
 
             modelBuilder.Entity("AppRetoKitolBet.Models.Description", b =>
@@ -97,7 +99,7 @@ namespace AppRetoKitolBet.Data.Migrations
                     b.ToTable("Priority");
                 });
 
-            modelBuilder.Entity("AppRetoKitolBet.Models.StatusWP", b =>
+            modelBuilder.Entity("AppRetoKitolBet.Models.Status", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -105,16 +107,16 @@ namespace AppRetoKitolBet.Data.Migrations
 
                     b.Property<string>("Estado");
 
-                    b.Property<int?>("StatusWPId");
+                    b.Property<int?>("StatusId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("StatusWPId");
+                    b.HasIndex("StatusId");
 
-                    b.ToTable("StatusWP");
+                    b.ToTable("Status");
                 });
 
-            modelBuilder.Entity("AppRetoKitolBet.Models.TypeWP", b =>
+            modelBuilder.Entity("AppRetoKitolBet.Models.Type", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -122,13 +124,13 @@ namespace AppRetoKitolBet.Data.Migrations
 
                     b.Property<string>("Tipo");
 
-                    b.Property<int?>("TypeWPId");
+                    b.Property<int?>("TypeId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TypeWPId");
+                    b.HasIndex("TypeId");
 
-                    b.ToTable("TypeWP");
+                    b.ToTable("Type");
                 });
 
             modelBuilder.Entity("AppRetoKitolBet.Models.User", b =>
@@ -365,7 +367,7 @@ namespace AppRetoKitolBet.Data.Migrations
 
             modelBuilder.Entity("AppRetoKitolBet.Models._Links", b =>
                 {
-                    b.HasOne("AppRetoKitolBet.Models.AssigneeWP", "Assignee")
+                    b.HasOne("AppRetoKitolBet.Models.Assignee", "Assignee")
                         .WithMany()
                         .HasForeignKey("AssigneeId");
 
@@ -373,20 +375,20 @@ namespace AppRetoKitolBet.Data.Migrations
                         .WithMany()
                         .HasForeignKey("PriorityId");
 
-                    b.HasOne("AppRetoKitolBet.Models.StatusWP", "Status")
+                    b.HasOne("AppRetoKitolBet.Models.Status", "Status")
                         .WithMany()
                         .HasForeignKey("StatusId");
 
-                    b.HasOne("AppRetoKitolBet.Models.TypeWP", "Type")
+                    b.HasOne("AppRetoKitolBet.Models.Type", "Type")
                         .WithMany()
                         .HasForeignKey("TypeId");
                 });
 
-            modelBuilder.Entity("AppRetoKitolBet.Models.AssigneeWP", b =>
+            modelBuilder.Entity("AppRetoKitolBet.Models.Assignee", b =>
                 {
-                    b.HasOne("AppRetoKitolBet.Models.AssigneeWP")
+                    b.HasOne("AppRetoKitolBet.Models.Assignee")
                         .WithMany("assignee")
-                        .HasForeignKey("AssigneeWPId");
+                        .HasForeignKey("AssigneeId");
                 });
 
             modelBuilder.Entity("AppRetoKitolBet.Models.Description", b =>
@@ -403,18 +405,18 @@ namespace AppRetoKitolBet.Data.Migrations
                         .HasForeignKey("PriorityId");
                 });
 
-            modelBuilder.Entity("AppRetoKitolBet.Models.StatusWP", b =>
+            modelBuilder.Entity("AppRetoKitolBet.Models.Status", b =>
                 {
-                    b.HasOne("AppRetoKitolBet.Models.StatusWP")
+                    b.HasOne("AppRetoKitolBet.Models.Status")
                         .WithMany("status")
-                        .HasForeignKey("StatusWPId");
+                        .HasForeignKey("StatusId");
                 });
 
-            modelBuilder.Entity("AppRetoKitolBet.Models.TypeWP", b =>
+            modelBuilder.Entity("AppRetoKitolBet.Models.Type", b =>
                 {
-                    b.HasOne("AppRetoKitolBet.Models.TypeWP")
+                    b.HasOne("AppRetoKitolBet.Models.Type")
                         .WithMany("type")
-                        .HasForeignKey("TypeWPId");
+                        .HasForeignKey("TypeId");
                 });
 
             modelBuilder.Entity("AppRetoKitolBet.Models.UserWorkPackage", b =>
