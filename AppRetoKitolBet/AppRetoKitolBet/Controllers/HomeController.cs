@@ -28,6 +28,7 @@ namespace AppRetoKitolBet.Controllers
         public async Task<IActionResult> Index()
         {
             await _services.InsertWPInBD();
+            await _services.InsertUserInBD();
             return View(User);
         }
 

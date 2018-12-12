@@ -218,16 +218,55 @@ namespace AppRetoKitolBet.Services
         {
             List<WorkPackage> workPackages = await GetWorkPackagesApi();
 
-            foreach (WorkPackage workP in workPackages)
+            if (_context.WorkPackage.Count() == 0)
             {
-                WorkPackage workPackage = new WorkPackage();
-                workPackage = _context.WorkPackage.Single(x => x.Id == workP.Id);
-                if (workP == null)
+                foreach (WorkPackage workP in workPackages)
                 {
                     _context.WorkPackage.Add(workP);
+                    await _context.SaveChangesAsync();
+                }
+            }
+            else
+            {
+                foreach (WorkPackage workP in workPackages)
+                {
+                    WorkPackage workPackage = new WorkPackage();
+                    workPackage = _context.WorkPackage.SingleOrDefault(x => x.IdWPOpenProject == workP.IdWPOpenProject);
+                    if (workPackage == null)
+                    {
+                        _context.WorkPackage.Add(workP);
+                        await _context.SaveChangesAsync();
+                    }
                 }
             }
 
+        }
+
+        public async Task InsertUserInBD()
+        {
+            List<User> users = await GetUsersApi();
+
+            if (_context.User.Count() == 0)
+            {
+                foreach (User user in users)
+                {
+                    _context.User.Add(user);
+                    await _context.SaveChangesAsync();
+                }
+            }
+            else
+            {
+                foreach (User u in users)
+                {
+                    User user = new User();
+                    user = _context.User.SingleOrDefault(x => x.Name == u.Name);
+                    if (user == null)
+                    {
+                        _context.User.Add(user);
+                        await _context.SaveChangesAsync();
+                    }
+                }
+            }
         }
 
     }
