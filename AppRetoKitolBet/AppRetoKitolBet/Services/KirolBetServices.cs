@@ -272,32 +272,11 @@ namespace AppRetoKirolBet.Services
         }
 
 
-        public async Task Asignar()
+        public void Asignar(int Id,string dropdown)
         {
-            List<User> users = await GetUsersApi();
-
-            if (_context.User.Count() == 0)
-            {
-                foreach (User user in users)
-                {
-                    _context.User.Add(user);
-                    await _context.SaveChangesAsync();
-                }
-            }
-            else
-            {
-                foreach (User u in users)
-                {
-                    User user = new User();
-                    user = _context.User.SingleOrDefault(x => x.Login == u.Login);
-                    if (user == null)
-                    {
-                        _context.User.Add(user);
-                        await _context.SaveChangesAsync();
-                    }
-                }
-            }
-
+            User user = _context.User.Where(x => x.Id == Id).First();
+            user.UserRole = dropdown;
+            _context.SaveChanges();
         }
 
 

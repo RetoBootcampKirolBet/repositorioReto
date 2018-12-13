@@ -32,9 +32,9 @@ namespace AppRetoKirolBet.Controllers
             return View(User);
         }
 
-        public async Task<IActionResult> Asignar()
+        public IActionResult Asignar(int Id,string dropdown)
         {
-            await _services.Asignar();
+            _services.Asignar(Id,dropdown);
             return View(User);
         }
 

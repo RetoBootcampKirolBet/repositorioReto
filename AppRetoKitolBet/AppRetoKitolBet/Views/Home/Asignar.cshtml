@@ -1,0 +1,73 @@
+﻿@inject AppRetoKirolBet.Services.KirolBetServices KirolBetServices
+@*@model IEnumerable<WorkPackage>;*@
+@{
+    ViewData["Title"] = "About";
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+@*<div class="container">
+        <p>Los proyectos del Developer son:</p>
+        @{
+            List<WorkPackage> workPackages = await KirolBetServices.GetWorkPackagesDevApi();
+            <ul>
+                @foreach (WorkPackage workP in workPackages)
+                {
+                    <li>@workP.Id</li>
+                    <li>@workP.IdWPOpenProject</li>
+                    <li>@workP.Subject</li>
+                    <li>@workP.EstimatedTime</li>
+                    <li>@workP.StartDate</li>
+                    <li>@workP.DueDate</li>
+                    <li>@workP.RemainingTime</li>
+                    <li>@workP._Links.Assignee.Name</li>
+                    <li>@workP.Description.Raw</li>
+                    <li>@workP._Links.Status.Estado</li>
+                    <li>@workP._Links.Type.Tipo</li>
+                }
+            </ul>
+        }
+    </div>*@
+
+<form asp-action="Asignar">
+    @{
+        List<User> users = KirolBetServices.GetUsersDB();
+        <div>
+            <h1>Users</h1>
+            <hr />
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Usuarios</th>
+                      
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (User u in users)
+                    {
+                        <tr>
+                            <td>
+                                <div class="form-group">
+                                    @Html.DisplayFor(modelItem => u.Name)
+                                    @Html.DisplayFor(modelItem => u.UserRole)
+
+                                </div>
+                                <div class="form-group">
+                                    <select>
+                                        <option value="developer">Developer</option>
+                                        <option value="teamleader">Team Leader</option>
+                                        <option value="admin">Administrator</option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                <tbody />
+            </table>
+            <div class="form-group">
+                <input type="submit" value="Save" id="SaveChanges" />
+            </div>
+        </div>
+    }
+</form>
+
