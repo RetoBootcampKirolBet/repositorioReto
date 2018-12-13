@@ -34,6 +34,33 @@ namespace AppRetoKirolBet.Services
             return users;
         }
 
+        public async Task ActivateWPBD()
+        {
+            List<WorkPackage> workPackages;
+
+            if (_context.WorkPackage.Count() == 0)
+            {
+                foreach (WorkPackage workP in workPackages)
+                {
+                    _context.WorkPackage.Add(workP);
+                    await _context.SaveChangesAsync();
+                }
+            }
+            else
+            {
+                foreach (WorkPackage workP in workPackages)
+                {
+                    WorkPackage workPackage = new WorkPackage();
+                    workPackage = _context.WorkPackage.SingleOrDefault(x => x.IdWPOpenProject == workP.IdWPOpenProject);
+                    if (workPackage == null)
+                    {
+                        _context.WorkPackage.Add(workP);
+                        await _context.SaveChangesAsync();
+                    }
+                }
+            }
+        }
+
         public async Task<List<WorkPackage>> GetWorkPackagesApi()
         {
             //BOOLEANO QUE MIRA SI HAY MAS PAGINAS EN LA API

@@ -16,8 +16,7 @@
             <thead>
                 <tr>
                     <th>KSOFT PROJECTS</th>
-                @*<th>Project Acticado</th>
-                <th>Project Desactivado</th>*@
+                    <th>Project Activado</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,13 +25,12 @@
                     <tr>
                         <td>
                             <div class="form-group">
-                            @Html.DisplayFor(modelItem => workP.Subject)
+                                @Html.DisplayFor(modelItem => workP.Subject)
                             </div>
+                        </td>
+                        <td>
                             <div class="form-group">
-                                <input type="radio" name="election" value="Activado"/>
-                            </div>
-                            <div class="form-group">
-                                <input type="radio" name="election" value="No Activado" />
+                                <input type="checkbox" name="election" value="Activado" />
                             </div>
                         </td>
                     </tr>

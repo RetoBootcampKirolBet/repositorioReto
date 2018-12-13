@@ -32,6 +32,12 @@ namespace AppRetoKirolBet.Controllers
             return View(User);
         }
 
+        public async Task<IActionResult> Activate()
+        {
+            await _services.ActivateWPBD();
+            return RedirectToAction(nameof(Index));
+        }
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
