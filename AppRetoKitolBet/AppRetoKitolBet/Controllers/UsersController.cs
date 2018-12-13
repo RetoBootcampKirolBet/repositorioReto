@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using AppRetoKitolBet.Data;
-using AppRetoKitolBet.Models;
+using AppRetoKirolBet.Data;
+using AppRetoKirolBet.Models;
 
-namespace AppRetoKitolBet.Controllers
+namespace AppRetoKirolBet.Controllers
 {
     public class UsersController : Controller
     {

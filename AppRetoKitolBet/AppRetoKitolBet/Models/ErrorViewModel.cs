@@ -1,6 +1,6 @@
 using System;
 
-namespace AppRetoKitolBet.Models
+namespace AppRetoKirolBet.Models
 {
     public class ErrorViewModel
     {

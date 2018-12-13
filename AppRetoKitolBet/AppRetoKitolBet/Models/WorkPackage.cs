@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AppRetoKitolBet.Models
+namespace AppRetoKirolBet.Models
 {
     public class WorkPackage
     {
@@ -17,6 +17,7 @@ namespace AppRetoKitolBet.Models
         public string RemainingTime { get; set; }
         public string StartDate { get; set; }
         public string DueDate { get; set; }
+        public string Activation { get; set; }
 
         public _Links _Links { get; set; }
         public Description Description { get; set; }

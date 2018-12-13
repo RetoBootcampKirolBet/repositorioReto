@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AppRetoKitolBet.Models
+namespace AppRetoKirolBet.Models
 {
     public class ResponseWP
     {

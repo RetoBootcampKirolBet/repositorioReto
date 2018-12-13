@@ -1,5 +1,5 @@
-﻿using AppRetoKitolBet.Data;
-using AppRetoKitolBet.Models;
+﻿using AppRetoKirolBet.Data;
+using AppRetoKirolBet.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace AppRetoKitolBet.Services
+namespace AppRetoKirolBet.Services
 {
 
     public class KirolBetServices
@@ -259,7 +259,7 @@ namespace AppRetoKitolBet.Services
                 foreach (User u in users)
                 {
                     User user = new User();
-                    user = _context.User.SingleOrDefault(x => x.Name == u.Name);
+                    user = _context.User.SingleOrDefault(x => x.Login == u.Login);
                     if (user == null)
                     {
                         _context.User.Add(user);

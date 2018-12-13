@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using AppRetoKitolBet.Models;
+using AppRetoKirolBet.Models;
 
-namespace AppRetoKitolBet.Data
+namespace AppRetoKirolBet.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
@@ -13,10 +13,10 @@ namespace AppRetoKitolBet.Data
             : base(options)
         {
         }
-        public DbSet<AppRetoKitolBet.Models.WorkPackage> WorkPackage { get; set; }
-        public DbSet<AppRetoKitolBet.Models.User> User { get; set; }
-        public DbSet<AppRetoKitolBet.Models.ResponseWP> ResponseWP { get; set; }
-        public DbSet<AppRetoKitolBet.Models.ResponseUser> ResponseUser { get; set; }
-        public DbSet<AppRetoKitolBet.Models.UserWorkPackage> UserWorkPackage { get; set; }
+        public DbSet<AppRetoKirolBet.Models.WorkPackage> WorkPackage { get; set; }
+        public DbSet<AppRetoKirolBet.Models.User> User { get; set; }
+        public DbSet<AppRetoKirolBet.Models.ResponseWP> ResponseWP { get; set; }
+        public DbSet<AppRetoKirolBet.Models.ResponseUser> ResponseUser { get; set; }
+        public DbSet<AppRetoKirolBet.Models.UserWorkPackage> UserWorkPackage { get; set; }
     }
 }

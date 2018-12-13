@@ -4,18 +4,18 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using AppRetoKitolBet.Models;
+using AppRetoKirolBet.Models;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using System.Net;
 using System.Text;
-using AppRetoKitolBet.Services;
+using AppRetoKirolBet.Services;
 using Microsoft.AspNetCore.Authorization;
 
-namespace AppRetoKitolBet.Controllers
+namespace AppRetoKirolBet.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly KirolBetServices _services;
@@ -27,8 +27,8 @@ namespace AppRetoKitolBet.Controllers
 
         public async Task<IActionResult> Index()
         {
-            await _services.InsertWPInBD();
-            await _services.InsertUserInBD();
+            //await _services.InsertWPInBD();
+            //await _services.InsertUserInBD();
             return View(User);
         }
 
@@ -40,7 +40,7 @@ namespace AppRetoKitolBet.Controllers
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your application description page.";
+            //ViewData["Message"] = "Your application description page.";
             return View();
         }
 

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace AppRetoKitolBet.Data.Migrations
+namespace AppRetoKirolBet.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {

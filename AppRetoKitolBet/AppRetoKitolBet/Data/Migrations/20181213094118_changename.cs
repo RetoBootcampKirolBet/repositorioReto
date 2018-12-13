@@ -2,7 +2,7 @@
 
 namespace AppRetoKirolBet.Data.Migrations
 {
-    public partial class insertBD : Migration
+    public partial class changename : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -9,11 +9,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using AppRetoKitolBet.Data;
+using AppRetoKirolBet.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AppRetoKitolBet
+namespace AppRetoKirolBet
 {
     public class Startup
     {
