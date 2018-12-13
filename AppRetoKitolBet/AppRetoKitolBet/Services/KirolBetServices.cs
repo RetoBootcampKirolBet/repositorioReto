@@ -204,8 +204,10 @@ namespace AppRetoKirolBet.Services
                     User u = new User
                     {
                         Id = item.Id,
+                        IdUserOpenProject = item.IdUserOpenProject,
                         Name = item.Name,
-                        Login = item.Login
+                        Login = item.Login,
+                        UserRole=item.UserRole
                     };
                     users.Add(u);
                 }
@@ -248,7 +250,7 @@ namespace AppRetoKirolBet.Services
 
             if (_context.User.Count() == 0)
             {
-                foreach (User user in users)
+                foreach (User user in users) 
                 {
                     _context.User.Add(user);
                     await _context.SaveChangesAsync();
@@ -268,6 +270,37 @@ namespace AppRetoKirolBet.Services
                 }
             }
         }
+
+
+        public async Task Asignar()
+        {
+            List<User> users = await GetUsersApi();
+
+            if (_context.User.Count() == 0)
+            {
+                foreach (User user in users)
+                {
+                    _context.User.Add(user);
+                    await _context.SaveChangesAsync();
+                }
+            }
+            else
+            {
+                foreach (User u in users)
+                {
+                    User user = new User();
+                    user = _context.User.SingleOrDefault(x => x.Login == u.Login);
+                    if (user == null)
+                    {
+                        _context.User.Add(user);
+                        await _context.SaveChangesAsync();
+                    }
+                }
+            }
+
+        }
+
+
 
     }
 }

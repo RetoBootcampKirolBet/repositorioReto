@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace AppRetoKirolBet.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class HomeController : Controller
     {
         private readonly KirolBetServices _services;
@@ -28,7 +28,13 @@ namespace AppRetoKirolBet.Controllers
         public async Task<IActionResult> Index()
         {
             //await _services.InsertWPInBD();
-            //await _services.InsertUserInBD();
+            await _services.InsertUserInBD();
+            return View(User);
+        }
+
+        public async Task<IActionResult> Asignar()
+        {
+            await _services.Asignar();
             return View(User);
         }
 
