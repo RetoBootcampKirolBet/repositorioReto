@@ -32,10 +32,16 @@ namespace AppRetoKirolBet.Controllers
             return View(User);
         }
 
-        public async Task<IActionResult> Activate()
+        public IActionResult Activate(int id)
         {
-            await _services.ActivateWPBD();
-            return RedirectToAction(nameof(Index));
+            _services.ActivateWPBD(id);
+            return RedirectToAction(nameof(Contact));
+        }
+
+        public IActionResult Inactivate(int id)
+        {
+            _services.InactivateWPBD(id);
+            return RedirectToAction(nameof(Contact));
         }
 
         public IActionResult About()

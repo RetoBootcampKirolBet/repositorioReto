@@ -6,7 +6,6 @@
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
 
-<form asp-action="Activate">
 @{
     List<WorkPackage> workPackages = KirolBetServices.GetWorkPackagesDB();
     <div>
@@ -17,6 +16,7 @@
                 <tr>
                     <th>KSOFT PROJECTS</th>
                     <th>Project Activado</th>
+                    <th>Project Desactivado</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,22 +29,37 @@
                             </div>
                         </td>
                         <td>
-                            <div class="form-group">
-                                <input type="checkbox" name="election" value="Activado" />
-                            </div>
+                            <form asp-action="Activate" method="POST">
+                                <input type="checkbox" class="project_active" name="election" value="Activado" />
+                                <input type="hidden" name="id" value="@workP.Id">
+                            </form>
+                        </td>
+                        <td>
+                            <form asp-action="Inactivate" method="POST">
+                                <input type="checkbox" class="project_inactive" name="election" value="Desactivado" />
+                                <input type="hidden" name="id" value="@workP.Id">
+                            </form>
                         </td>
                     </tr>
                  }
             <tbody/>
         </table>
-        <div class="form-group">
-            <input type="submit" value="Save" id="SaveChanges" />
-        </div>
+        
     </div>       
 }
-</form>
-       
-
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>      
+<script>
+    $('.project_active').on('click', function (e) {
+        var form = e.target.closest('form');
+        form.submit();
+    });
+    $('.project_inactive').on('click', function (e) {
+        var form = e.target.closest('form');
+        form.submit();
+    });
+</script>
 
 
 

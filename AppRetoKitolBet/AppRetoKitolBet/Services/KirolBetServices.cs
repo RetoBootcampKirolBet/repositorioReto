@@ -1,5 +1,8 @@
 ﻿using AppRetoKirolBet.Data;
 using AppRetoKirolBet.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -34,31 +37,19 @@ namespace AppRetoKirolBet.Services
             return users;
         }
 
-        public async Task ActivateWPBD()
+        public void ActivateWPBD(int id)
         {
-            List<WorkPackage> workPackages;
-
-            if (_context.WorkPackage.Count() == 0)
-            {
-                foreach (WorkPackage workP in workPackages)
-                {
-                    _context.WorkPackage.Add(workP);
-                    await _context.SaveChangesAsync();
-                }
-            }
-            else
-            {
-                foreach (WorkPackage workP in workPackages)
-                {
-                    WorkPackage workPackage = new WorkPackage();
-                    workPackage = _context.WorkPackage.SingleOrDefault(x => x.IdWPOpenProject == workP.IdWPOpenProject);
-                    if (workPackage == null)
-                    {
-                        _context.WorkPackage.Add(workP);
-                        await _context.SaveChangesAsync();
-                    }
-                }
-            }
+            // TODO: hacer la peticion con await
+            WorkPackage workPackage = _context.WorkPackage.Where(x => x.Id == id).First();
+            workPackage.Activation = "Activado";
+            _context.SaveChanges();
+        }
+        public void InactivateWPBD(int id)
+        {
+            // TODO: hacer la peticion con await
+            WorkPackage workPackage = _context.WorkPackage.Where(x => x.Id == id).First();
+            workPackage.Activation = "Desactivado";
+            _context.SaveChanges();
         }
 
         public async Task<List<WorkPackage>> GetWorkPackagesApi()
