@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace AppRetoKirolBet.Models
 {
-    public class CustomField2WP
+    public class CustomField1
     {
         public int Id { get; set; }
-        public List<CustomField2WP> customField1WPs { get; set; }
+        public List<CustomField1> CustomField1s { get; set; }
         [JsonProperty(PropertyName = "Title")]
-        public string KsoftProject { get; set; }
+        public string Sprint { get; set; }
     }
 }

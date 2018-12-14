@@ -12,7 +12,7 @@ namespace AppRetoKirolBet.Models
         public TypeWP Type { get; set; }
         public StatusWP Status { get; set; }
         public Priority Priority { get; set; }
-        public CustomField1WP CustomField1 { get; set; }
-        public CustomField2WP CustomField2 { get; set; }
+        public CustomField1 CustomField1 { get; set; }
+        public CustomField2 CustomField2 { get; set; }
     }
 }
