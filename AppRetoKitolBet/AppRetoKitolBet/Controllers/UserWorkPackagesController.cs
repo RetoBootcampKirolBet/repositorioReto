@@ -7,24 +7,29 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AppRetoKirolBet.Data;
 using AppRetoKirolBet.Models;
+using AppRetoKirolBet.Services;
 
 namespace AppRetoKirolBet.Controllers
 {
     public class UserWorkPackagesController : Controller
     {
         private readonly ApplicationDbContext _context;
+       
 
         public UserWorkPackagesController(ApplicationDbContext context)
         {
             _context = context;
         }
-
+        
         // GET: UserWorkPackages
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.UserWorkPackage.Include(u => u.User).Include(u => u.WorkPackage);
-            return View(await applicationDbContext.ToListAsync());
+            return View(await applicationDbContext.Where(x => x.WorkPackageId == 1).ToListAsync());
+            //return View(await applicationDbContext.ToListAsync());
         }
+
+
 
         // GET: UserWorkPackages/Details/5
         public async Task<IActionResult> Details(int? id)

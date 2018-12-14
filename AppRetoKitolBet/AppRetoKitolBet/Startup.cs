@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using AppRetoKirolBet.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using AppRetoKirolBet.Models;
 
 namespace AppRetoKirolBet
 {

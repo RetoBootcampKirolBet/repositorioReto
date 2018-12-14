@@ -34,6 +34,27 @@ namespace AppRetoKirolBet.Services
             return users;
         }
 
+        public async Task <List<UserWorkPackage>> GetUserWorkPackagesDB()  //TODO:revisar
+        {
+            List<UserWorkPackage> userWorkPackages =_context.UserWorkPackage.ToList();
+            return userWorkPackages;
+        }
+
+        public void ActivateWPBD(int id)
+        {
+            // TODO: hacer la peticion con await
+            WorkPackage workPackage = _context.WorkPackage.Where(x => x.Id == id).First();
+            workPackage.Activation = "Activado";
+            _context.SaveChanges();
+        }
+        public void InactivateWPBD(int id)
+        {
+            // TODO: hacer la peticion con await
+            WorkPackage workPackage = _context.WorkPackage.Where(x => x.Id == id).First();
+            workPackage.Activation = "Desactivado";
+            _context.SaveChanges();
+        }
+
         public async Task<List<WorkPackage>> GetWorkPackagesApi()
         {
             //BOOLEANO QUE MIRA SI HAY MAS PAGINAS EN LA API
@@ -271,6 +292,32 @@ namespace AppRetoKirolBet.Services
             }
         }
 
+        public async Task InsertUserWorkPackagesInBD()
+        {
+            List<UserWorkPackage> userWorkPackages = await GetUserWorkPackagesDB();
+
+            if (_context.User.Count() == 0)
+            {
+                foreach (UserWorkPackage userWP in userWorkPackages)
+                {
+                    _context.UserWorkPackage.Add(userWP);
+                    await _context.SaveChangesAsync();
+                }
+            }
+            else
+            {
+                foreach (UserWorkPackage userWP in userWorkPackages)
+                {
+                    UserWorkPackage uWP = new UserWorkPackage();
+                    uWP = _context.UserWorkPackage.SingleOrDefault(x => x.Id == uWP.Id);
+                    if (uWP == null)
+                    {
+                        _context.UserWorkPackage.Add(userWP);
+                        await _context.SaveChangesAsync();
+                    }
+                }
+            }
+        }
 
         public void Asignar(int Id,string dropdown)
         {

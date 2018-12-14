@@ -22,7 +22,9 @@ namespace AppRetoKirolBet.Controllers
         // GET: WorkPackages
         public async Task<IActionResult> Index()
         {
-            return View(await _context.WorkPackage.ToListAsync());
+            List<WorkPackage> workPackages = await _context.WorkPackage.Include(x => x.UserWorkPackages).Include(x=>x._Links).Include(x=>x._Links.Status).ToListAsync();
+            return View(workPackages);
+            //return View(await _context.WorkPackage.ToListAsync());
         }
 
         // GET: WorkPackages/Details/5
