@@ -37,6 +37,20 @@ namespace AppRetoKirolBet.Services
             return users;
         }
 
+        public List<UserWorkPackage> GetUserWorkPackagesBD()
+        {
+            List<UserWorkPackage> userWorkPackages = _context.UserWorkPackage.ToList();
+            return userWorkPackages;
+        }
+
+        public void Asignar(int Id, string dropdown1, string dropdown2)
+        {
+            User user = _context.User.Where(x => x.Id == Id).First();
+            user.UserRole = dropdown1;
+            user.Team = dropdown2;
+            _context.SaveChanges();
+        }
+
         public void ActivateWPBD(int id)
         {
             // TODO: hacer la peticion con await

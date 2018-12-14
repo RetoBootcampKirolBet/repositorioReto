@@ -14,6 +14,8 @@ namespace AppRetoKirolBet.Models
         public int IdUserOpenProject { get; set; }
         public string Name { get; set; }
         public string Login { get; set; }
+        public string UserRole { get; set; }
+        public string Team { get; set; }
         public List<UserWorkPackage> UserWorkPackages { get; set; }
     }
 }
