@@ -17,6 +17,7 @@
                     <th>KSOFT PROJECTS</th>
                     <th>Project Activado</th>
                     <th>Project Desactivado</th>
+                    <th>Estatus actual del proyecto</th>
                 </tr>
             </thead>
             <tbody>
@@ -39,6 +40,9 @@
                                 <input type="checkbox" class="project_inactive" name="election" value="Desactivado" />
                                 <input type="hidden" name="id" value="@workP.Id">
                             </form>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => workP.Activation)
                         </td>
                     </tr>
                  }
