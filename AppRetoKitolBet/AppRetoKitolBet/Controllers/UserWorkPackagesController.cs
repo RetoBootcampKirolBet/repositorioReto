@@ -25,8 +25,8 @@ namespace AppRetoKirolBet.Controllers
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.UserWorkPackage.Include(u => u.User).Include(u => u.WorkPackage);
-            return View(await applicationDbContext.Where(x => x.WorkPackageId == 1).ToListAsync());
-            //return View(await applicationDbContext.ToListAsync());
+            //return View(await applicationDbContext.Where(x => x.WorkPackageId == 1).ToListAsync());
+            return View(await applicationDbContext.ToListAsync());
         }
 
 

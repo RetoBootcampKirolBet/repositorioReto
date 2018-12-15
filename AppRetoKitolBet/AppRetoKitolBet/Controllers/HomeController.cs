@@ -63,6 +63,7 @@ namespace AppRetoKirolBet.Controllers
             ViewData["Message"] = "Your application description page.";
             IdentityUser currentUser = await _userManager.GetUserAsync(User);
             User usuario = _context.User.Where(x => x.Login == currentUser.Email).FirstOrDefault();
+            usuario.Login
             return View();
         }
 

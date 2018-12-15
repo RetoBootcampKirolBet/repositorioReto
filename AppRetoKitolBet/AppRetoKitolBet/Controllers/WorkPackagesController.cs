@@ -7,22 +7,37 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using AppRetoKirolBet.Data;
 using AppRetoKirolBet.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace AppRetoKirolBet.Controllers
 {
     public class WorkPackagesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public WorkPackagesController(ApplicationDbContext context)
+
+        public WorkPackagesController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         // GET: WorkPackages
         public async Task<IActionResult> Index()
         {
-            List<WorkPackage> workPackages = await _context.WorkPackage.Include(x => x.UserWorkPackages).Include(x=>x._Links).Include(x=>x._Links.Status).ToListAsync();
+            IdentityUser currentUser = await _userManager.GetUserAsync(User);
+            List<WorkPackage> workPackages = await _context.WorkPackage
+                .Include(x => x.UserWorkPackages)
+                .Include(x => x.UserWorkPackages.User.Login)
+                .Include(x => x._Links)
+                .Include(x => x._Links.Status)
+                .Include(x => x._Links.Type)
+                .Include(x => x._Links.Priority)
+                .Include(x => x._Links.Assignee)
+                .Include(x => x.Description)
+                .Where(x => x.UserWorkPackages.User.Login == currentUser.Email)
+                .ToListAsync();
             return View(workPackages);
             //return View(await _context.WorkPackage.ToListAsync());
         }
