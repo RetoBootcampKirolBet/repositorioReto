@@ -5,7 +5,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>@User.Identity.Name</h2>
+
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -14,16 +15,28 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model._Links.CustomField2.KsoftProject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._Links.CustomField1.Sprint)
+            </th>
+            <td>
+                @Html.DisplayNameFor(model => model._Links.Type.Tipo)
+            </td>
+            <th>
                 @Html.DisplayNameFor(model => model.IdWPOpenProject)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Subject)
             </th>
+            <td>
+                @Html.DisplayNameFor(model => model._Links.Status.Estado)
+            </td>
             <th>
                 @Html.DisplayNameFor(model => model.EstimatedTime)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RemainingTime)
+                @Html.DisplayNameFor(model => model.SpentTime)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.StartDate)
@@ -31,12 +44,31 @@
             <th>
                 @Html.DisplayNameFor(model => model.DueDate)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model._Links.Assignee.Name)
+            </th>
+            <td>
+                @Html.DisplayNameFor(model => model._Links.Priority.Title)
+            </td>
+            <td>
+                @Html.DisplayNameFor(model => model.Description.Raw)
+            </td>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model._Links.CustomField2.KsoftProject)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model._Links.CustomField1.Sprint)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item._Links.Type.Tipo)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IdWPOpenProject)
             </td>
@@ -44,10 +76,13 @@
                 @Html.DisplayFor(modelItem => item.Subject)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item._Links.Status.Estado)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.EstimatedTime)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.RemainingTime)
+                @Html.DisplayFor(modelItem => item.SpentTime)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.StartDate)
@@ -56,11 +91,22 @@
                 @Html.DisplayFor(modelItem => item.DueDate)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item._Links.Assignee.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item._Links.Priority.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description.Raw)
+            </td>
+            <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
-}
+        }
+
+
     </tbody>
 </table>

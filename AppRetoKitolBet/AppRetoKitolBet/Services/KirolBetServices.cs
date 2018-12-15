@@ -37,7 +37,7 @@ namespace AppRetoKirolBet.Services
             return users;
         }
 
-        public List<UserWorkPackage> GetUserWorkPackagesBD()
+        public List<UserWorkPackage> GetUserWorkPackagesDB()
         {
             List<UserWorkPackage> userWorkPackages = _context.UserWorkPackage.ToList();
             return userWorkPackages;
@@ -123,7 +123,7 @@ namespace AppRetoKirolBet.Services
                         EstimatedTime = item.EstimatedTime,
                         StartDate = item.StartDate,
                         DueDate = item.DueDate,
-                        RemainingTime = item.RemainingTime,
+                        SpentTime = item.SpentTime,
                         _Links = item._Links,
                         Description = item.Description
                     };
@@ -183,7 +183,7 @@ namespace AppRetoKirolBet.Services
                         EstimatedTime = item.EstimatedTime,
                         StartDate = item.StartDate,
                         DueDate = item.DueDate,
-                        RemainingTime = item.RemainingTime,
+                        SpentTime = item.SpentTime,
                         _Links = item._Links,
                         Description = item.Description
                     };
@@ -300,6 +300,33 @@ namespace AppRetoKirolBet.Services
                 }
             }
         }
+
+        //public async Task InsertUserWorkPackagesInBD()
+        //{
+        //    List<UserWorkPackage> userWorkPackages = await GetUserWorkPackagesDB();
+
+        //    if (_context.User.Count() == 0)
+        //    {
+        //        foreach (UserWorkPackage userWP in userWorkPackages)
+        //        {
+        //            _context.UserWorkPackage.Add(userWP);
+        //            await _context.SaveChangesAsync();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        foreach (UserWorkPackage userWP in userWorkPackages)
+        //        {
+        //            UserWorkPackage uWP = new UserWorkPackage();
+        //            uWP = _context.UserWorkPackage.SingleOrDefault(x => x.Id == uWP.Id);
+        //            if (uWP == null)
+        //            {
+        //                _context.UserWorkPackage.Add(userWP);
+        //                await _context.SaveChangesAsync();
+        //            }
+        //        }
+        //    }
+        //}
 
     }
 }
