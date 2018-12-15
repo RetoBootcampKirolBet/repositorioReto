@@ -29,7 +29,7 @@ namespace AppRetoKirolBet.Controllers
             IdentityUser currentUser = await _userManager.GetUserAsync(User);
             List<WorkPackage> workPackages = await _context.WorkPackage
                 .Include(x => x.UserWorkPackages)
-                .Include(x => x.UserWorkPackages.User.Login)
+                //.Include(x => x.UserWorkPackages.User.Login)
                 .Include(x => x._Links)
                 .Include(x => x._Links.Status)
                 .Include(x => x._Links.Type)
