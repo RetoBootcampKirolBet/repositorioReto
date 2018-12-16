@@ -51,6 +51,12 @@ namespace AppRetoKirolBet.Controllers
             return RedirectToAction(nameof(Contact));
         }
 
+        public IActionResult DesignActivaty()
+        {
+            _services.DesignActivBD();
+            return RedirectToAction(nameof(Contact));
+        }
+
         public IActionResult Asignar(int Id, string dropdown1, string dropdown2)
         {
             _services.Asignar(Id, dropdown1, dropdown2);

@@ -328,5 +328,16 @@ namespace AppRetoKirolBet.Services
         //    }
         //}
 
+        public void DesingActivBD(int id)
+        {
+            WorkPackage workPackage = _context.WorkPackage.Where(x => x.Id == id).First();
+            workPackage.Activation = "Activado";
+            _context.SaveChanges();
+        }
+
+        public void HideKsoftP()
+        {
+
+        }
     }
 }
