@@ -42,9 +42,13 @@
                             {
                                 <li><a asp-area="" asp-controller="Home" asp-action="Contact">Admin</a></li> 
                             }
-                            if (User.HasClaim("teamleader","teamleader"))
+                            else if (User.HasClaim("teamleader","teamleader"))
                             {
                                 <li><a asp-area="" asp-controller="Home" asp-action="About">Teamleader</a></li>
+                            }
+                            else if (User.HasClaim("developer", "developer"))
+                            {
+
                             }
                         }
                     }

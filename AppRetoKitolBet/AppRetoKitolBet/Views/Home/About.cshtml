@@ -4,7 +4,7 @@
     ViewData["Title"] = "About";
 }
 @*<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>*@
+    <h3>@ViewData["Message"]</h3>*@
 
 <h2>@User.Identity.Name</h2>
 
@@ -30,7 +30,7 @@
                                 @Html.DisplayFor(modelItem => u.Name)
                             </div>
                             <form asp-action="Asignar" method="post">
-                                <select name="dropdown" class="project_active">
+                                <select name="dropdown1" class="project_active">
                                     <option value=""></option>
                                     <option value="developer">Developer</option>
                                     <option value="teamleader">Team Leader</option>
@@ -42,7 +42,20 @@
                         <td>
                             @Html.DisplayFor(modelItem => u.UserRole)
                         </td>
-
+                        <td>
+                            <form asp-action="Asignar" method="post">
+                                <select name="dropdown2" class="change_team">
+                                    <option value=""></option>
+                                    <option value="GT">Equipo Verde</option>
+                                    <option value="OT">Equipo Naranaja</option>
+                                    <option value="RT">Equipo Rojo</option>
+                                </select>
+                                <input type="hidden" name="Id" value="@u.Id" />
+                            </form>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => u.Team)
+                        </td>
                     </tr>
                 }
             <tbody />

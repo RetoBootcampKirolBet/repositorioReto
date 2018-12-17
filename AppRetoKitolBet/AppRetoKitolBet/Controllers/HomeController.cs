@@ -17,7 +17,7 @@ using AppRetoKirolBet.Data;
 
 namespace AppRetoKirolBet.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class HomeController : Controller
     {
         private readonly KirolBetServices _services;
@@ -35,8 +35,7 @@ namespace AppRetoKirolBet.Controllers
         {
             await _services.InsertWPInBD();
             await _services.InsertUserInBD();
-            await _services.InsertUserWorkPackagesInBD();
-
+            //await _services.InsertUserWorkPackagesInBD();
             return View(User);
         }
 
@@ -52,9 +51,9 @@ namespace AppRetoKirolBet.Controllers
             return RedirectToAction(nameof(Contact));
         }
 
-        public IActionResult Asignar(int Id,string dropdown)
+        public IActionResult Asignar(int Id,string dropdown1, string dropdown2)
         {
-            _services.Asignar(Id,dropdown);
+            _services.Asignar(Id,dropdown1,dropdown2);
             return View(User);
         }
 
@@ -63,7 +62,6 @@ namespace AppRetoKirolBet.Controllers
             ViewData["Message"] = "Your application description page.";
             IdentityUser currentUser = await _userManager.GetUserAsync(User);
             User usuario = _context.User.Where(x => x.Login == currentUser.Email).FirstOrDefault();
-            usuario.Login
             return View();
         }
 

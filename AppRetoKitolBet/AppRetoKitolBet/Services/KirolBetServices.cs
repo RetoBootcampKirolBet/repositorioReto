@@ -40,6 +40,13 @@ namespace AppRetoKirolBet.Services
             return userWorkPackages;
         }
 
+        public void Asignar(int Id,string dropdown1,string dropdown2)
+        {
+            User user = _context.User.Where(x => x.Id == Id).First();
+            user.UserRole = dropdown1;
+            user.Team = dropdown2;
+            _context.SaveChanges();
+        }
         public void ActivateWPBD(int id)
         {
             // TODO: hacer la peticion con await
@@ -319,12 +326,6 @@ namespace AppRetoKirolBet.Services
             }
         }
 
-        public void Asignar(int Id,string dropdown)
-        {
-            User user = _context.User.Where(x => x.Id == Id).First();
-            user.UserRole = dropdown;
-            _context.SaveChanges();
-        }
 
 
 
