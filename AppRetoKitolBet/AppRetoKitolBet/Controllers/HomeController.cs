@@ -35,7 +35,6 @@ namespace AppRetoKirolBet.Controllers
         {
             await _services.InsertUserInBD();
             await _services.InsertWPInBD();
-            //await _services.InsertUserWorkPackagesInBD();
             return View(User);
         }
 
