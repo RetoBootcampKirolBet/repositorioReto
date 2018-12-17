@@ -26,19 +26,23 @@ namespace AppRetoKirolBet.Controllers
         // GET: WorkPackages
         public async Task<IActionResult> Index()
         {
-            //    IdentityUser currentUser = await _userManager.GetUserAsync(User);
-            //    List<WorkPackage> workPackages = await _context.WorkPackage
-            //        .Include(x => x.UserWorkPackages)
-            //        //.Include(x => x.UserWorkPackages.User.Login)
-            //        .Include(x => x._Links)
-            //        .Include(x => x._Links.Status)
-            //        .Include(x => x._Links.Type)
-            //        .Include(x => x._Links.Priority)
-            //        .Include(x => x._Links.Assignee)
-            //        .Include(x => x.Description)
-            //        .Where(x => x.UserWorkPackages.User.Login == currentUser.Email)
-            //        .ToListAsync();
-            return View();//workPackages);
+        //    IdentityUser currentUser = await _userManager.GetUserAsync(User);
+        //    User usuario = _context.User.Where(x => x.Login == currentUser.Email).FirstOrDefault();
+            
+        //    List<WorkPackage> workPackages = await _context.WorkPackage
+        //        .Include(x => x.WorkPackages)
+        //        .Include(x => x.workPackages.Select(y=>y.User.Login == currentUser.Email)
+        //        .Include(x => x.workPackages._Links)
+        //        .Include(x => x._Links.Status)
+        //        .Include(x => x._Links.Type)
+        //        .Include(x => x._Links.Priority)
+        //        .Include(x => x._Links.Assignee)
+        //        .Include(x => x._Links.CustomField1)
+        //        .Include(x => x._Links.CustomField2)
+        //        .Include(x => x.Description)
+        //        //.Where(x => x.UserWorkPackages.User.Login == currentUser.Email)
+        //        .ToListAsync();
+           return View();//workPackages);
         //    //return View(await _context.WorkPackage.ToListAsync());
         }
 

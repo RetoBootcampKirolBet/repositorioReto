@@ -255,6 +255,13 @@ namespace AppRetoKirolBet.Services
                 foreach (WorkPackage workP in workPackages)
                 {
                     _context.WorkPackage.Add(workP);
+                    User user = _context.User.Single(x => x.Name == workP._Links.Assignee.Name);
+                    UserWorkPackage UserWP = new UserWorkPackage
+                    {
+                        User = user,
+                        WorkPackage = workP
+                    };
+                    _context.UserWorkPackage.Add(UserWP);
                     await _context.SaveChangesAsync();
                 }
             }
@@ -267,6 +274,13 @@ namespace AppRetoKirolBet.Services
                     if (workPackage == null)
                     {
                         _context.WorkPackage.Add(workP);
+                        User user = _context.User.Single(x => x.Name == workP._Links.Assignee.Name);
+                        UserWorkPackage UserWP = new UserWorkPackage
+                        {
+                            User = user,
+                            WorkPackage = workP
+                        };
+                        _context.UserWorkPackage.Add(UserWP);
                         await _context.SaveChangesAsync();
                     }
                 }
