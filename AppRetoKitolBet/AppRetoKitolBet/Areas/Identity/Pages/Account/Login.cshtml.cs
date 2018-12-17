@@ -77,24 +77,7 @@ namespace AppRetoKirolBet.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    
-                        if (User.Identity.IsAuthenticated)
-                        {
-                            if (User.HasClaim("admin", "admin"))
-                            {
-                                return RedirectToAction("Home", "Contact");
-                            }
-                            else if (User.HasClaim("teamleader", "teamleader"))
-                            {
-                                return RedirectToAction("Home", "Index");
-                            }
-                            else if (User.HasClaim("developer", "developer"))
-                            {
-                                return RedirectToAction("Home", "Index");
-                            }
-                        }
-                    
-                    //return LocalRedirect(returnUrl);
+                    return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
                 {

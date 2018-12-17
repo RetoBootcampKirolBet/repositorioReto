@@ -33,6 +33,21 @@ namespace AppRetoKirolBet.Controllers
 
         public async Task<IActionResult> Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                if (User.HasClaim("admin", "admin"))
+                {
+                    return RedirectToAction("Contact", "Home");
+                }
+                else if (User.HasClaim("teamleader", "teamleader"))
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else if (User.HasClaim("developer", "developer"))
+                {
+                    return RedirectToAction("About", "Home");
+                }
+            }
             await _services.InsertUserInBD();
             await _services.InsertWPInBD();
             return View(User);
