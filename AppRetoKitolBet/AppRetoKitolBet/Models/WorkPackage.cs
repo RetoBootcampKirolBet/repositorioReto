@@ -11,7 +11,7 @@ namespace AppRetoKirolBet.Models
     {
         public int Id { get; set; }
         [JsonProperty(PropertyName = "id")]
-        public int IdWPOpenProject { get; set; }
+        public int IdOP { get; set; }
         public string Subject { get; set; }
         public string EstimatedTime { get; set; }
         public string SpentTime { get; set; }

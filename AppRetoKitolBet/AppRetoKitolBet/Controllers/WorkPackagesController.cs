@@ -99,7 +99,7 @@ namespace AppRetoKirolBet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,IdWPOpenProject,Subject,EstimatedTime,SpentTime,StartDate,DueDate")] WorkPackage workPackage)
+        public async Task<IActionResult> Create([Bind("Id,IdOP,Subject,EstimatedTime,SpentTime,StartDate,DueDate")] WorkPackage workPackage)
         {
             if (ModelState.IsValid)
             {
@@ -131,7 +131,7 @@ namespace AppRetoKirolBet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,IdWPOpenProject,Subject,EstimatedTime,SpentTime,StartDate,DueDate")] WorkPackage workPackage)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,IdOP,Subject,EstimatedTime,SpentTime,StartDate,DueDate")] WorkPackage workPackage)
         {
             if (id != workPackage.Id)
             {

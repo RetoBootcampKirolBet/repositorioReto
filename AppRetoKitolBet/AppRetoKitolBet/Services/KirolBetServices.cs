@@ -115,7 +115,7 @@ namespace AppRetoKirolBet.Services
                     WorkPackage p = new WorkPackage
                     {
                         Id = item.Id,
-                        IdWPOpenProject = item.IdWPOpenProject,
+                        IdOP = item.IdOP,
                         Subject = item.Subject,
                         EstimatedTime = item.EstimatedTime,
                         StartDate = item.StartDate,
@@ -175,7 +175,7 @@ namespace AppRetoKirolBet.Services
                     WorkPackage p = new WorkPackage
                     {
                         Id = item.Id,
-                        IdWPOpenProject = item.IdWPOpenProject,
+                        IdOP = item.IdOP,
                         Subject = item.Subject,
                         EstimatedTime = item.EstimatedTime,
                         StartDate = item.StartDate,
@@ -262,7 +262,7 @@ namespace AppRetoKirolBet.Services
         //        foreach (WorkPackage workP in workPackages)
         //        {
         //            WorkPackage workPackage = new WorkPackage();
-        //            workPackage = _context.WorkPackage.SingleOrDefault(x => x.IdWPOpenProject == workP.IdWPOpenProject);
+        //            workPackage = _context.WorkPackage.SingleOrDefault(x => x.IdOP == workP.IdOP);
         //            if (workPackage == null)
         //            {
         //                _context.WorkPackage.Add(workP);
@@ -297,7 +297,7 @@ namespace AppRetoKirolBet.Services
                 foreach (WorkPackage workP in workPackages)
                 {
                     WorkPackage workPackage = new WorkPackage();
-                    workPackage = _context.WorkPackage.SingleOrDefault(x => x.IdWPOpenProject == workP.IdWPOpenProject);
+                    workPackage = _context.WorkPackage.SingleOrDefault(x => x.IdOP == workP.IdOP);
                     if (workPackage == null)
                     {
                         _context.WorkPackage.Add(workP);
