@@ -33,9 +33,8 @@ namespace AppRetoKirolBet.Controllers
 
         public async Task<IActionResult> Index()
         {
-            await _services.InsertWPInBD();
             await _services.InsertUserInBD();
-            //await _services.InsertUserWorkPackagesInBD();
+            await _services.InsertWPInBD();
             return View(User);
         }
 
@@ -51,10 +50,10 @@ namespace AppRetoKirolBet.Controllers
             return RedirectToAction(nameof(Contact));
         }
 
-        public IActionResult Asignar(int Id,string dropdown1, string dropdown2)
+        public IActionResult Asignar(int Login,string dropdown1, string dropdown2)
         {
-            _services.Asignar(Id,dropdown1,dropdown2);
-            return View(User);
+            _services.Asignar(Login,dropdown1,dropdown2);
+            return RedirectToAction(nameof(About));
         }
 
         public async Task<IActionResult> About()

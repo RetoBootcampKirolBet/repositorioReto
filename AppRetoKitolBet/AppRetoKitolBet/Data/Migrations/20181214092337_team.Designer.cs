@@ -271,7 +271,7 @@ namespace AppRetoKirolBet.Data.Migrations
 
                     b.Property<int>("IdWPOpenProject");
 
-                    b.Property<string>("RemainingTime");
+                    b.Property<string>("SpentTime");
 
                     b.Property<string>("StartDate");
 

@@ -14,7 +14,7 @@ namespace AppRetoKirolBet.Models
         public int IdWPOpenProject { get; set; }
         public string Subject { get; set; }
         public string EstimatedTime { get; set; }
-        public string RemainingTime { get; set; }
+        public string SpentTime { get; set; }
         public string StartDate { get; set; }
         public string DueDate { get; set; }
         public string Activation { get; set; }

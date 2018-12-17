@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AppRetoKirolBet.Models.WorkPackage>
+﻿@model IEnumerable<AppRetoKirolBet.Models.UserWorkPackage>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,47 +13,50 @@
 </p>
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model._Links.CustomField2.KsoftProject)
+        <tr><th>
             </th>
             <th>
-                @Html.DisplayNameFor(model => model._Links.CustomField1.Sprint)
+                @Html.DisplayNameFor(model => model.WorkPackage._Links.CustomField2.KsoftProject)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdWPOpenProject)
+                @Html.DisplayNameFor(model => model.WorkPackage._Links.CustomField1.Sprint)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Subject)
+                @Html.DisplayNameFor(model => model.WorkPackage._Links.Type.Tipo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EstimatedTime)
+                @Html.DisplayNameFor(model => model.WorkPackage.IdWPOpenProject)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.RemainingTime)
+                @Html.DisplayNameFor(model => model.WorkPackage.Subject)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.StartDate)
+                @Html.DisplayNameFor(model => model.WorkPackage._Links.Status.Estado)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DueDate)
+                @Html.DisplayNameFor(model => model.WorkPackage.EstimatedTime)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model._Links.Assignee.Name)
+                @Html.DisplayNameFor(model => model.WorkPackage.SpentTime)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model._Links.Type.Tipo)
+
             </th>
             <th>
-                @Html.DisplayNameFor(model => model._Links.Status.Estado)
+                @Html.DisplayNameFor(model => model.WorkPackage.StartDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model._Links.Priority.Title)
+                @Html.DisplayNameFor(model => model.WorkPackage.DueDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description.Raw)
+                @Html.DisplayNameFor(model => model.WorkPackage._Links.Assignee.Name)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkPackage._Links.Priority.Title)
+            </th>
+            <th>
+                Project
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -61,44 +64,55 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item._Links.CustomField2.KsoftProject)
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox">
+                        </label>
+                    </div>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item._Links.CustomField1.Sprint)
+                    @Html.DisplayFor(modelItem => item.WorkPackage._Links.CustomField2.KsoftProject)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.IdWPOpenProject)
+                    @Html.DisplayFor(modelItem => item.WorkPackage._Links.CustomField1.Sprint)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Subject)
+                    @Html.DisplayFor(modelItem => item.WorkPackage._Links.Type.Tipo)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.EstimatedTime)
+                    @Html.DisplayFor(modelItem => item.WorkPackage.IdWPOpenProject)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.RemainingTime)
+                    @Html.DisplayFor(modelItem => item.WorkPackage.Description.Raw)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.StartDate)
+                    @Html.DisplayFor(modelItem => item.WorkPackage._Links.Status.Estado)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.DueDate)
+                    @Html.DisplayFor(modelItem => item.WorkPackage.EstimatedTime)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item._Links.Assignee.Name)
+                    @Html.DisplayFor(modelItem => item.WorkPackage.SpentTime)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item._Links.Type.Tipo)
+                    <button type="button" class="btn btn-primary btn-xs">+</button>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item._Links.Status.Estado)
+                    @Html.DisplayFor(modelItem => item.WorkPackage.StartDate)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item._Links.Priority.Title)
+                    @Html.DisplayFor(modelItem => item.WorkPackage.DueDate)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Description.Raw)
+                    @Html.DisplayFor(modelItem => item.WorkPackage._Links.Assignee.Name)
                 </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WorkPackage._Links.Priority.Title)
+                </td>
+                <td>
+                    <button type="button" class="btn btn-primary btn-xs">move</button>
+                </td>
+                
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a> |

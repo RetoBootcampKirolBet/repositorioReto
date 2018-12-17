@@ -25,23 +25,27 @@ namespace AppRetoKirolBet.Controllers
 
         // GET: WorkPackages
         public async Task<IActionResult> Index()
+
         {
             IdentityUser currentUser = await _userManager.GetUserAsync(User);
-            //User usuario = _context.User.Where(x => x.Login == currentUser.Email).FirstOrDefault();
+            User usuario = _context.User.Where(x => x.Login == currentUser.Email).FirstOrDefault();
 
-            List<WorkPackage> workPackages = await _context.WorkPackage
-                .Include(x => x.UserWorkPackages)
-                .Include(x => x.UserWorkPackages.Select(y => y.User.Login == currentUser.Email))
-                .Include(x => x._Links)
-                .Include(x => x._Links.Status)
-                .Include(x => x._Links.Type)
-                .Include(x => x._Links.Priority)
-                .Include(x => x._Links.Assignee)
-                .Include(x => x.Description)
-                .Include(x => x._Links.CustomField1)
-                .Include(x => x._Links.CustomField2)
+
+            List<UserWorkPackage> workPackages = await _context.UserWorkPackage
+                .Where(x => x.User.Login == currentUser.Email)
+                .Include(x => x.WorkPackage)
+                //.Include(x => x.UserWorkPackages.Select(t => t.User.Login == currentUser.Email))
+                .Include(x => x.WorkPackage._Links)
+                .Include(x => x.WorkPackage._Links.Status)
+                .Include(x => x.WorkPackage._Links.Type)
+                .Include(x => x.WorkPackage._Links.Priority)
+                .Include(x => x.WorkPackage._Links.Assignee)
+                .Include(x => x.WorkPackage.Description)
+                .Include(x => x.WorkPackage._Links.CustomField1)
+                .Include(x => x.WorkPackage._Links.CustomField2)
                 //.Where(x => x.WorkPackage.User.Login == currentUser.Email)
                 .ToListAsync();
+
             return View(workPackages);
             //return View(await _context.WorkPackage.ToListAsync());
         }
@@ -75,7 +79,7 @@ namespace AppRetoKirolBet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,IdWPOpenProject,Subject,EstimatedTime,RemainingTime,StartDate,DueDate")] WorkPackage workPackage)
+        public async Task<IActionResult> Create([Bind("Id,IdWPOpenProject,Subject,EstimatedTime,SpentTime,StartDate,DueDate")] WorkPackage workPackage)
         {
             if (ModelState.IsValid)
             {
@@ -107,7 +111,7 @@ namespace AppRetoKirolBet.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,IdWPOpenProject,Subject,EstimatedTime,RemainingTime,StartDate,DueDate")] WorkPackage workPackage)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,IdWPOpenProject,Subject,EstimatedTime,SpentTime,StartDate,DueDate")] WorkPackage workPackage)
         {
             if (id != workPackage.Id)
             {

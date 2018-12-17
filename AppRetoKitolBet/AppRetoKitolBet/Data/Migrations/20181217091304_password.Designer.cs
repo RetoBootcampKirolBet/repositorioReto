@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppRetoKirolBet.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181212131702_insertBD")]
-    partial class insertBD
+    [Migration("20181217091304_password")]
+    partial class password
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.3-rtm-32065")
+                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -29,6 +29,10 @@ namespace AppRetoKirolBet.Data.Migrations
 
                     b.Property<int?>("AssigneeId");
 
+                    b.Property<int?>("CustomField1Id");
+
+                    b.Property<int?>("CustomField2Id");
+
                     b.Property<int?>("PriorityId");
 
                     b.Property<int?>("StatusId");
@@ -38,6 +42,10 @@ namespace AppRetoKirolBet.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("AssigneeId");
+
+                    b.HasIndex("CustomField1Id");
+
+                    b.HasIndex("CustomField2Id");
 
                     b.HasIndex("PriorityId");
 
@@ -67,6 +75,40 @@ namespace AppRetoKirolBet.Data.Migrations
                     b.HasIndex("StatusWPId");
 
                     b.ToTable("AssigneeWP");
+                });
+
+            modelBuilder.Entity("AppRetoKirolBet.Models.CustomField1", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CustomField1Id");
+
+                    b.Property<string>("Sprint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomField1Id");
+
+                    b.ToTable("CustomField1");
+                });
+
+            modelBuilder.Entity("AppRetoKirolBet.Models.CustomField2", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CustomField2Id");
+
+                    b.Property<string>("KsoftProject");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomField2Id");
+
+                    b.ToTable("CustomField2");
                 });
 
             modelBuilder.Entity("AppRetoKirolBet.Models.Description", b =>
@@ -217,9 +259,17 @@ namespace AppRetoKirolBet.Data.Migrations
 
                     b.Property<int?>("EmbeddedUserId");
 
+                    b.Property<int>("IdUserOpenProject");
+
                     b.Property<string>("Login");
 
                     b.Property<string>("Name");
+
+                    b.Property<string>("PasswordHash");
+
+                    b.Property<string>("Team");
+
+                    b.Property<string>("UserRole");
 
                     b.HasKey("Id");
 
@@ -252,6 +302,8 @@ namespace AppRetoKirolBet.Data.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Activation");
 
                     b.Property<int?>("DescriptionId");
 
@@ -453,6 +505,14 @@ namespace AppRetoKirolBet.Data.Migrations
                         .WithMany()
                         .HasForeignKey("AssigneeId");
 
+                    b.HasOne("AppRetoKirolBet.Models.CustomField1", "CustomField1")
+                        .WithMany()
+                        .HasForeignKey("CustomField1Id");
+
+                    b.HasOne("AppRetoKirolBet.Models.CustomField2", "CustomField2")
+                        .WithMany()
+                        .HasForeignKey("CustomField2Id");
+
                     b.HasOne("AppRetoKirolBet.Models.Priority", "Priority")
                         .WithMany()
                         .HasForeignKey("PriorityId");
@@ -475,6 +535,20 @@ namespace AppRetoKirolBet.Data.Migrations
                     b.HasOne("AppRetoKirolBet.Models.StatusWP")
                         .WithMany("assignee")
                         .HasForeignKey("StatusWPId");
+                });
+
+            modelBuilder.Entity("AppRetoKirolBet.Models.CustomField1", b =>
+                {
+                    b.HasOne("AppRetoKirolBet.Models.CustomField1")
+                        .WithMany("customField1")
+                        .HasForeignKey("CustomField1Id");
+                });
+
+            modelBuilder.Entity("AppRetoKirolBet.Models.CustomField2", b =>
+                {
+                    b.HasOne("AppRetoKirolBet.Models.CustomField2")
+                        .WithMany("customField2")
+                        .HasForeignKey("CustomField2Id");
                 });
 
             modelBuilder.Entity("AppRetoKirolBet.Models.Description", b =>

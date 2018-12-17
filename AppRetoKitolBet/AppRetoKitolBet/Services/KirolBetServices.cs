@@ -40,6 +40,7 @@ namespace AppRetoKirolBet.Services
             return userWorkPackages;
         }
 
+
         public void Asignar(int Id,string dropdown1,string dropdown2)
         {
             User user = _context.User.Where(x => x.Id == Id).First();
@@ -119,7 +120,7 @@ namespace AppRetoKirolBet.Services
                         EstimatedTime = item.EstimatedTime,
                         StartDate = item.StartDate,
                         DueDate = item.DueDate,
-                        RemainingTime = item.RemainingTime,
+                        SpentTime = item.SpentTime,
                         _Links = item._Links,
                         Description = item.Description
                     };
@@ -179,7 +180,7 @@ namespace AppRetoKirolBet.Services
                         EstimatedTime = item.EstimatedTime,
                         StartDate = item.StartDate,
                         DueDate = item.DueDate,
-                        RemainingTime = item.RemainingTime,
+                        SpentTime = item.SpentTime,
                         _Links = item._Links,
                         Description = item.Description
                     };
@@ -244,6 +245,34 @@ namespace AppRetoKirolBet.Services
             return users;
         }
 
+        //public async Task InsertWPInBD()
+        //{
+        //    List<WorkPackage> workPackages = await GetWorkPackagesApi();
+
+        //    if (_context.WorkPackage.Count() == 0)
+        //    {
+        //        foreach (WorkPackage workP in workPackages)
+        //        {
+        //            _context.WorkPackage.Add(workP);
+        //            await _context.SaveChangesAsync();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        foreach (WorkPackage workP in workPackages)
+        //        {
+        //            WorkPackage workPackage = new WorkPackage();
+        //            workPackage = _context.WorkPackage.SingleOrDefault(x => x.IdWPOpenProject == workP.IdWPOpenProject);
+        //            if (workPackage == null)
+        //            {
+        //                _context.WorkPackage.Add(workP);
+        //                await _context.SaveChangesAsync();
+        //            }
+        //        }
+        //    }
+
+        //}
+
         public async Task InsertWPInBD()
         {
             List<WorkPackage> workPackages = await GetWorkPackagesApi();
@@ -253,6 +282,13 @@ namespace AppRetoKirolBet.Services
                 foreach (WorkPackage workP in workPackages)
                 {
                     _context.WorkPackage.Add(workP);
+                    User user = _context.User.Single(x => x.Name == workP._Links.Assignee.Name);
+                    UserWorkPackage UserWP = new UserWorkPackage
+                    {
+                        User = user,
+                        WorkPackage = workP
+                    };
+                    _context.UserWorkPackage.Add(UserWP);
                     await _context.SaveChangesAsync();
                 }
             }
@@ -265,6 +301,13 @@ namespace AppRetoKirolBet.Services
                     if (workPackage == null)
                     {
                         _context.WorkPackage.Add(workP);
+                        User user = _context.User.Single(x => x.Name == workP._Links.Assignee.Name);
+                        UserWorkPackage UserWP = new UserWorkPackage
+                        {
+                            User = user,
+                            WorkPackage = workP
+                        };
+                        _context.UserWorkPackage.Add(UserWP);
                         await _context.SaveChangesAsync();
                     }
                 }
@@ -299,32 +342,32 @@ namespace AppRetoKirolBet.Services
             }
         }
 
-        public async Task InsertUserWorkPackagesInBD()
-        {
-            List<UserWorkPackage> userWorkPackages = await GetUserWorkPackagesDB();
+        //public async Task InsertUserWorkPackagesInBD()
+        //{
+        //    List<UserWorkPackage> userWorkPackages = await GetUserWorkPackagesDB();
 
-            if (_context.User.Count() == 0)
-            {
-                foreach (UserWorkPackage userWP in userWorkPackages)
-                {
-                    _context.UserWorkPackage.Add(userWP);
-                    await _context.SaveChangesAsync();
-                }
-            }
-            else
-            {
-                foreach (UserWorkPackage userWP in userWorkPackages)
-                {
-                    UserWorkPackage uWP = new UserWorkPackage();
-                    uWP = _context.UserWorkPackage.SingleOrDefault(x => x.Id == uWP.Id);
-                    if (uWP == null)
-                    {
-                        _context.UserWorkPackage.Add(userWP);
-                        await _context.SaveChangesAsync();
-                    }
-                }
-            }
-        }
+        //    if (_context.User.Count() == 0)
+        //    {
+        //        foreach (UserWorkPackage userWP in userWorkPackages)
+        //        {
+        //            _context.UserWorkPackage.Add(userWP);
+        //            await _context.SaveChangesAsync();
+        //        }
+        //    }
+        //    else
+        //    {
+        //        foreach (UserWorkPackage userWP in userWorkPackages)
+        //        {
+        //            UserWorkPackage uWP = new UserWorkPackage();
+        //            uWP = _context.UserWorkPackage.SingleOrDefault(x => x.Id == uWP.Id);
+        //            if (uWP == null)
+        //            {
+        //                _context.UserWorkPackage.Add(userWP);
+        //                await _context.SaveChangesAsync();
+        //            }
+        //        }
+        //    }
+        //}
 
 
 
