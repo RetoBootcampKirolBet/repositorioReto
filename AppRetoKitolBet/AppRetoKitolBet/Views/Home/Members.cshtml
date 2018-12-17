@@ -1,0 +1,49 @@
+﻿@model IEnumerable<AppRetoKirolBet.Models.UserWorkPackage>
+
+@{
+    ViewData["Title"] = "Members";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header class="container">
+    <h2>@User.Identity.Name</h2>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2 col-sm-1">
+            <input type="button" value="My Sprint" class="btnMyS" />
+            <hr />
+            <input type="button" value="App" class="btnApp" />
+            <hr />
+            @{
+                if (User.HasClaim("teamleader", "teamleader"))
+                {
+                    <input type="button" value="Planification" class="btnPlani" />
+                    <hr />
+                    <input type="button" value="Burdown" class="btnBurdown" />
+                }
+            }
+        </div>
+        <div class="col-sm-8">
+
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+<script>
+    $('.btnMyS').on('click', function () {
+        window.location.href = "/WorkPackages/Index";
+    });
+    $('.btnApp').on('click', function () {
+        window.location.href = "";
+    });
+    $('.btnPlani').on('click', function () {
+        window.location.href = "";
+    });
+    $('.btnBurdown').on('click', function () {
+        window.location.href = "";
+    });
+</script>

@@ -37,15 +37,15 @@ namespace AppRetoKirolBet.Controllers
             {
                 if (User.HasClaim("admin", "admin"))
                 {
-                    return RedirectToAction("Contact", "Home");
+                    return RedirectToAction("Configuration", "Home");
                 }
                 else if (User.HasClaim("teamleader", "teamleader"))
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Members", "Home");
                 }
                 else if (User.HasClaim("developer", "developer"))
                 {
-                    return RedirectToAction("About", "Home");
+                    return RedirectToAction("Members", "Home");
                 }
             }
             await _services.InsertUserInBD();
@@ -86,6 +86,16 @@ namespace AppRetoKirolBet.Controllers
         }
 
         public IActionResult Contact()
+        {
+            //ViewData["Message"] = "Your application description page.";
+            return View();
+        }
+        public IActionResult Configuration()
+        {
+            //ViewData["Message"] = "Your application description page.";
+            return View();
+        }
+        public IActionResult Members()
         {
             //ViewData["Message"] = "Your application description page.";
             return View();

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<AppRetoKirolBet.Models.UserWorkPackage>
+
+@{
+    ViewData["Title"] = "Configuration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<header class="container">
+    <h2>@User.Identity.Name</h2>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2 col-sm-1">
+            <input type="button" value="Panel de Configuración" class="btnPofC"/>
+            <hr />
+            <input type="button" value="Personas" class="btnPersons" />
+            <hr />
+            <input type="button" value="Users" class="btnUsers" />
+            <hr />
+            <input type="button" value="Burdown" class="btnBurdown" />
+        </div>
+        <div class="col-sm-8">
+
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+<script>
+    $('.btnPofC').on('click', function () {
+        window.location.href = "/Home/Contact";
+    });
+    $('.btnPersons').on('click', function () {
+        window.location.href = "";
+    });
+    $('.btnUsers').on('click', function () {
+        window.location.href = "/Home/About";
+    });
+    $('.btnBurdown').on('click', function () {
+        window.location.href = "";
+    });
+</script>
