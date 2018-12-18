@@ -21,10 +21,10 @@ namespace AppRetoKirolBet.Controllers
     public class HomeController : Controller
     {
         private readonly KirolBetServices _services;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<AppUser> _userManager;
         private readonly ApplicationDbContext _context;
 
-        public HomeController(KirolBetServices services, UserManager<IdentityUser> userManager, ApplicationDbContext context)
+        public HomeController(KirolBetServices services, UserManager<AppUser> userManager, ApplicationDbContext context)
         {
             _services = services;
             _userManager = userManager;
@@ -33,23 +33,33 @@ namespace AppRetoKirolBet.Controllers
 
         public async Task<IActionResult> Index()
         {
+            //AppUser currentUser = await _userManager.GetUserAsync(User);
+            //ViewBag.User = currentUser;
             if (User.Identity.IsAuthenticated)
             {
                 if (User.HasClaim("admin", "admin"))
                 {
+                    AppUser currentUser = await _userManager.GetUserAsync(User);
+                    ViewBag.User = currentUser;
                     return RedirectToAction("Configuration", "Home");
                 }
                 else if (User.HasClaim("teamleader", "teamleader"))
                 {
+                    AppUser currentUser = await _userManager.GetUserAsync(User);
+                    ViewBag.User = currentUser;
                     return RedirectToAction("Members", "Home");
                 }
                 else if (User.HasClaim("developer", "developer"))
                 {
+                    AppUser currentUser = await _userManager.GetUserAsync(User);
+                    ViewBag.User = currentUser;
                     return RedirectToAction("Members", "Home");
                 }
             }
             await _services.InsertUserInBD();
             await _services.InsertWPInBD();
+
+            
             return View(User);
         }
 
@@ -80,8 +90,10 @@ namespace AppRetoKirolBet.Controllers
         public async Task<IActionResult> About()
         {
             //ViewData["Message"] = "Your application description page.";
-            IdentityUser currentUser = await _userManager.GetUserAsync(User);
-            User usuario = _context.User.Where(x => x.Login == currentUser.Email).FirstOrDefault();
+
+           User currentUser = await _userManager.GetUserAsync(User);
+         
+            //User usuario = _context.User.Where(x => x.Login == currentUser.Email).FirstOrDefault();
             return View();
         }
 

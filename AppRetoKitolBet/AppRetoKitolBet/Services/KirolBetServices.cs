@@ -237,7 +237,9 @@ namespace AppRetoKirolBet.Services
                     {
                         Id = item.Id,
                         Name = item.Name,
-                        Login = item.Login
+                        Login = item.Login,
+                        UserRole = item.UserRole,
+                        Team = item.Team
                     };
                     users.Add(u);
                 }

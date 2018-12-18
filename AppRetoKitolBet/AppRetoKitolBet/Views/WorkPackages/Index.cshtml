@@ -3,11 +3,13 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    AppUser currentUser = ViewBag.User;
 }
 <td>
     <div class="row">
         <div class="col-md-4">
-            <h2>@User.Identity.Name</h2>
+            <h2>@currentUser.FirstName</h2>
+            <h2>@currentUser.LastName</h2>
 
         </div>
         <div class=" col-md-offset-9">

@@ -17,5 +17,10 @@ namespace AppRetoKirolBet.Models
         public string UserRole { get; set; }
         public string Team { get; set; }
         public List<UserWorkPackage> UserWorkPackages { get; set; }
+
+        public static implicit operator User(AppUser v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
