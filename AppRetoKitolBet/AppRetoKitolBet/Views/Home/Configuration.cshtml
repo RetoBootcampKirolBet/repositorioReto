@@ -6,11 +6,10 @@
     AppUser currentUser = service.GetCurrentUser(User.Identity.Name);
 }
 
-<header class="container">
+<header class="container adminHeader">
     <div class="row">
         <div class="col-md-4">
-            <h2>@currentUser.FirstName</h2>
-            <h2>@currentUser.LastName</h2>
+            <h2>@currentUser.FirstName @currentUser.LastName</h2>
         </div>
         <div class=" col-md-offset-9">
             <div class="botones">
@@ -44,18 +43,19 @@
     </div>
 </header>
 
-<div class="container">
+<div class="container adminArticle">
     <div class="row">
-        <div class="col-md-2 col-sm-1">
-            <input type="button" value="Panel de Configuración" class="btnPofC" />
+        <div class="col-md-2 col-sm-1 adminButton">
+            <input id="PanelConf" type="button" value="Panel de Configuración" class="btnPofC" />
             <hr />
-            <input type="button" value="Personas" class="btnPersons" />
+            <input id ="Person" type="button" value="Personas" class="btnPersons" />
             <hr />
-            <input type="button" value="Users" class="btnUsers" />
+            <input id="User" type="button" value="Users" class="btnUsers" />
             <hr />
-            <input type="button" value="Burdown" class="btnBurdown" />
+            <input id="Burdown" type="button" value="Burdown" class="btnBurdown" />
         </div>
-        <div class="col-sm-8">
+
+        <div class="col-sm-8 tableWP">
             <table class="table">
                 <thead>
                     <tr>
@@ -111,6 +111,7 @@
                         </th>
                     </tr>
                 </thead>
+
                 <tbody>
                     @foreach (var item in Model)
                     {

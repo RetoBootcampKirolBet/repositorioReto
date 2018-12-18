@@ -27,7 +27,7 @@ namespace AppRetoKirolBet.Controllers
         public async Task<IActionResult> Index()
 
         {
-            IdentityUser currentUser = await _userManager.GetUserAsync(User);
+            AppUser currentUser = await _userManager.GetUserAsync(User);
             User usuario = _context.User.Where(x => x.Login == currentUser.Email).FirstOrDefault();
             List<UserWorkPackage> workPackages = new List<UserWorkPackage>();
 

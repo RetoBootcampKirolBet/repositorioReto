@@ -1,15 +1,13 @@
 ﻿@inject AppRetoKirolBet.Services.KirolBetServices KirolBetServices
 @inject AppRetoKirolBet.Services.KirolBetServices service
 @{
-    ViewData["Title"] = "About";
     AppUser currentUser = service.GetCurrentUser(User.Identity.Name);
 }
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
 
 <header class="container">
-    <h2>@currentUser.FirstName</h2>
-    <h2>@currentUser.LastName</h2>
+    <h2>@currentUser.FirstName @currentUser.LastName</h2>
 </header>
 
 @{
@@ -35,7 +33,7 @@
                             @Html.DisplayFor(modelItem => u.Name)
                         </td>
                         <td>
-                            <form asp-action="Asignar" method="post">
+                            <form asp-action="AsignarRole" method="post">
                                 <select name="dropdown1" class="project_active">
                                     <option value=""></option>
                                     <option value="developer">Developer</option>
@@ -49,7 +47,7 @@
                             @Html.DisplayFor(modelItem => u.UserRole)
                         </td>
                         <td>
-                            <form asp-action="Asignar" method="post">
+                            <form asp-action="AsignarTeam" method="post">
                                 <select name="dropdown2" class="change_team">
                                     <option value=""></option>
                                     <option value="GT">Equipo Verde</option>

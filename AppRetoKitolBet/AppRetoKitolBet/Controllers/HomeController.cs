@@ -14,6 +14,7 @@ using AppRetoKirolBet.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using AppRetoKirolBet.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace AppRetoKirolBet.Controllers
 {
@@ -37,8 +38,7 @@ namespace AppRetoKirolBet.Controllers
             //ViewBag.User = currentUser;
             if (User.Identity.IsAuthenticated)
             {
-            await _services.InsertUserInBD();
-            await _services.InsertWPInBD();
+               
                 if (User.HasClaim("admin", "admin"))
                 {
                     return RedirectToAction("Configuration", "Home");
@@ -52,6 +52,8 @@ namespace AppRetoKirolBet.Controllers
                     return RedirectToAction("Members", "Home");
                 }
             }
+            await _services.InsertUserInBD();
+            await _services.InsertWPInBD();
             return View(User);
         }
 
@@ -73,19 +75,21 @@ namespace AppRetoKirolBet.Controllers
         //    return RedirectToAction(nameof(Contact));
         //}
 
-        public IActionResult Asignar(int Id, string dropdown1, string dropdown2)
+        public async Task<IActionResult> AsignarRole(int Id, string dropdown1)
         {
-            _services.Asignar(Id, dropdown1, dropdown2);
+            await _services.AsignarRole(Id, dropdown1);
             return RedirectToAction(nameof(About));
         }
 
-        public async Task<IActionResult> About()
+        public IActionResult AsignarTeam(int Id, string dropdown2)
+        {
+            _services.AsignarTeam(Id, dropdown2);
+            return RedirectToAction(nameof(About));
+        }
+
+        public IActionResult About()
         {
             //ViewData["Message"] = "Your application description page.";
-
-           User currentUser = await _userManager.GetUserAsync(User);
-         
-            //User usuario = _context.User.Where(x => x.Login == currentUser.Email).FirstOrDefault();
             return View();
         }
 
@@ -94,10 +98,50 @@ namespace AppRetoKirolBet.Controllers
             //ViewData["Message"] = "Your application description page.";
             return View();
         }
-        public IActionResult Configuration()
+        public async Task<IActionResult> Configuration()
         {
             //ViewData["Message"] = "Your application description page.";
-            return View();
+            AppUser currentUser = await _userManager.GetUserAsync(User);
+            User usuario = _context.User.Where(x => x.Login == currentUser.Email).FirstOrDefault();
+            List<UserWorkPackage> workPackages = new List<UserWorkPackage>();
+
+            //if (currentUser.Email == "administrador@gmail.com")
+            if (User.HasClaim("admin", "admin"))
+            {
+                workPackages = await _context.UserWorkPackage
+                .Include(x => x.WorkPackage)
+                //.Include(x => x.UserWorkPackages.Select(t => t.User.Login == currentUser.Email))
+                .Include(x => x.WorkPackage._Links)
+                .Include(x => x.WorkPackage._Links.Status)
+                .Include(x => x.WorkPackage._Links.Type)
+                .Include(x => x.WorkPackage._Links.Priority)
+                .Include(x => x.WorkPackage._Links.Assignee)
+                .Include(x => x.WorkPackage.Description)
+                .Include(x => x.WorkPackage._Links.CustomField1)
+                .Include(x => x.WorkPackage._Links.CustomField2)
+                //.Where(x => x.WorkPackage.User.Login == currentUser.Email)
+                .ToListAsync();
+            }
+            else
+            {
+                workPackages = await _context.UserWorkPackage
+                .Where(x => x.User.Login == currentUser.Email)
+                .Include(x => x.WorkPackage)
+                //.Include(x => x.UserWorkPackages.Select(t => t.User.Login == currentUser.Email))
+                .Include(x => x.WorkPackage._Links)
+                .Include(x => x.WorkPackage._Links.Status)
+                .Include(x => x.WorkPackage._Links.Type)
+                .Include(x => x.WorkPackage._Links.Priority)
+                .Include(x => x.WorkPackage._Links.Assignee)
+                .Include(x => x.WorkPackage.Description)
+                .Include(x => x.WorkPackage._Links.CustomField1)
+                .Include(x => x.WorkPackage._Links.CustomField2)
+                //.Where(x => x.WorkPackage.User.Login == currentUser.Email)
+                .ToListAsync();
+            }
+
+            return View(workPackages);
+            //return View(await _context.WorkPackage.ToListAsync());
         }
         public IActionResult Members()
         {

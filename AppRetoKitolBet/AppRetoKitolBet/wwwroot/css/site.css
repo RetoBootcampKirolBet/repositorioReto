@@ -28,6 +28,47 @@ body {
     margin: 15px;
 }
 
+.adminHeader {
+    padding-top:10px;
+    padding-bottom:5px;
+    border-top: 20px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(167, 80, 24);
+    border-bottom:5px;
+}
+.adminArticle {
+    margin-left:-100px;
+}
+.tabreWP {
+    border-left: 5px;
+    border-left-color: #2e6da4;
+    border-bottom-style:solid;
+}
+#PanelConf {
+    border-radius: 10px;
+    border-color: #2e6da4;
+    background-color: #337ab7;
+    color: azure;
+}
+#Person {
+    border-radius: 10px;
+    border-color: #2e6da4;
+    background-color: #337ab7;
+    color: azure;
+}
+#User {
+    border-radius: 10px;
+    border-color: #2e6da4;
+    background-color: #337ab7;
+    color: azure;
+}
+#Burdown{
+    border-radius: 10px;
+    border-color: #2e6da4;
+    background-color: #337ab7;
+    color: azure;
+}
+
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */

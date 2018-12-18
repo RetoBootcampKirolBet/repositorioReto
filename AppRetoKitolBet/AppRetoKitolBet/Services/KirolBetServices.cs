@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -51,10 +52,20 @@ namespace AppRetoKirolBet.Services
             return userWorkPackages;
         }
 
-        public void Asignar(int Id, string dropdown1, string dropdown2)
+        public async Task AsignarRole(int Id, string dropdown1)
         {
             User user = _context.User.Where(x => x.Id == Id).First();
+            var AppUser = _context.Users.Single(x => x.Email == user.Login);
+            Claim dropdownClaim = new Claim(dropdown1, dropdown1);
+            await _userManager.AddClaimAsync(AppUser, dropdownClaim);
             user.UserRole = dropdown1;
+            _context.User.Update(user);
+            _context.SaveChanges();
+        }
+
+        public void AsignarTeam(int Id, string dropdown2)
+        {
+            User user = _context.User.Where(x => x.Id == Id).First();
             user.Team = dropdown2;
             _context.SaveChanges();
         }
