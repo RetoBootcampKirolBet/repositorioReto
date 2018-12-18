@@ -1,8 +1,9 @@
 ﻿@model IEnumerable<AppRetoKirolBet.Models.UserWorkPackage>
-
+@inject AppRetoKirolBet.Services.KirolBetServices service
 @{
     ViewData["Title"] = "Configuration";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    AppUser currentUser = service.GetCurrentUser(User.Identity.Name);
 }
 
 <header class="container">
@@ -46,7 +47,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-2 col-sm-1">
-            <input type="button" value="Panel de Configuración" class="btnPofC"/>
+            <input type="button" value="Panel de Configuración" class="btnPofC" />
             <hr />
             <input type="button" value="Personas" class="btnPersons" />
             <hr />
@@ -112,7 +113,7 @@
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
-                     {
+                    {
                         <tr>
                             <td>
                                 <div class="checkbox">
@@ -169,7 +170,7 @@
                                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                             </td>
                         </tr>
-                     }
+                    }
                 </tbody>
             </table>
         </div>

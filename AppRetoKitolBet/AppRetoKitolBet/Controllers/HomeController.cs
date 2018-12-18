@@ -37,29 +37,21 @@ namespace AppRetoKirolBet.Controllers
             //ViewBag.User = currentUser;
             if (User.Identity.IsAuthenticated)
             {
+            await _services.InsertUserInBD();
+            await _services.InsertWPInBD();
                 if (User.HasClaim("admin", "admin"))
                 {
-                    AppUser currentUser = await _userManager.GetUserAsync(User);
-                    ViewBag.User = currentUser;
                     return RedirectToAction("Configuration", "Home");
                 }
                 else if (User.HasClaim("teamleader", "teamleader"))
                 {
-                    AppUser currentUser = await _userManager.GetUserAsync(User);
-                    ViewBag.User = currentUser;
                     return RedirectToAction("Members", "Home");
                 }
                 else if (User.HasClaim("developer", "developer"))
                 {
-                    AppUser currentUser = await _userManager.GetUserAsync(User);
-                    ViewBag.User = currentUser;
                     return RedirectToAction("Members", "Home");
                 }
             }
-            await _services.InsertUserInBD();
-            await _services.InsertWPInBD();
-
-            
             return View(User);
         }
 

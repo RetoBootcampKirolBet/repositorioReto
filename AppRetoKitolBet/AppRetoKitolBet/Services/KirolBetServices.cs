@@ -1,5 +1,6 @@
 ﻿using AppRetoKirolBet.Data;
 using AppRetoKirolBet.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -19,12 +20,19 @@ namespace AppRetoKirolBet.Services
     public class KirolBetServices
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<AppUser> _userManager;
 
-        public KirolBetServices(ApplicationDbContext context)
+
+        public KirolBetServices(ApplicationDbContext context,UserManager<AppUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
-
+        public AppUser GetCurrentUser(string email)
+        {
+            AppUser user = _context.Users.Single(x=>x.Email==email);
+            return user;
+        }
         public List<WorkPackage> GetWorkPackagesDB()
         {
             List<WorkPackage> workPackages = _context.WorkPackage.ToList();

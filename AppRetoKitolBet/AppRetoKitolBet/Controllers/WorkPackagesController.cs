@@ -25,25 +25,49 @@ namespace AppRetoKirolBet.Controllers
 
         // GET: WorkPackages
         public async Task<IActionResult> Index()
-        {
-            //    AppUser currentUser = await _userManager.GetUserAsync(User);
-            //    User usuario = _context.User.Where(x => x.Login == currentUser.Email).FirstOrDefault();
 
-            //    List<WorkPackage> workPackages = await _context.WorkPackage
-            //        .Include(x => x.WorkPackages)
-            //        .Include(x => x.workPackages.Select(y=>y.User.Login == currentUser.Email)
-            //        .Include(x => x.workPackages._Links)
-            //        .Include(x => x._Links.Status)
-            //        .Include(x => x._Links.Type)
-            //        .Include(x => x._Links.Priority)
-            //        .Include(x => x._Links.Assignee)
-            //        .Include(x => x._Links.CustomField1)
-            //        .Include(x => x._Links.CustomField2)
-            //        .Include(x => x.Description)
-            //        //.Where(x => x.UserWorkPackages.User.Login == currentUser.Email)
-            //        .ToListAsync();
-            return View();//workPackages);
-        //    //return View(await _context.WorkPackage.ToListAsync());
+        {
+            IdentityUser currentUser = await _userManager.GetUserAsync(User);
+            User usuario = _context.User.Where(x => x.Login == currentUser.Email).FirstOrDefault();
+            List<UserWorkPackage> workPackages = new List<UserWorkPackage>();
+
+            //if (currentUser.Email == "administrador@gmail.com")
+            if (User.HasClaim("admin", "admin"))
+            {
+                workPackages = await _context.UserWorkPackage
+                .Include(x => x.WorkPackage)
+                //.Include(x => x.UserWorkPackages.Select(t => t.User.Login == currentUser.Email))
+                .Include(x => x.WorkPackage._Links)
+                .Include(x => x.WorkPackage._Links.Status)
+                .Include(x => x.WorkPackage._Links.Type)
+                .Include(x => x.WorkPackage._Links.Priority)
+                .Include(x => x.WorkPackage._Links.Assignee)
+                .Include(x => x.WorkPackage.Description)
+                .Include(x => x.WorkPackage._Links.CustomField1)
+                .Include(x => x.WorkPackage._Links.CustomField2)
+                //.Where(x => x.WorkPackage.User.Login == currentUser.Email)
+                .ToListAsync();
+            }
+            else
+            {
+                workPackages = await _context.UserWorkPackage
+                .Where(x => x.User.Login == currentUser.Email)
+                .Include(x => x.WorkPackage)
+                //.Include(x => x.UserWorkPackages.Select(t => t.User.Login == currentUser.Email))
+                .Include(x => x.WorkPackage._Links)
+                .Include(x => x.WorkPackage._Links.Status)
+                .Include(x => x.WorkPackage._Links.Type)
+                .Include(x => x.WorkPackage._Links.Priority)
+                .Include(x => x.WorkPackage._Links.Assignee)
+                .Include(x => x.WorkPackage.Description)
+                .Include(x => x.WorkPackage._Links.CustomField1)
+                .Include(x => x.WorkPackage._Links.CustomField2)
+                //.Where(x => x.WorkPackage.User.Login == currentUser.Email)
+                .ToListAsync();
+            }
+
+            return View(workPackages);
+            //return View(await _context.WorkPackage.ToListAsync());
         }
 
         // GET: WorkPackages/Details/5

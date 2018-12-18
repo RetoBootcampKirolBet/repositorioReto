@@ -1,12 +1,14 @@
 ﻿@model IEnumerable<AppRetoKirolBet.Models.UserWorkPackage>
-
+@inject AppRetoKirolBet.Services.KirolBetServices service
 @{
     ViewData["Title"] = "Members";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    AppUser currentUser = service.GetCurrentUser(User.Identity.Name);
 }
 
 <header class="container">
-    <h2>@User.Identity.Name</h2>
+    <h2>@currentUser.FirstName</h2>
+    <h2>@currentUser.LastName</h2>
 </header>
 
 <div class="container">

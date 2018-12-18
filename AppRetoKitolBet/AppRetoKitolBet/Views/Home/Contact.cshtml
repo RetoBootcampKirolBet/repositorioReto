@@ -1,13 +1,15 @@
 ﻿@inject AppRetoKirolBet.Services.KirolBetServices KirolBetServices
-@*@model IEnumerable<User>;*@
+@inject AppRetoKirolBet.Services.KirolBetServices service
 @{
     //ViewData["Title"] = "Contact";
+    AppUser currentUser = service.GetCurrentUser(User.Identity.Name);
 }
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
 
 <header class="container">
-    <h2>@User.Identity.Name</h2>
+    <h2>@currentUser.FirstName</h2>
+    <h2>@currentUser.LastName</h2>
 </header>
 
 <div class="container">
