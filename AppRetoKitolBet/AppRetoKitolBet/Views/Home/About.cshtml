@@ -6,69 +6,88 @@
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
 
-<header class="container">
+<header class="container adminHeader">
     <h2>@currentUser.FirstName @currentUser.LastName</h2>
 </header>
+<div class="container adminArticle">
+    <div class="row">
+        <div class="col-md-2 col-sm-1 adminButton">
+            <input id="BtnMain" type="button" value="Panel de Configuración" class="btnPofC" />
+            <hr />
+            <input id="BtnMain" type="button" value="Personas" class="btnPersons" />
+            <hr />
+            <input id="BtnMain" type="button" value="Users" class="btnUsers" />
+            <hr />
+            <input id="BtnMain" type="button" value="Burdown" class="btnBurdown" />
+        </div>
 
-@{
-    List<User> users = KirolBetServices.GetUsersDB();
-    <div>
-        <h1>Users</h1>
-        <hr />
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Usuarios</th>
-                    <th>Rol</th>
-                    <th>Rol Actual</th>
-                    <th>Equipos</th>
-                    <th>Equipo Actual</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (User u in users)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => u.Name)
-                        </td>
-                        <td>
-                            <form asp-action="AsignarRole" method="post">
-                                <select name="dropdown1" class="project_active">
-                                    <option value=""></option>
-                                    <option value="developer">Developer</option>
-                                    <option value="teamleader">Team Leader</option>
-                                    <option value="admin">Administrator</option>
-                                </select>
-                                <input type="hidden" name="Id" value="@u.Id" />
-                            </form>
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => u.UserRole)
-                        </td>
-                        <td>
-                            <form asp-action="AsignarTeam" method="post">
-                                <select name="dropdown2" class="change_team">
-                                    <option value=""></option>
-                                    <option value="GT">Equipo Verde</option>
-                                    <option value="OT">Equipo Naranja</option>
-                                    <option value="RT">Equipo Rojo</option>
-                                </select>
-                                <input type="hidden" name="Id" value="@u.Id" />
-                            </form>
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => u.Team)
-                        </td>
-                    </tr>
-                }
-            <tbody />
-        </table>
-        @*<div class="form-group">
-                <input type="submit" value="Save" id="SaveChanges" />
-            </div>*@
+        <div class="col-sm-8 tableWP">
+            @{
+                List<User> users = KirolBetServices.GetUsersDB();
+                <div>
+                    <h1>Users</h1>
+                    <hr />
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Usuarios</th>
+                                <th>Rol</th>
+                                <th>Rol Actual</th>
+                                <th>Equipos</th>
+                                <th>Equipo Actual</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (User u in users)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => u.Name)
+                                    </td>
+                                    <td>
+                                        <form asp-action="AsignarRole" method="post">
+                                            <select name="dropdown1" class="project_active">
+                                                <option value=""></option>
+                                                <option value="developer">Developer</option>
+                                                <option value="teamleader">Team Leader</option>
+                                                <option value="admin">Administrator</option>
+                                            </select>
+                                            <input type="hidden" name="Id" value="@u.Id" />
+                                        </form>
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => u.UserRole)
+                                    </td>
+                                    <td>
+                                        <form asp-action="AsignarTeam" method="post">
+                                            <select name="dropdown2" class="change_team">
+                                                <option value=""></option>
+                                                <option value="GT">Equipo Verde</option>
+                                                <option value="OT">Equipo Naranja</option>
+                                                <option value="RT">Equipo Rojo</option>
+                                            </select>
+                                            <input type="hidden" name="Id" value="@u.Id" />
+                                        </form>
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => u.Team)
+                                    </td>
+                                </tr>
+                            }
+                        <tbody />
+                    </table>
+                    @*<div class="form-group">
+                            <input type="submit" value="Save" id="SaveChanges" />
+                        </div>*@
+                </div>
+            }
+        </div>
     </div>
-}
+</div>
+<footer class="container">
+    <a href='javascript:history.go(-1)'>Return</a>
+</footer>
+
 <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous"></script>
@@ -81,4 +100,17 @@
         var form = e.target.closest('form');
         form.submit();
     });
+    $('.btnPofC').on('click', function () {
+        window.location.href = "/Home/Contact";
+    });
+    $('.btnPersons').on('click', function () {
+        window.location.href = "";
+    });
+    $('.btnUsers').on('click', function () {
+        window.location.href = "/Home/About";
+    });
+    $('.btnBurdown').on('click', function () {
+        window.location.href = "";
+    });
 </script>
+

@@ -44,30 +44,13 @@ body {
     border-left-color: #2e6da4;
     border-bottom-style:solid;
 }
-#PanelConf {
+#BtnMain {
     border-radius: 10px;
     border-color: #2e6da4;
     background-color: #337ab7;
     color: azure;
 }
-#Person {
-    border-radius: 10px;
-    border-color: #2e6da4;
-    background-color: #337ab7;
-    color: azure;
-}
-#User {
-    border-radius: 10px;
-    border-color: #2e6da4;
-    background-color: #337ab7;
-    color: azure;
-}
-#Burdown{
-    border-radius: 10px;
-    border-color: #2e6da4;
-    background-color: #337ab7;
-    color: azure;
-}
+
 
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {

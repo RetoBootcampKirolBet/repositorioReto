@@ -7,21 +7,20 @@
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
 
-<header class="container">
-    <h2>@currentUser.FirstName@currentUser.LastName</h2>
-    @*<h2>@currentUser.LastName</h2>*@
+<header class="container adminHeader">
+    <h2>@currentUser.FirstName @currentUser.LastName</h2>
 </header>
 
 <div class="container">
     <div class="row">
         <div class="col-md-2 col-sm-1">
-            <input type="button" value="Panel de Configuración" class="btnPofC" />
+            <input id="BtnMain" type="button" value="Panel de Configuración" class="btnPofC" />
             <hr />
-            <input type="button" value="Personas" class="btnPersons" />
+            <input id="BtnMain" type="button" value="Personas" class="btnPersons" />
             <hr />
-            <input type="button" value="Users" class="btnUsers" />
+            <input id="BtnMain" type="button" value="Users" class="btnUsers" />
             <hr />
-            <input type="button" value="Burdown" class="btnBurdown" />
+            <input id="BtnMain" type="button" value="Burdown" class="btnBurdown" />
         </div>
         <div class="col-sm-8">
             @{
@@ -44,7 +43,7 @@
                                 <tr>
                                     <td>
                                         <div class="form-group">
-                                            @Html.DisplayNameFor(model => workP._Links.CustomField2.KsoftProject)
+                                            @Html.DisplayFor(modelItem => workP.Description.Raw)
                                         </div>
                                     </td>
                                     <td>
@@ -89,7 +88,7 @@
                                 <tr>
                                     <td>
                                         <div class="form-group">
-                                            @Html.DisplayNameFor(model => workP._Links.CustomField2.KsoftProject)
+                                            @Html.DisplayFor(modelItem => workP.Description.Raw)
                                         </div>
                                     </td>
                                     <td>
@@ -116,7 +115,9 @@
         </div>
     </div>
 </div>
-
+<footer class="container">
+    <a href='javascript:history.go(-1)'>Return</a>
+</footer>
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.js"

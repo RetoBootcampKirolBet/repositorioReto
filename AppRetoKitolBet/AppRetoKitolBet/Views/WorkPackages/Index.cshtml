@@ -5,11 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     AppUser currentUser = service.GetCurrentUser(User.Identity.Name);
 }
-<td>
+<div class="container adminHeader">
     <div class="row">
         <div class="col-md-4">
-            <h2>@currentUser.FirstName</h2>
-            <h2>@currentUser.LastName</h2>
+            <h2>@currentUser.FirstName @currentUser.LastName</h2>
         </div>
         <div class=" col-md-offset-9">
             <div class="botones">
@@ -21,12 +20,10 @@
                     Create
                     <a asp-action="Create"></a>
                 </button>
-
                 <button type="button" class="btn btn-default btn-s">
                     <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
                     <a asp-action="Info"></a>
                 </button>
-
                 <button class="btn btn-default btn-xs">
                     Gestion
                     <form asp-action="Gestion" method="post">
@@ -43,19 +40,20 @@
             </div>
         </div>
     </div>
+</div>
     <div class="container">
         <div class="row">
             <div class="col-md-2 col-sm-1">
-                <input type="button" value="My Sprint" class="btnMyS" />
+                <input id="BtnMain" type="button" value="My Sprint" class="btnMyS" />
                 <hr />
-                <input type="button" value="App" class="btnApp" />
+                <input id="BtnMain" type="button" value="App" class="btnApp" />
                 <hr />
                 @{
                     if (User.HasClaim("teamleader", "teamleader"))
                     {
-                        <input type="button" value="Planification" class="btnPlani" />
+                        <input id="BtnMain" type="button" value="Planification" class="btnPlani" />
                         <hr />
-                        <input type="button" value="Burdown" class="btnBurdown" />
+                        <input id="BtnMain" type="button" value="Burdown" class="btnBurdown" />
                     }
                 }
             </div>
@@ -180,6 +178,9 @@
             </div>
         </div>
     </div>
+<footer class="container">
+    <a href='javascript:history.go(-1)'>Return</a>
+</footer>
     <script src="https://code.jquery.com/jquery-3.3.1.js"
             integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
             crossorigin="anonymous"></script>
