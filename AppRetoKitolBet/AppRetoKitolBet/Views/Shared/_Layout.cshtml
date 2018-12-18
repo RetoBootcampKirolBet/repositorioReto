@@ -17,46 +17,56 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">AppRetoKirolBet</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                    @*<li><a asp-area="" asp-controller="Home" asp-action="Asignar">Asignar</a></li>*@
+    <div class="container">
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-md-4">
+                    @*<div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">AppRetoKirolBet</a>
+                </div>*@
 
-                    @{
-                        if (User.Identity.IsAuthenticated)
-                        {
-                            if (User.HasClaim("admin","admin"))
-                            {
-                                <li><a asp-area="" asp-controller="Home" asp-action="Contact">Admin</a></li> 
-                            }
-                            else if (User.HasClaim("teamleader","teamleader"))
-                            {
-                                <li><a asp-area="" asp-controller="Home" asp-action="About">Teamleader</a></li>
-                            }
-                            else if (User.HasClaim("developer", "developer"))
-                            {
+                    <div class="col-md-4">
+                        <button><a asp-area="" asp-controller="Home" asp-action="Index">Index</a></button>
+                        <hr />
+                        <button><a asp-area="" asp-controller="Home" asp-action="About">About</a></button>
+                        <hr />
+                        <button><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></button>
+                        <hr />
+                        @*<li><a asp-area="" asp-controller="Home" asp-action="Asignar">Asignar</a></li>*@
 
+                        @{
+                            if (User.Identity.IsAuthenticated)
+                            {
+                                if (User.HasClaim("admin", "admin"))
+                                {
+                                    <button><a asp-area="" asp-controller="Home" asp-action="Contact">Admin</a></button>
+                                }
+                                else if (User.HasClaim("teamleader", "teamleader"))
+                                {
+                                    <button><a asp-area="" asp-controller="Home" asp-action="About">Teamleader</a></button>
+                                }
+                                else if (User.HasClaim("developer", "developer"))
+                                {
+
+                                }
                             }
                         }
-                    }
-                </ul>
-                <partial name="_LoginPartial"  />
+                    </div>
+                    <partial name="_LoginPartial" />
+
+                </div>
             </div>
         </div>
-    </nav>
+    </div>
+
+
+
 
     @*<partial name="_CookieConsentPartial" />*@
 

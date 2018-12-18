@@ -50,15 +50,26 @@ namespace AppRetoKirolBet.Controllers
             return RedirectToAction(nameof(Contact));
         }
 
-        public IActionResult Asignar(int Login,string dropdown1, string dropdown2)
+        public async Task<IActionResult> Asignar1(int Id,string dropdown1)
         {
-            _services.Asignar(Login,dropdown1,dropdown2);
+            await _services.Asignar1(Id,dropdown1);
+            return RedirectToAction(nameof(About));
+        }
+        //public async Task<IActionResult> AsignarUser(int Id, string dropdown1)
+        //{
+        //    await _services.AsignarUser(Id, dropdown1);
+        //    return RedirectToAction(nameof(About));
+        //}
+        public async Task<IActionResult> Asignar2(int Id, string dropdown2)
+        {
+            await _services.Asignar2(Id, dropdown2);
             return RedirectToAction(nameof(About));
         }
 
+
         public async Task<IActionResult> About()
         {
-            ViewData["Message"] = "Your application description page.";
+            //ViewData["Message"] = "Your application description page.";
             IdentityUser currentUser = await _userManager.GetUserAsync(User);
             User usuario = _context.User.Where(x => x.Login == currentUser.Email).FirstOrDefault();
             return View();

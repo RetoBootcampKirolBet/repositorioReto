@@ -4,172 +4,182 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<td>
-<div class="row">
-    <div class="col-md-4">
-        <h2>@User.Identity.Name</h2>
 
-    </div>
-    <div class=" col-md-offset-9">
-        <div class="botones">
+<div class="container">
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-4">
+                <h2>@User.Identity.Name</h2>
 
-            <button type="button" class="btn btn-default btn-s">
-                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                <a asp-action="Buscar"></a>
-            </button>
+            </div>
+            <div class=" col-md-offset-8">
+                <div class="botones">
+
+                    <button type="button" class="btn btn-default btn-s">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        <a asp-action="Buscar"></a>
+                    </button>
 
 
-            <button type="button" class="btn btn-default btn-s">
-                Create
-                <a asp-action="Create"></a>
-            </button>
+                    <button type="button" class="btn btn-default btn-s">
+                        Create
+                        <a asp-action="Create"></a>
+                    </button>
 
-            <button type="button" class="btn btn-default btn-s">
-                <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-                <a asp-action="Info"></a>
-            </button>
+                    <button type="button" class="btn btn-default btn-s">
+                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                        <a asp-action="Info"></a>
+                    </button>
 
-            <button class="btn btn-default btn-xs">
-                Gestion
-                <form asp-action="Gestion" method="post">
-                    <select name="dropdown " class="project_active">
-                        <option value=""></option>
-                        <option value="gestion">Gestion</option>
-                        <option value="formacion">Formacion</option>
-                        <option value="reuniones">Reuniones</option>
-                        <option value="mejoraContinua">Mejora Continua</option>
-                    </select>
-                    @*<input type="hidden" name="login" value="@u.Login" />*@
-                </form>
-            </button>
+                    <button class="btn btn-default btn-xs">
+                        Gestion
+                        <form asp-action="Gestion" method="post">
+                            <select name="dropdown " class="project_active">
+                                <option value=""></option>
+                                <option value="gestion">Gestion</option>
+                                <option value="formacion">Formacion</option>
+                                <option value="reuniones">Reuniones</option>
+                                <option value="mejoraContinua">Mejora Continua</option>
+                            </select>
+                            @*<input type="hidden" name="login" value="@u.Login" />*@
+                        </form>
+                    </button>
 
+                </div>
+
+            </div>
         </div>
 
+
+        <div class="row">
+            <div class="col-md-9">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                <button type="button" id="btnOcultar" class="btn btn-default btn-xs">
+                                    <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                                </button>
+                                <button type="button" id="btnMostrar" class="btnMostrar btn-default btn-xs">
+                                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                </button>
+                            </th>
+                            <th class="ksoftName">
+                                @Html.DisplayNameFor(model => model.WorkPackage._Links.CustomField2.KsoftProject)
+                            </th>
+                            <th class="sprintName">
+                                @Html.DisplayNameFor(model => model.WorkPackage._Links.CustomField1.Sprint)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.WorkPackage._Links.Type.Tipo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.WorkPackage.IdOP)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.WorkPackage.Description.Raw)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.WorkPackage._Links.Status.Estado)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.WorkPackage.EstimatedTime)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.WorkPackage.SpentTime)
+                            </th>
+                            <th>
+
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.WorkPackage.StartDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.WorkPackage.DueDate)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.WorkPackage._Links.Assignee.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.WorkPackage._Links.Priority.Title)
+                            </th>
+                            <th>
+                                Project
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox">
+                                        </label>
+                                    </div>
+                                </td>
+                                <td class="ksoftCol">
+                                    @Html.DisplayFor(modelItem => item.WorkPackage._Links.CustomField2.KsoftProject)
+                                </td>
+                                <td class="sprintCol">
+                                    @Html.DisplayFor(modelItem => item.WorkPackage._Links.CustomField1.Sprint)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.WorkPackage._Links.Type.Tipo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.WorkPackage.IdOP)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.WorkPackage.Description.Raw)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.WorkPackage._Links.Status.Estado)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.WorkPackage.EstimatedTime)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.WorkPackage.SpentTime)
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-xs">+</button>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.WorkPackage.StartDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.WorkPackage.DueDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.WorkPackage._Links.Assignee.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.WorkPackage._Links.Priority.Title)
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-xs">move</button>
+                                </td>
+
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                </td>
+                            </tr>
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
 
 
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                <button type="button" id="btnOcultar" class="btn btn-default btn-xs">
-                    <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-                </button>
-                <button type="button" id="btnMostrar" class="btnMostrar btn-default btn-xs">
-                    <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-                </button>
-            </th>
-            <th class="ksoftName">
-                @Html.DisplayNameFor(model => model.WorkPackage._Links.CustomField2.KsoftProject)
-            </th>
-            <th class="sprintName">
-                @Html.DisplayNameFor(model => model.WorkPackage._Links.CustomField1.Sprint)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WorkPackage._Links.Type.Tipo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WorkPackage.IdOP)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WorkPackage.Description.Raw)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WorkPackage._Links.Status.Estado)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WorkPackage.EstimatedTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WorkPackage.SpentTime)
-            </th>
-            <th>
-
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WorkPackage.StartDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WorkPackage.DueDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WorkPackage._Links.Assignee.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.WorkPackage._Links.Priority.Title)
-            </th>
-            <th>
-                Project
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox">
-                        </label>
-                    </div>
-                </td>
-                <td class="ksoftCol">
-                    @Html.DisplayFor(modelItem => item.WorkPackage._Links.CustomField2.KsoftProject)
-                </td>
-                <td class="sprintCol">
-                    @Html.DisplayFor(modelItem => item.WorkPackage._Links.CustomField1.Sprint)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.WorkPackage._Links.Type.Tipo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.WorkPackage.IdOP)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.WorkPackage.Description.Raw)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.WorkPackage._Links.Status.Estado)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.WorkPackage.EstimatedTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.WorkPackage.SpentTime)
-                </td>
-                <td>
-                    <button type="button" class="btn btn-primary btn-xs">+</button>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.WorkPackage.StartDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.WorkPackage.DueDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.WorkPackage._Links.Assignee.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.WorkPackage._Links.Priority.Title)
-                </td>
-                <td>
-                    <button type="button" class="btn btn-primary btn-xs">move</button>
-                </td>
-
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-        }
-
-
-    </tbody>
-</table>
 
 <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="

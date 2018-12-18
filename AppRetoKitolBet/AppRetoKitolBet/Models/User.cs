@@ -19,5 +19,6 @@ namespace AppRetoKirolBet.Models
         public string Team { get; set; }
 
         public List<UserWorkPackage> UserWorkPackages { get; set; }
+        public string UserClaims { get; internal set; }
     }
 }

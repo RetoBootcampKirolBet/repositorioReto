@@ -1,11 +1,13 @@
 ﻿using AppRetoKirolBet.Data;
 using AppRetoKirolBet.Models;
+using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,10 +18,12 @@ namespace AppRetoKirolBet.Services
     public class KirolBetServices
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public KirolBetServices(ApplicationDbContext context)
+        public KirolBetServices(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public List<WorkPackage> GetWorkPackagesDB()
@@ -34,20 +38,31 @@ namespace AppRetoKirolBet.Services
             return users;
         }
 
-        public async Task <List<UserWorkPackage>> GetUserWorkPackagesDB()  //TODO:revisar
+        public async Task <List<UserWorkPackage>> GetUserWorkPackagesDB()  
         {
             List<UserWorkPackage> userWorkPackages =_context.UserWorkPackage.ToList();
             return userWorkPackages;
         }
 
 
-        public void Asignar(int Id,string dropdown1,string dropdown2)
+        public async Task Asignar1(int Id,string dropdown1)
         {
             User user = _context.User.Where(x => x.Id == Id).First();
+            var identityUser = _context.Users.Single(x => x.Email == user.Login);
+            Claim dropdownClaim = new Claim(dropdown1, dropdown1);
+            await _userManager.AddClaimAsync(identityUser, dropdownClaim);
             user.UserRole = dropdown1;
-            user.Team = dropdown2;
+             _context.User.Update(user);
             _context.SaveChanges();
         }
+        
+        public async Task Asignar2(int Id, string dropdown2)
+        {
+            User user = _context.User.Where(x => x.Id == Id).First();
+            user.Team = dropdown2;
+            await _context.SaveChangesAsync();
+        }
+
         public void ActivateWPBD(int id)
         {
             // TODO: hacer la peticion con await
