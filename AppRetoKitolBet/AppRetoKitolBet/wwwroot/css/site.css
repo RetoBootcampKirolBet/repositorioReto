@@ -28,9 +28,24 @@ body {
     margin: 15px;
 }
 
+.mainNavH a.mainNavP :visited {
+    color: goldenrod;
+}
+
+.mainNavH a.mainNavP:hover {
+    color: azure;
+}
+
+.mainNavH a.mainNav:active {
+    color: coral;
+}
+
 .mainNav {
-    background-color:rgb(233, 100, 12);
-    border-radius:5px;
+    background-color: #FF8400;
+    border-radius: 5px;
+    color: azure;
+}
+.mainNavP{
     color:azure;
 }
 .adminHeader {
@@ -63,4 +78,14 @@ body {
     .carousel-caption {
         display: none;
     }
+}
+
+.navbar-inverse .navbar-brand {
+    color: white;
+}
+.navbar-inverse .navbar-nav > li > a {
+    color: white;
+}
+.navbar-inverse .btn-link {
+    color: white;
 }
