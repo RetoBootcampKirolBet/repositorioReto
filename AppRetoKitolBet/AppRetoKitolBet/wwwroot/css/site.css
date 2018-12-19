@@ -28,6 +28,11 @@ body {
     margin: 15px;
 }
 
+.mainNav {
+    background-color:rgb(233, 100, 12);
+    border-radius:5px;
+    color:azure;
+}
 .adminHeader {
     padding-top:10px;
     padding-bottom:5px;
