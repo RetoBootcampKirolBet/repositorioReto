@@ -1,0 +1,51 @@
+﻿@model KSProject.Models.User
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdUserOpenProject)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdUserOpenProject)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Login)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Login)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserRole)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserRole)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Team)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Team)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

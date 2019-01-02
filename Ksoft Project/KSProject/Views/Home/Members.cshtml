@@ -1,0 +1,55 @@
+﻿@model IEnumerable<KSProject.Models.UserWorkPackage>
+
+@inject KSProject.Services.KSProjectServices service
+@{
+    ViewData["Title"] = "Members";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    KSUser currentUser = service.GetCurrentUser(User.Identity.Name);
+}
+
+<header class="container adminHeader">
+    <h2>@currentUser.FirstName @currentUser.LastName</h2>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2 col-sm-1">
+            <input id="BtnMain" type="button" value="My Sprint" class="btnMyS" />
+            <hr />
+            <input id="BtnMain" type="button" value="App" class="btnApp" />
+            <hr />
+            @{
+                if (User.HasClaim("teamleader", "teamleader"))
+                {
+                    <input id="BtnMain" type="button" value="Planification" class="btnPlani" />
+                    <hr />
+                    <input id="BtnMain" type="button" value="Burdown" class="btnBurdown" />
+                }
+            }
+        </div>
+        <div class="col-sm-8">
+
+        </div>
+    </div>
+</div>
+<footer class="container">
+    <a asp-area="" asp-controller="Home" asp-action="Index">Return</a>
+</footer>
+<script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+<script>
+    $('.btnMyS').on('click', function () {
+        window.location.href = "/WorkPackages/Index";
+    });
+    $('.btnApp').on('click', function () {
+        window.location.href = "";
+    });
+    $('.btnPlani').on('click', function () {
+        window.location.href = "";
+    });
+    $('.btnBurdown').on('click', function () {
+        window.location.href = "";
+    });
+</script>
+
