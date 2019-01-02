@@ -35,9 +35,12 @@ namespace KSProject
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddTransient<Services.KSProjectServices>();
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
             //services.AddDefaultIdentity<IdentityUser>()
             //    .AddEntityFrameworkStores<ApplicationDbContext>();
 

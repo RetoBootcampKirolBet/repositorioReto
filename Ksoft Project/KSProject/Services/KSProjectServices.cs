@@ -87,7 +87,7 @@ namespace KSProject.Services
             //OBJETO RESPUESTA (DEPENDERA DE COMO ESTA ORGANIZADA LA API)
             ResponseWP items = null;
             string username = "apikey";
-            string password = "e091a02b90c3c0714b0a589b3deac0472cb565bb5fdddb89d9e9ab622964ffa3";
+            string password = "d7bec9bce6d5903af62e73104f8246eb44c0110ecf0557488d5527c62878333d";
             string encoded = System.Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
             //INICIALIZAMOS EL CLIENTE HTTP
             HttpClient client = new HttpClient();
@@ -108,7 +108,7 @@ namespace KSProject.Services
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", encoded);
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/hal+json"));
                 //client.DefaultRequestHeaders.Accept.Clear();
-                HttpResponseMessage response = await client.GetAsync("https://carbar.openproject.com/api/v3/projects/3/work_packages/?offset=" + i);
+                HttpResponseMessage response = await client.GetAsync("https://carbardesign.openproject.com/api/v3/projects/3/work_packages/?offset=" + i);
                 //SI RECIBIMOS UNA RESPUESTA
                 if (response.IsSuccessStatusCode)
                 {
@@ -159,7 +159,7 @@ namespace KSProject.Services
             bool next = true;
             ResponseWP items = null;
             string username = "apikey";
-            string password = "5cab265015ace048e4d5a72b3e9891c61a7b5cb9a6bca5460ebd5ccd2c95a7ba";
+            string password = "d7bec9bce6d5903af62e73104f8246eb44c0110ecf0557488d5527c62878333d";
             string encoded = System.Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
             HttpClient client = new HttpClient();
 
@@ -175,7 +175,7 @@ namespace KSProject.Services
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", encoded);
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/hal+json"));
                 //client.DefaultRequestHeaders.Accept.Clear();
-                HttpResponseMessage response = await client.GetAsync("https://carbar.openproject.com/api/v3/projects/3/work_packages/?offset=" + i);
+                HttpResponseMessage response = await client.GetAsync("https://carbardesign.openproject.com/api/v3/projects/3/work_packages/?offset=" + i);
                 if (response.IsSuccessStatusCode)
                 {
                     string wpEnJson = await response.Content.ReadAsStringAsync();
@@ -216,7 +216,7 @@ namespace KSProject.Services
             bool next = true;
             ResponseUser items = null;
             string username = "apikey";
-            string password = "e091a02b90c3c0714b0a589b3deac0472cb565bb5fdddb89d9e9ab622964ffa3";
+            string password = "d7bec9bce6d5903af62e73104f8246eb44c0110ecf0557488d5527c62878333d";
             string encoded = System.Convert.ToBase64String(Encoding.Default.GetBytes(username + ":" + password));
 
             HttpClient client = new HttpClient();
@@ -233,7 +233,7 @@ namespace KSProject.Services
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/hal+json"));
                 //client.DefaultRequestHeaders.Accept.Clear();
                 HttpResponseMessage response = new HttpResponseMessage();
-                response = await client.GetAsync("https://carbar.openproject.com/api/v3/users/?offset=" + i);
+                response = await client.GetAsync("https://carbardesign.openproject.com/api/v3/users/?offset=" + i);
 
                 if (response.IsSuccessStatusCode)
                 {
