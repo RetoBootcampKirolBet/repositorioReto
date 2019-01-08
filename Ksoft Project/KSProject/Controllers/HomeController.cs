@@ -31,9 +31,9 @@ namespace KSProject.Controllers
         {
             //AppUser currentUser = await _userManager.GetUserAsync(User);
             //ViewBag.User = currentUser;
+           
             if (User.Identity.IsAuthenticated)
             {
-
                 if (User.HasClaim("admin", "admin"))
                 {
                     return RedirectToAction("Configuration", "Home");
@@ -107,8 +107,8 @@ namespace KSProject.Controllers
                 .Include(x => x.WorkPackage._Links.Priority)
                 .Include(x => x.WorkPackage._Links.Assignee)
                 .Include(x => x.WorkPackage.Description)
-                .Include(x => x.WorkPackage._Links.CustomField1)
-                .Include(x => x.WorkPackage._Links.CustomField2)
+                .Include(x => x.WorkPackage._Links.CustomField3)
+                .Include(x => x.WorkPackage._Links.CustomField4)
                 //.Where(x => x.WorkPackage.User.Login == currentUser.Email)
                 .ToListAsync();
             }
@@ -124,8 +124,8 @@ namespace KSProject.Controllers
                 .Include(x => x.WorkPackage._Links.Priority)
                 .Include(x => x.WorkPackage._Links.Assignee)
                 .Include(x => x.WorkPackage.Description)
-                .Include(x => x.WorkPackage._Links.CustomField1)
-                .Include(x => x.WorkPackage._Links.CustomField2)
+                .Include(x => x.WorkPackage._Links.CustomField3)
+                .Include(x => x.WorkPackage._Links.CustomField4)
                 //.Where(x => x.WorkPackage.User.Login == currentUser.Email)
                 .ToListAsync();
             }
@@ -151,8 +151,8 @@ namespace KSProject.Controllers
                 .Include(x => x.WorkPackage._Links.Priority)
                 .Include(x => x.WorkPackage._Links.Assignee)
                 .Include(x => x.WorkPackage.Description)
-                .Include(x => x.WorkPackage._Links.CustomField1)
-                .Include(x => x.WorkPackage._Links.CustomField2)
+                .Include(x => x.WorkPackage._Links.CustomField3)
+                .Include(x => x.WorkPackage._Links.CustomField4)
                 //.Where(x => x.WorkPackage.User.Login == currentUser.Email)
                 .ToListAsync();
             }
@@ -168,8 +168,8 @@ namespace KSProject.Controllers
                 .Include(x => x.WorkPackage._Links.Priority)
                 .Include(x => x.WorkPackage._Links.Assignee)
                 .Include(x => x.WorkPackage.Description)
-                .Include(x => x.WorkPackage._Links.CustomField1)
-                .Include(x => x.WorkPackage._Links.CustomField2)
+                .Include(x => x.WorkPackage._Links.CustomField3)
+                .Include(x => x.WorkPackage._Links.CustomField4)
                 //.Where(x => x.WorkPackage.User.Login == currentUser.Email)
                 .ToListAsync();
             }

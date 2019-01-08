@@ -43,8 +43,8 @@ namespace KSProject.Controllers
                 .Include(x => x.WorkPackage._Links.Priority)
                 .Include(x => x.WorkPackage._Links.Assignee)
                 .Include(x => x.WorkPackage.Description)
-                .Include(x => x.WorkPackage._Links.CustomField1)
-                .Include(x => x.WorkPackage._Links.CustomField2)
+                .Include(x => x.WorkPackage._Links.CustomField3)
+                .Include(x => x.WorkPackage._Links.CustomField4)
                 //.Where(x => x.WorkPackage.User.Login == currentUser.Email)
                 .ToListAsync();
             }
@@ -60,8 +60,8 @@ namespace KSProject.Controllers
                 .Include(x => x.WorkPackage._Links.Priority)
                 .Include(x => x.WorkPackage._Links.Assignee)
                 .Include(x => x.WorkPackage.Description)
-                .Include(x => x.WorkPackage._Links.CustomField1)
-                .Include(x => x.WorkPackage._Links.CustomField2)
+                .Include(x => x.WorkPackage._Links.CustomField3)
+                .Include(x => x.WorkPackage._Links.CustomField4)
                 //.Where(x => x.WorkPackage.User.Login == currentUser.Email)
                 .ToListAsync();
             }

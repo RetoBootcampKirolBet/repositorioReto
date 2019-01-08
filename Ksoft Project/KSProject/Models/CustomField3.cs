@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace KSProject.Models
 {
-    public class CustomField1
+    public class CustomField3
     {
         public int Id { get; set; }
-        public List<CustomField1> customField1 { get; set; }
-        [JsonProperty(PropertyName = "Title")]
+        public List<CustomField3> customField3 { get; set; }
+        [JsonProperty(PropertyName = "title")]
         public string Sprint { get; set; }
     }
 }

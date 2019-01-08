@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace KSProject.Models
 {
-    public class CustomField2
+    public class CustomField4
     {
         public int Id { get; set; }
-        public List<CustomField2> customField2 { get; set; }
-        [JsonProperty(PropertyName = "Title")]
+        public List<CustomField4> customField4 { get; set; }
+        [JsonProperty(PropertyName = "title")]
         [DisplayName("Ksoft Project")]
         public string KsoftProject { get; set; }
     }

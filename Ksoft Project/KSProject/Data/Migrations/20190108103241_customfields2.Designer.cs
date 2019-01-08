@@ -4,14 +4,16 @@ using KSProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KSProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190108103241_customfields2")]
+    partial class customfields2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,9 +29,9 @@ namespace KSProject.Data.Migrations
 
                     b.Property<int?>("AssigneeId");
 
-                    b.Property<int?>("CustomField3Id");
+                    b.Property<int?>("CustomField1Id");
 
-                    b.Property<int?>("CustomField4Id");
+                    b.Property<int?>("CustomField2Id");
 
                     b.Property<int?>("PriorityId");
 
@@ -41,9 +43,9 @@ namespace KSProject.Data.Migrations
 
                     b.HasIndex("AssigneeId");
 
-                    b.HasIndex("CustomField3Id");
+                    b.HasIndex("CustomField1Id");
 
-                    b.HasIndex("CustomField4Id");
+                    b.HasIndex("CustomField2Id");
 
                     b.HasIndex("PriorityId");
 
@@ -505,13 +507,13 @@ namespace KSProject.Data.Migrations
                         .WithMany()
                         .HasForeignKey("AssigneeId");
 
-                    b.HasOne("KSProject.Models.CustomField3", "CustomField3")
+                    b.HasOne("KSProject.Models.CustomField3", "CustomField1")
                         .WithMany()
-                        .HasForeignKey("CustomField3Id");
+                        .HasForeignKey("CustomField1Id");
 
-                    b.HasOne("KSProject.Models.CustomField4", "CustomField4")
+                    b.HasOne("KSProject.Models.CustomField4", "CustomField2")
                         .WithMany()
-                        .HasForeignKey("CustomField4Id");
+                        .HasForeignKey("CustomField2Id");
 
                     b.HasOne("KSProject.Models.Priority", "Priority")
                         .WithMany()
@@ -540,14 +542,14 @@ namespace KSProject.Data.Migrations
             modelBuilder.Entity("KSProject.Models.CustomField3", b =>
                 {
                     b.HasOne("KSProject.Models.CustomField3")
-                        .WithMany("customField3")
+                        .WithMany("CustomField1")
                         .HasForeignKey("CustomField3Id");
                 });
 
             modelBuilder.Entity("KSProject.Models.CustomField4", b =>
                 {
                     b.HasOne("KSProject.Models.CustomField4")
-                        .WithMany("customField4")
+                        .WithMany("CustomField2")
                         .HasForeignKey("CustomField4Id");
                 });
 
