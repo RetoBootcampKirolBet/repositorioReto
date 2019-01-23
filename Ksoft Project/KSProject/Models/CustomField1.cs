@@ -1,16 +1,18 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace KSProject.Models
 {
-    public class CustomField3
+    public class CustomField1
     {
         public int Id { get; set; }
-        public List<CustomField3> customField3 { get; set; }
+        public List<CustomField1> customField1 { get; set; }
         [JsonProperty(PropertyName = "title")]
-        public string Sprint { get; set; }
+        [DisplayName("Ksoft Project")]
+        public string KsoftProject { get; set; }
     }
 }

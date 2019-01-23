@@ -23,6 +23,19 @@ namespace KSProject.Controllers
             _userManager = userManager;
         }
 
+        //Busqueda
+        //public ActionResult SearchResult(string searchString)
+        //{
+        //    var busqueda = from s in WorkPackage select s;
+
+        //    if (!String.IsNullOrEmpty(searchString))
+        //    {
+        //        busqueda = busqueda.Where(s => s._Links.CustomField3.Contains(searchString)
+        //                               || s._Links.CustomField4.Contains(searchString));
+        //    }
+        //    return View(busqueda.ToList());
+        //}
+
         // GET: WorkPackages
         public async Task<IActionResult> Index()
 
@@ -43,8 +56,8 @@ namespace KSProject.Controllers
                 .Include(x => x.WorkPackage._Links.Priority)
                 .Include(x => x.WorkPackage._Links.Assignee)
                 .Include(x => x.WorkPackage.Description)
-                .Include(x => x.WorkPackage._Links.CustomField3)
-                .Include(x => x.WorkPackage._Links.CustomField4)
+                .Include(x => x.WorkPackage._Links.CustomField1)
+                .Include(x => x.WorkPackage._Links.CustomField2)
                 //.Where(x => x.WorkPackage.User.Login == currentUser.Email)
                 .ToListAsync();
             }
@@ -60,8 +73,8 @@ namespace KSProject.Controllers
                 .Include(x => x.WorkPackage._Links.Priority)
                 .Include(x => x.WorkPackage._Links.Assignee)
                 .Include(x => x.WorkPackage.Description)
-                .Include(x => x.WorkPackage._Links.CustomField3)
-                .Include(x => x.WorkPackage._Links.CustomField4)
+                .Include(x => x.WorkPackage._Links.CustomField1)
+                .Include(x => x.WorkPackage._Links.CustomField2)
                 //.Where(x => x.WorkPackage.User.Login == currentUser.Email)
                 .ToListAsync();
             }

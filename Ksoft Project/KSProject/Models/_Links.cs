@@ -13,7 +13,7 @@ namespace KSProject.Models
         public TypeWP Type { get; set; }
         public StatusWP Status { get; set; }
         public Priority Priority { get; set; }
-        public CustomField3 CustomField3 { get; set; }
-        public CustomField4 CustomField4 { get; set; }
+        public CustomField1 CustomField1 { get; set; }
+        public CustomField2 CustomField2 { get; set; }
     }
 }
