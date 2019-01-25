@@ -15,5 +15,7 @@ namespace KSProject.Models
         public Priority Priority { get; set; }
         public CustomField1 CustomField1 { get; set; }
         public CustomField2 CustomField2 { get; set; }
+        public Responsible Responsible { get; set; }
+        public Author Author { get; set; }
     }
 }

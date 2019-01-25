@@ -26,12 +26,12 @@ namespace KSProject.Controllers
         //Busqueda
         //public ActionResult SearchResult(string searchString)
         //{
-        //    var busqueda = from s in WorkPackage select s;
+        //    var busqueda = from s in _context.WorkPackage select s;
 
         //    if (!String.IsNullOrEmpty(searchString))
         //    {
-        //        busqueda = busqueda.Where(s => s._Links.CustomField3.Contains(searchString)
-        //                               || s._Links.CustomField4.Contains(searchString));
+        //        busqueda = busqueda.Where(s => (s._Links.CustomField1.Contains(searchString)
+        //                               || s._Links.CustomField2.Contains(searchString))&& s.);
         //    }
         //    return View(busqueda.ToList());
         //}
@@ -58,6 +58,8 @@ namespace KSProject.Controllers
                 .Include(x => x.WorkPackage.Description)
                 .Include(x => x.WorkPackage._Links.CustomField1)
                 .Include(x => x.WorkPackage._Links.CustomField2)
+                .Include(x => x.WorkPackage._Links.Responsible)
+                .Include(x => x.WorkPackage._Links.Author)
                 //.Where(x => x.WorkPackage.User.Login == currentUser.Email)
                 .ToListAsync();
             }
@@ -75,6 +77,8 @@ namespace KSProject.Controllers
                 .Include(x => x.WorkPackage.Description)
                 .Include(x => x.WorkPackage._Links.CustomField1)
                 .Include(x => x.WorkPackage._Links.CustomField2)
+                .Include(x => x.WorkPackage._Links.Responsible)
+                .Include(x => x.WorkPackage._Links.Author)
                 //.Where(x => x.WorkPackage.User.Login == currentUser.Email)
                 .ToListAsync();
             }

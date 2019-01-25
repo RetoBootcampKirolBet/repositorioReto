@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace KSProject.Models
 {
-    public class StatusWP
+    public class Author
     {
         public int Id { get; set; }
-        public List<StatusWP> status { get; set; }
+        public List<Author> author { get; set; }
         [JsonProperty(PropertyName = "Title")]
-        public string Estado { get; set; }
+        public string Name { get; set; }
     }
 }

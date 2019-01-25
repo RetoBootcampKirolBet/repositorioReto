@@ -109,6 +109,8 @@ namespace KSProject.Controllers
                 .Include(x => x.WorkPackage.Description)
                 .Include(x => x.WorkPackage._Links.CustomField1)
                 .Include(x => x.WorkPackage._Links.CustomField2)
+                .Include(x => x.WorkPackage._Links.Responsible)
+                .Include(x => x.WorkPackage._Links.Author)
                 //.Where(x => x.WorkPackage.User.Login == currentUser.Email)
                 .ToListAsync();
             }
@@ -126,6 +128,8 @@ namespace KSProject.Controllers
                 .Include(x => x.WorkPackage.Description)
                 .Include(x => x.WorkPackage._Links.CustomField1)
                 .Include(x => x.WorkPackage._Links.CustomField2)
+                .Include(x => x.WorkPackage._Links.Responsible)
+                .Include(x => x.WorkPackage._Links.Author)
                 //.Where(x => x.WorkPackage.User.Login == currentUser.Email)
                 .ToListAsync();
             }
@@ -153,6 +157,8 @@ namespace KSProject.Controllers
                 .Include(x => x.WorkPackage.Description)
                 .Include(x => x.WorkPackage._Links.CustomField1)
                 .Include(x => x.WorkPackage._Links.CustomField2)
+                .Include(x => x.WorkPackage._Links.Responsible)
+                .Include(x => x.WorkPackage._Links.Author)
                 //.Where(x => x.WorkPackage.User.Login == currentUser.Email)
                 .ToListAsync();
             }
@@ -170,6 +176,8 @@ namespace KSProject.Controllers
                 .Include(x => x.WorkPackage.Description)
                 .Include(x => x.WorkPackage._Links.CustomField1)
                 .Include(x => x.WorkPackage._Links.CustomField2)
+                .Include(x => x.WorkPackage._Links.Responsible)
+                .Include(x => x.WorkPackage._Links.Author)
                 //.Where(x => x.WorkPackage.User.Login == currentUser.Email)
                 .ToListAsync();
             }
