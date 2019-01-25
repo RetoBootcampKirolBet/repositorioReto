@@ -4,14 +4,16 @@ using KSProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KSProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190124171805_1")]
+    partial class _1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,15 +29,11 @@ namespace KSProject.Data.Migrations
 
                     b.Property<int?>("AssigneeId");
 
-                    b.Property<int?>("AuthorId");
-
                     b.Property<int?>("CustomField1Id");
 
                     b.Property<int?>("CustomField2Id");
 
                     b.Property<int?>("PriorityId");
-
-                    b.Property<int?>("ResponsibleId");
 
                     b.Property<int?>("StatusId");
 
@@ -45,15 +43,11 @@ namespace KSProject.Data.Migrations
 
                     b.HasIndex("AssigneeId");
 
-                    b.HasIndex("AuthorId");
-
                     b.HasIndex("CustomField1Id");
 
                     b.HasIndex("CustomField2Id");
 
                     b.HasIndex("PriorityId");
-
-                    b.HasIndex("ResponsibleId");
 
                     b.HasIndex("StatusId");
 
@@ -72,28 +66,15 @@ namespace KSProject.Data.Migrations
 
                     b.Property<string>("Name");
 
+                    b.Property<int?>("StatusWPId");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AssigneeWPId");
 
+                    b.HasIndex("StatusWPId");
+
                     b.ToTable("AssigneeWP");
-                });
-
-            modelBuilder.Entity("KSProject.Models.Author", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("AuthorId");
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
-
-                    b.ToTable("Author");
                 });
 
             modelBuilder.Entity("KSProject.Models.CustomField1", b =>
@@ -295,23 +276,6 @@ namespace KSProject.Data.Migrations
                     b.ToTable("ResponseWP");
                 });
 
-            modelBuilder.Entity("KSProject.Models.Responsible", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name");
-
-                    b.Property<int?>("ResponsibleId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ResponsibleId");
-
-                    b.ToTable("Responsible");
-                });
-
             modelBuilder.Entity("KSProject.Models.StatusWP", b =>
                 {
                     b.Property<int>("Id")
@@ -320,11 +284,7 @@ namespace KSProject.Data.Migrations
 
                     b.Property<string>("Estado");
 
-                    b.Property<int?>("StatusWPId");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("StatusWPId");
 
                     b.ToTable("StatusWP");
                 });
@@ -547,10 +507,6 @@ namespace KSProject.Data.Migrations
                         .WithMany()
                         .HasForeignKey("AssigneeId");
 
-                    b.HasOne("KSProject.Models.Author", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId");
-
                     b.HasOne("KSProject.Models.CustomField1", "CustomField1")
                         .WithMany()
                         .HasForeignKey("CustomField1Id");
@@ -562,10 +518,6 @@ namespace KSProject.Data.Migrations
                     b.HasOne("KSProject.Models.Priority", "Priority")
                         .WithMany()
                         .HasForeignKey("PriorityId");
-
-                    b.HasOne("KSProject.Models.Responsible", "Responsible")
-                        .WithMany()
-                        .HasForeignKey("ResponsibleId");
 
                     b.HasOne("KSProject.Models.StatusWP", "Status")
                         .WithMany()
@@ -581,13 +533,10 @@ namespace KSProject.Data.Migrations
                     b.HasOne("KSProject.Models.AssigneeWP")
                         .WithMany("Assignee")
                         .HasForeignKey("AssigneeWPId");
-                });
 
-            modelBuilder.Entity("KSProject.Models.Author", b =>
-                {
-                    b.HasOne("KSProject.Models.Author")
-                        .WithMany("author")
-                        .HasForeignKey("AuthorId");
+                    b.HasOne("KSProject.Models.StatusWP")
+                        .WithMany("assignee")
+                        .HasForeignKey("StatusWPId");
                 });
 
             modelBuilder.Entity("KSProject.Models.CustomField1", b =>
@@ -648,20 +597,6 @@ namespace KSProject.Data.Migrations
                     b.HasOne("KSProject.Models.EmbeddedWP", "WorkPackagesContainer")
                         .WithMany()
                         .HasForeignKey("WorkPackagesContainerId");
-                });
-
-            modelBuilder.Entity("KSProject.Models.Responsible", b =>
-                {
-                    b.HasOne("KSProject.Models.Responsible")
-                        .WithMany("responsible")
-                        .HasForeignKey("ResponsibleId");
-                });
-
-            modelBuilder.Entity("KSProject.Models.StatusWP", b =>
-                {
-                    b.HasOne("KSProject.Models.StatusWP")
-                        .WithMany("status")
-                        .HasForeignKey("StatusWPId");
                 });
 
             modelBuilder.Entity("KSProject.Models.TypeWP", b =>
