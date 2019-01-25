@@ -177,8 +177,42 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-sm-offset-2">
-
+        <div id="information" class="col-sm-offset-2" hidden>
+            @foreach (var item in Model)
+            {
+            <h3>
+                @Html.DisplayFor(modelItem => item.WorkPackage._Links.CustomField1.KsoftProject)
+                @Html.DisplayFor(modelItem => item.WorkPackage.Description.Raw)
+            </h3>
+            <p>
+                @Html.DisplayFor(modelItem => item.WorkPackage.IdOP): Created by @Html.DisplayFor(modelItem => item.WorkPackage._Links.Author.Name)
+                <br />
+                Status @Html.DisplayFor(modelItem => item.WorkPackage._Links.Status.Estado)
+            </p>
+            <h2>DESCRIPTION</h2>
+            <P>
+                @Html.DisplayFor(modelItem => item.WorkPackage.Description.Raw)
+            </P>
+            <h2>PEOPLE</h2>
+            <p>
+                Assigne @Html.DisplayFor(modelItem => item.WorkPackage._Links.Assignee.Name)
+                <br />
+                Responsible @Html.DisplayFor(modelItem => item.WorkPackage._Links.Responsible.Name)
+                <br />
+            </p>
+            <h2>DETAILS</h2>
+            <p>
+                Ksoft Project @Html.DisplayFor(modelItem => item.WorkPackage._Links.CustomField1.KsoftProject)
+                <br />
+                Priority @Html.DisplayFor(modelItem => item.WorkPackage._Links.Priority.Title)
+                <br />
+                Delivery Date @Html.DisplayFor(modelItem => item.WorkPackage.DueDate)
+                <br />
+                Spent Time <button type="button" class="btn btn-primary btn-xs">+</button>
+                <br />
+                Project  <button type="button" class="btn btn-primary btn-xs">move</button>
+            </p>
+            }
         </div>
     </div>
 </div>
@@ -204,6 +238,9 @@
     $('#btnSearch').on('click', function (e) {
         var form = e.target.closest('form');
         form.submit();
+    });
+    $('#wp-details-view').on('click', function () {
+        $('#information').show("fast");
     });
 
 </script>
