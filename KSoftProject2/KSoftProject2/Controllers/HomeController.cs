@@ -42,10 +42,14 @@ namespace KSoftProject2.Controllers
                 }
                 else if (User.HasClaim("teamleader", "teamleader"))
                 {
+                    await _services.InsertUserInBD();
+                    await _services.InsertWPInBD();
                     return RedirectToAction("Members", "Home");
                 }
                 else if (User.HasClaim("developer", "developer"))
                 {
+                    await _services.InsertUserInBD();
+                    await _services.InsertWPInBD();
                     return RedirectToAction("Members", "Home");
                 }
             }

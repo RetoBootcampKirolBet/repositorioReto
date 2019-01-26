@@ -110,6 +110,8 @@
                             @Html.DisplayNameFor(model => model.WorkPackage._Links.Priority.Title)
                         </th>
                         <th>
+                        </th>
+                        <th>
                             Project
                         </th>
                     </tr>
@@ -119,11 +121,10 @@
                     {
                         <tr>
                             <td>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox">
-                                    </label>
-                                </div>
+                                @*<form asp-action="MarkDone" method="post">*@
+                                    <input type="radio" name="election" class="optionKSP"/>
+                                    <input type="hidden" name="id" value="@item.Id" />
+                                @*</form>*@
                             </td>
                             <td class="ksoftCol">
                                 @Html.DisplayFor(modelItem => item.WorkPackage._Links.CustomField1.KsoftProject)
@@ -165,6 +166,13 @@
                                 @Html.DisplayFor(modelItem => item.WorkPackage._Links.Priority.Title)
                             </td>
                             <td>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" />
+                                    </label>
+                                </div>
+                            </td>
+                            <td>
                                 <button type="button" class="btn btn-primary btn-xs">move</button>
                             </td>
                             <td>
@@ -177,7 +185,11 @@
                 </tbody>
             </table>
         </div>
-        <div id="information" class="col-sm-offset-2" hidden>
+        <div id="information" class="col-sm-2" hidden>
+            <button type="button" id="wp-details-close" class="btn btn-default btn-s" title="Cerrar">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                <a asp-action="Info"></a>
+            </button>
             @foreach (var item in Model)
             {
                 <h3>
@@ -187,7 +199,7 @@
                 <p>
                     @Html.DisplayFor(modelItem => item.WorkPackage.IdOP): Created by @Html.DisplayFor(modelItem => item.WorkPackage._Links.Author.Name)
                     <br />
-                    Status @Html.DisplayFor(modelItem => item.WorkPackage._Links.Status.Estado)
+                    Status: @Html.DisplayFor(modelItem => item.WorkPackage._Links.Status.Estado)
                 </p>
                 <h2>DESCRIPTION</h2>
                 <P>
@@ -195,22 +207,22 @@
                 </P>
                 <h2>PEOPLE</h2>
                 <p>
-                    Assigne @Html.DisplayFor(modelItem => item.WorkPackage._Links.Assignee.Name)
+                    Assigne: @Html.DisplayFor(modelItem => item.WorkPackage._Links.Assignee.Name)
                     <br />
-                    Responsible @Html.DisplayFor(modelItem => item.WorkPackage._Links.Responsible.Name)
+                    Responsible: @Html.DisplayFor(modelItem => item.WorkPackage._Links.Responsible.Name)
                     <br />
                 </p>
                 <h2>DETAILS</h2>
                 <p>
-                    Ksoft Project @Html.DisplayFor(modelItem => item.WorkPackage._Links.CustomField1.KsoftProject)
+                    Ksoft Project: @Html.DisplayFor(modelItem => item.WorkPackage._Links.CustomField1.KsoftProject)
                     <br />
-                    Priority @Html.DisplayFor(modelItem => item.WorkPackage._Links.Priority.Title)
+                    Priority: @Html.DisplayFor(modelItem => item.WorkPackage._Links.Priority.Title)
                     <br />
-                    Delivery Date @Html.DisplayFor(modelItem => item.WorkPackage.DueDate)
+                    Delivery Date: @Html.DisplayFor(modelItem => item.WorkPackage.DueDate)
                     <br />
                     Spent Time <button type="button" class="btn btn-primary btn-xs">+</button>
                     <br />
-                    Project  <button type="button" class="btn btn-primary btn-xs">move</button>
+                    Project <button type="button" class="btn btn-primary btn-xs">move</button>
                 </p>
             }
         </div>
@@ -239,9 +251,21 @@
         var form = e.target.closest('form');
         form.submit();
     });
-    $('#wp-details-view').on('click', function () {
-        $('#information').show("fast");
-    });
+    $('.optionKSP').on('click', function (e) {
+        selectWP(e.target);
+    })
+    function selectWP(radio) {
+        $('#wp-details-view').on('click', function () {
+
+            $('#information').show("fast");
+        });
+    }
+
+    
+
+    $('#wp-details-close').on('click', function () {
+        $('#information').hide("fast");
+    })
 
 </script>
 @*<script>
