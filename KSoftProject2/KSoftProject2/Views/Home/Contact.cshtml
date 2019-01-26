@@ -1,0 +1,147 @@
+﻿@inject KSoftProject2.Services.KSProjectServices KSProjectServices
+@inject KSoftProject2.Services.KSProjectServices service
+@{
+    //ViewData["Title"] = "Contact";
+    KSUser currentUser = service.GetCurrentUser(User.Identity.Name);
+}
+<h2>@ViewData["Title"]</h2>
+<h3>@ViewData["Message"]</h3>
+
+<header class="container adminHeader">
+    <h2>@currentUser.FirstName @currentUser.LastName</h2>
+</header>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-2 col-sm-1">
+            <input id="BtnMain" type="button" value="Panel de Configuración" class="btnPofC" />
+            <hr />
+            <input id="BtnMain" type="button" value="Personas" class="btnPersons" />
+            <hr />
+            <input id="BtnMain" type="button" value="Users" class="btnUsers" />
+            <hr />
+            <input id="BtnMain" type="button" value="Burdown" class="btnBurdown" />
+        </div>
+        <div class="col-sm-8">
+            @{
+                List<WorkPackage> workPackages = KSProjectServices.GetWorkPackagesDB();
+                <div>
+                    <h1>KSOFT PROJECT</h1>
+                    <hr />
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>KSOFT PROJECTS</th>
+                                <th>Project Activado</th>
+                                <th>Project Desactivado</th>
+                                <th>Estatus actual del proyecto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (WorkPackage workP in workPackages)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            @Html.DisplayFor(modelItem => workP.Description.Raw)
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <form asp-action="Activate" method="POST">
+                                            <input type="checkbox" class="project_active" name="election" value="Activado" />
+                                            <input type="hidden" name="id" value="@workP.Id">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form asp-action="Inactivate" method="POST">
+                                            <input type="checkbox" class="project_inactive" name="election" value="Desactivado" />
+                                            <input type="hidden" name="id" value="@workP.Id">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => workP.Activation)
+                                    </td>
+                                </tr>
+                            }
+                        <tbody />
+                    </table>
+
+                </div>
+            }
+            @{
+                List<WorkPackage> workPackages2 = KSProjectServices.GetWorkPackagesDB();
+                <div>
+                    <h1>ACTIVITY</h1>
+                    <hr />
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>KSOFT PROJECTS</th>
+                                <th>Tipo de Proyecto</th>
+                                <th>Porcentaje de actividad</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (WorkPackage workP in workPackages2)
+                            {
+                                <tr>
+                                    <td>
+                                        <div class="form-group">
+                                            @Html.DisplayFor(modelItem => workP.Description.Raw)
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <form asp-action="Activate" method="POST">
+                                            <input type="checkbox" class="project_active" name="election" value="Activado" />
+                                            <input type="hidden" name="id" value="@workP.Id">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form asp-action="Inactivate" method="POST">
+                                            <input type="checkbox" class="project_inactive" name="election" value="Desactivado" />
+                                            <input type="hidden" name="id" value="@workP.Id">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => workP.Activation)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<footer class="container">
+    <a asp-area="" asp-controller="Home" asp-action="Configuration">Return</a>
+</footer>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+<script>
+    $('.project_active').on('click', function (e) {
+        var form = e.target.closest('form');
+        form.submit();
+    });
+    $('.project_inactive').on('click', function (e) {
+        var form = e.target.closest('form');
+        form.submit();
+    });
+    $('.btnPofC').on('click', function () {
+        window.location.href = "/Home/Contact";
+    });
+    $('.btnPersons').on('click', function () {
+        window.location.href = "";
+    });
+    $('.btnUsers').on('click', function () {
+        window.location.href = "/Home/About";
+    });
+    $('.btnBurdown').on('click', function () {
+        window.location.href = "";
+    });
+</script>
