@@ -24,17 +24,17 @@ namespace KSoftProject2.Controllers
         }
 
         //Busqueda
-        //public ActionResult SearchResult(string searchString)
-        //{
-        //    var busqueda = from s in _context.WorkPackage select s;
+        public async Task<ActionResult> SearchResult (string searchString)
+        {
+            var busqueda = from s in _context.WorkPackage select s;
 
-        //    if (!String.IsNullOrEmpty(searchString))
-        //    {
-        //        busqueda = busqueda.Where(s => (s._Links.CustomField1.Contains(searchString)
-        //                               || s._Links.CustomField2.Contains(searchString))&& s.);
-        //    }
-        //    return View(busqueda.ToList());
-        //}
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                busqueda = busqueda.Where(s => (s._Links.CustomField1.KsoftProject.Contains(searchString)
+                                       || s._Links.CustomField2.Sprint.Contains(searchString)));
+            }
+            return View(await busqueda.ToListAsync());
+        }
 
         // GET: WorkPackages
         public async Task<IActionResult> Index()

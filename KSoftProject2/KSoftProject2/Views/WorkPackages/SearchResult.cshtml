@@ -13,23 +13,21 @@
         </div>
         <div class="col-md-offset-6">
             <div class="botones">
-                
-                @*<form @*asp-controller="WorkPackages" asp-action="Index">*@
-                    @*<input type="text" name="SearchString" />*@
+                <form asp-controller="WorkPackages" asp-action="SeachResult">
+                    <input type="text" name="SearchString" />
                     <button type="button" id="btnSearch" class="btn btn-default btn-s">
-                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                    <a asp-action="SearchResult"></a>
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        @*<a asp-action="SearchResult"></a>*@
                     </button>
-                @*</form>*@
+                </form>
                 <button type="button" class="btn btn-default btn-s">
                     Create
                     <a asp-action="Create"></a>
                 </button>
-                <form id="viewDetailForm" asp-controller="WorkPackages" asp-action="Details">
-                    <button type="button" id="wp-details-view" class="btn btn-default btn-s" title="Detalles">
-                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-                    </button>
-                </form>
+                <button type="button" id="wp-details-view" class="btn btn-default btn-s" title="Detalles">
+                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                    <a asp-action="Info"></a>
+                </button>
                 <button class="btn btn-default btn-xs">
                     Gestion
                     <form asp-action="Gestion" method="post">
@@ -126,8 +124,10 @@
                     {
                         <tr>
                             <td>
-                                <input type="radio" name="election" class="optionKSP"/>
-                                <input type="hidden" name="id" value="@item.Id" />
+                                <form asp-action="Index" method="post">
+                                    <input type="radio" name="election" class="optionKSP" />
+                                    <input type="hidden" name="id" value="@item.Id" />
+                                </form>
                             </td>
                             <td class="ksoftCol">
                                 @Html.DisplayFor(modelItem => item.WorkPackage._Links.CustomField1.KsoftProject)
@@ -188,47 +188,7 @@
                 </tbody>
             </table>
         </div>
-        <div id="information" class="col-sm-2" hidden>
-            <button type="button" id="wp-details-close" class="btn btn-default btn-s" title="Cerrar">
-                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                <a asp-action="Info"></a>
-            </button>
-            @foreach (var item in Model)
-            {
-                <h3>
-                    @Html.DisplayFor(modelItem => item.WorkPackage._Links.CustomField1.KsoftProject)
-                    @Html.DisplayFor(modelItem => item.WorkPackage.Description.Raw)
-                </h3>
-                <p>
-                    @Html.DisplayFor(modelItem => item.WorkPackage.IdOP): Created by @Html.DisplayFor(modelItem => item.WorkPackage._Links.Author.Name)
-                    <br />
-                    Status: @Html.DisplayFor(modelItem => item.WorkPackage._Links.Status.Estado)
-                </p>
-                <h2>DESCRIPTION</h2>
-                <P>
-                    @Html.DisplayFor(modelItem => item.WorkPackage.Description.Raw)
-                </P>
-                <h2>PEOPLE</h2>
-                <p>
-                    Assigne: @Html.DisplayFor(modelItem => item.WorkPackage._Links.Assignee.Name)
-                    <br />
-                    Responsible: @Html.DisplayFor(modelItem => item.WorkPackage._Links.Responsible.Name)
-                    <br />
-                </p>
-                <h2>DETAILS</h2>
-                <p>
-                    Ksoft Project: @Html.DisplayFor(modelItem => item.WorkPackage._Links.CustomField1.KsoftProject)
-                    <br />
-                    Priority: @Html.DisplayFor(modelItem => item.WorkPackage._Links.Priority.Title)
-                    <br />
-                    Delivery Date: @Html.DisplayFor(modelItem => item.WorkPackage.DueDate)
-                    <br />
-                    Spent Time <button type="button" class="btn btn-primary btn-xs">+</button>
-                    <br />
-                    Project <button type="button" class="btn btn-primary btn-xs">move</button>
-                </p>
-            }
-        </div>
+        
     </div>
 </div>
 <footer class="container mainFoot">
@@ -250,30 +210,22 @@
         $('.sprintName').show("fast");
         $('.sprintCol').show("fast");
     });
-    $('#btnSearch').on('click', function () {
-        ;
+    $('#btnSearch').on('click', function (e) {
+        var form = e.target.closest('form');
+        form.submit();
     });
-    //$('#btnSearch').on('click', function (e) {
-    //    var form = e.target.closest('form');
-    //    form.submit();
-    //});
-    //$('.optionKSP').on('click', function (e) {
-    //    var form = e.target.closest('form');
-    //    form.submit();
-    //});
+    $('.optionKSP').on('click', function (e) {
+        var form = e.target.closest('form');
+        form.submit();
+    })
+    function selectWP(radio) {
+        $('#wp-details-view').on('click', function () {
 
-    $('#wp-details-view').on('click', function () {
-        $('.optionKSP').each(function () {
-            if ($(this).is(':checked')) {
-                let selectedId = $(this).siblings().val();
-                $('<input />').attr('type', 'hidden')
-                    .attr('name', "id")
-                    .attr('value', selectedId)
-                    .appendTo('#viewDetailForm');
-                $("#viewDetailForm").submit();
-            }
+            $('#information').show("fast");
         });
-    });
+    }
+
+
 
     $('#wp-details-close').on('click', function () {
         $('#information').hide("fast");
@@ -300,4 +252,3 @@
             }
         }
     </script>*@
-
