@@ -19,5 +19,10 @@ namespace KSProject.Data
         public DbSet<KSProject.Models.UserWorkPackage> UserWorkPackage { get; set; }
         public DbSet<KSProject.Models.ResponseWP> ResponseWP { get; set; }
         public DbSet<KSProject.Models.ResponseUser> ResponseUser { get; set; }
+        public DbSet<KSProject.Models.Calendario> Calendario { get; set; }
+        public DbSet<KSProject.Models.Persona> Persona { get; set; }
+        public DbSet<KSProject.Models.Oporrak> Oporrak { get; set; }
+        public DbSet<KSProject.Models.CalendarioPersona> CalendarioPersona { get; set; }
+        public DbSet<KSProject.Models.Dedication> Dedication { get; set; }
     }
 }

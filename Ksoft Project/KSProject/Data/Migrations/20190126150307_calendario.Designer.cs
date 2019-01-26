@@ -4,14 +4,16 @@ using KSProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KSProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190126150307_calendario")]
+    partial class calendario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -96,50 +98,6 @@ namespace KSProject.Data.Migrations
                     b.ToTable("Author");
                 });
 
-            modelBuilder.Entity("KSProject.Models.Calendario", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("FechaFin");
-
-                    b.Property<DateTime>("FechaInicio");
-
-                    b.Property<double>("Jueves");
-
-                    b.Property<double>("Lunes");
-
-                    b.Property<double>("Martes");
-
-                    b.Property<double>("Miercoles");
-
-                    b.Property<double>("Viernes");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Calendario");
-                });
-
-            modelBuilder.Entity("KSProject.Models.CalendarioPersona", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("PersonaId");
-
-                    b.Property<int>("WorkPackageId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PersonaId");
-
-                    b.HasIndex("WorkPackageId");
-
-                    b.ToTable("CalendarioPersona");
-                });
-
             modelBuilder.Entity("KSProject.Models.CustomField1", b =>
                 {
                     b.Property<int>("Id")
@@ -172,33 +130,6 @@ namespace KSProject.Data.Migrations
                     b.HasIndex("CustomField2Id");
 
                     b.ToTable("CustomField2");
-                });
-
-            modelBuilder.Entity("KSProject.Models.Dedication", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<double>("Desarrollo");
-
-                    b.Property<double>("Formacion");
-
-                    b.Property<double>("Gestion");
-
-                    b.Property<double>("Investigacion");
-
-                    b.Property<double>("NoDedicadas");
-
-                    b.Property<int?>("PersonaId");
-
-                    b.Property<double>("Soporte");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PersonaId");
-
-                    b.ToTable("Dedication");
                 });
 
             modelBuilder.Entity("KSProject.Models.Description", b =>
@@ -305,44 +236,6 @@ namespace KSProject.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("KSProject.Models.Oporrak", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("DiasDeVacaciones");
-
-                    b.Property<double>("HorasDeVacaciones");
-
-                    b.Property<int?>("PersonaId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PersonaId");
-
-                    b.ToTable("Oporrak");
-                });
-
-            modelBuilder.Entity("KSProject.Models.Persona", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("IdOP");
-
-                    b.Property<string>("Nombre");
-
-                    b.Property<double>("TotalHorasEstimadas");
-
-                    b.Property<double>("TotalHorasTrabajadas");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Persona");
                 });
 
             modelBuilder.Entity("KSProject.Models.Priority", b =>
@@ -699,19 +592,6 @@ namespace KSProject.Data.Migrations
                         .HasForeignKey("AuthorId");
                 });
 
-            modelBuilder.Entity("KSProject.Models.CalendarioPersona", b =>
-                {
-                    b.HasOne("KSProject.Models.Calendario", "Calendario")
-                        .WithMany()
-                        .HasForeignKey("PersonaId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("KSProject.Models.Persona", "Persona")
-                        .WithMany()
-                        .HasForeignKey("WorkPackageId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("KSProject.Models.CustomField1", b =>
                 {
                     b.HasOne("KSProject.Models.CustomField1")
@@ -724,13 +604,6 @@ namespace KSProject.Data.Migrations
                     b.HasOne("KSProject.Models.CustomField2")
                         .WithMany("customField2")
                         .HasForeignKey("CustomField2Id");
-                });
-
-            modelBuilder.Entity("KSProject.Models.Dedication", b =>
-                {
-                    b.HasOne("KSProject.Models.Persona")
-                        .WithMany("Dedications")
-                        .HasForeignKey("PersonaId");
                 });
 
             modelBuilder.Entity("KSProject.Models.Description", b =>
@@ -756,13 +629,6 @@ namespace KSProject.Data.Migrations
                     b.HasOne("KSProject.Models._Links", "_links")
                         .WithMany()
                         .HasForeignKey("_linksId");
-                });
-
-            modelBuilder.Entity("KSProject.Models.Oporrak", b =>
-                {
-                    b.HasOne("KSProject.Models.Persona")
-                        .WithMany("Oporrak")
-                        .HasForeignKey("PersonaId");
                 });
 
             modelBuilder.Entity("KSProject.Models.Priority", b =>

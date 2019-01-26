@@ -9,6 +9,7 @@ namespace KSProject.Models
     {
         public int Id {get;set;}
         public int IdOP { get; set; }
+        public string Nombre { get; set; }
         public double TotalHorasEstimadas { get; set; }//horas anuales que tiene que hacer segun contrato
         public double TotalHorasTrabajadas { get; set; }//horas realizadas
         public List<Oporrak> Oporrak { get; set; }
