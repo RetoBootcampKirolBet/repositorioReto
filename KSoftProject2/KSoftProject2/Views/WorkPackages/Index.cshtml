@@ -121,10 +121,10 @@
                     {
                         <tr>
                             <td>
-                                @*<form asp-action="MarkDone" method="post">*@
+                                <form asp-action="Index" method="post">
                                     <input type="radio" name="election" class="optionKSP"/>
                                     <input type="hidden" name="id" value="@item.Id" />
-                                @*</form>*@
+                                </form>
                             </td>
                             <td class="ksoftCol">
                                 @Html.DisplayFor(modelItem => item.WorkPackage._Links.CustomField1.KsoftProject)
@@ -252,7 +252,8 @@
         form.submit();
     });
     $('.optionKSP').on('click', function (e) {
-        selectWP(e.target);
+        var form = e.target.closest('form');
+        form.submit();
     })
     function selectWP(radio) {
         $('#wp-details-view').on('click', function () {
