@@ -75,7 +75,10 @@ body {
     background-color: #337ab7;
     color: azure;
 }
-
+#information {
+    background-color:rgba(248, 242, 242, 1);
+    
+}
 
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
