@@ -54,7 +54,7 @@ namespace KSProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,IdOP,TotalHorasEstimadas,TotalHorasTrabajadas")] Persona persona)
+        public async Task<IActionResult> Create([Bind("Id,IdOP,Nombre,TotalHorasEstimadas,TotalHorasTrabajadas")] Persona persona)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace KSProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,IdOP,TotalHorasEstimadas,TotalHorasTrabajadas")] Persona persona)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,IdOP,Nombre,TotalHorasEstimadas,TotalHorasTrabajadas")] Persona persona)
         {
             if (id != persona.Id)
             {
@@ -149,5 +149,7 @@ namespace KSProject.Controllers
         {
             return _context.Persona.Any(e => e.Id == id);
         }
+
+        
     }
 }

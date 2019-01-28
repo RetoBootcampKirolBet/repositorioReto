@@ -1,7 +1,7 @@
-﻿@model IEnumerable<KSProject.Models.Persona>
+﻿@model KSProject.Models.Persona
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Edit";
 }
 @inject KSProject.Services.KSProjectServices KSProjectServices
 @inject KSProject.Services.KSProjectServices service
@@ -13,54 +13,6 @@
     <h2>@currentUser.FirstName @currentUser.LastName</h2>
 </header>
 
-@*<h2>Index</h2>*@
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-@*<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.IdOP)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TotalHorasEstimadas)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TotalHorasTrabajadas)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdOP)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nombre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TotalHorasEstimadas)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TotalHorasTrabajadas)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>*@
 
 <div class="container adminArticle">
     <div class="row">
@@ -94,17 +46,17 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => u.Nombre)
                                     </td>
-
+                                   
                                     <td>
                                         @Html.DisplayFor(modelItem => u.TotalHorasEstimadas)
                                     </td>
-
+                                   
                                     <td>
                                         @Html.DisplayFor(modelItem => u.TotalHorasTrabajadas)
                                     </td>
                                     <td>
-                                        <a asp-action="Edit" asp-route-id="@u.Id">Edit</a>
-                                        <a asp-action="Details" asp-route-id="@u.Id">Details</a>
+                                        <a asp-action="Edit" asp-route-id="@u.Id">Edit</a> 
+                                        <a asp-action="Details" asp-route-id="@u.Id">Details</a> 
                                         <a asp-action="Delete" asp-route-id="@u.Id">Delete</a>
                                     </td>
                                 </tr>
@@ -122,6 +74,9 @@
 
     </div>
 </div>
+
+
+
 <footer class="container">
     <a asp-area="" asp-controller="Home" asp-action="Configuration">Return</a>
 </footer>

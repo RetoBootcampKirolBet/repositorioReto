@@ -8,6 +8,7 @@ namespace KSProject.Models
     public class Dedication
     {
         public int Id { get; set; }
+        public string Nombre { get; set; }
         public double Desarrollo { get; set; }
         public double Gestion { get; set; }
         public double Formacion { get; set; }

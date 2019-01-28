@@ -4,14 +4,16 @@ using KSProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KSProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190127104912_cal1")]
+    partial class cal1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -114,8 +116,6 @@ namespace KSProject.Data.Migrations
 
                     b.Property<double>("Miercoles");
 
-                    b.Property<string>("Nombre");
-
                     b.Property<double>("Viernes");
 
                     b.HasKey("Id");
@@ -191,8 +191,6 @@ namespace KSProject.Data.Migrations
                     b.Property<double>("Investigacion");
 
                     b.Property<double>("NoDedicadas");
-
-                    b.Property<string>("Nombre");
 
                     b.Property<int?>("PersonaId");
 
@@ -320,8 +318,6 @@ namespace KSProject.Data.Migrations
                     b.Property<DateTime>("DiasDeVacaciones");
 
                     b.Property<double>("HorasDeVacaciones");
-
-                    b.Property<string>("Nombre");
 
                     b.Property<int?>("PersonaId");
 

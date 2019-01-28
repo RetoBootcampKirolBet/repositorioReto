@@ -6,6 +6,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\PersonasBotones.cs" />
+    <Compile Remove="Views\Personas\Botones.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Personas\PersonasBotones.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.4" PrivateAssets="All" />
   </ItemGroup>
