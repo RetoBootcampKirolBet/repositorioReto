@@ -69,17 +69,39 @@ body {
     border-bottom-style: solid;
 }
 
+.botones {
+    float:right;
+}
+.BtnNavMain {
+    margin-right: 5px;
+    padding-right: 10px;
+    position:center;
+}
+
 #BtnMain {
     border-radius: 10px;
     border-color: #2e6da4;
     background-color: #337ab7;
     color: azure;
 }
-#information {
-    background-color:rgba(248, 242, 242, 1);
-    
+
+.MainInfoWP {
+    width:100%;
 }
 
+#MainInfo {
+    margin-left: -120px;
+    margin-right: -110px;
+}
+
+#InfoMainBtn {
+    margin-left: 10px;
+}
+
+#InfoDetailsLat{
+    float: right;
+    
+}
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */

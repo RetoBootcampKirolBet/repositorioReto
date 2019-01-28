@@ -14,31 +14,40 @@
         </div>
         <div class=" col-md-offset-9">
             <div class="botones">
-                <button type="button" class="btn btn-default btn-s">
-                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                    <a asp-action="Buscar"></a>
-                </button>
-                <button type="button" class="btn btn-default btn-s">
-                    Create
-                    <a asp-action="Create"></a>
-                </button>
-                <button type="button" class="btn btn-default btn-s">
-                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-                    <a asp-action="Info"></a>
-                </button>
-                <button class="btn btn-default btn-xs">
-                    Gestion
-                    <form asp-action="Gestion" method="post">
-                        <select name="dropdown " class="project_active">
-                            <option value=""></option>
-                            <option value="gestion">Gestion</option>
-                            <option value="formacion">Formacion</option>
-                            <option value="reuniones">Reuniones</option>
-                            <option value="mejoraContinua">Mejora Continua</option>
-                        </select>
-                        @*<input type="hidden" name="login" value="@u.Login" />*@
+                <div class="col-md-1 BtnNavMain">
+                    <button type="button" id="btnSearch" class="btn btn-default btn-s">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        <a asp-action="SearchResult"></a>
+                    </button>
+                </div>
+                <div class="col-md-2 BtnNavMain">
+                    <button type="button" class="btn btn-default btn-s">
+                        Create
+                        <a asp-action="Create"></a>
+                    </button>
+                </div>
+                <div class="col-md-1 BtnNavMain">
+                    <form id="viewDetailForm" asp-controller="WorkPackages" asp-action="Details">
+                        <button type="button" id="wp-details-view" class="btn btn-default btn-s" title="Detalles">
+                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                        </button>
                     </form>
-                </button>
+                </div>
+                <div class="col-md-1 BtnNavMain">
+                    <button class="btn btn-default btn-xs">
+                        Gestion
+                        <form asp-action="Gestion" method="post">
+                            <select name="dropdown " class="project_active">
+                                <option value=""></option>
+                                <option value="gestion">Gestion</option>
+                                <option value="formacion">Formacion</option>
+                                <option value="reuniones">Reuniones</option>
+                                <option value="mejoraContinua">Mejora Continua</option>
+                            </select>
+                            @*<input type="hidden" name="login" value="@u.Login" />*@
+                        </form>
+                    </button>
+                </div>
             </div>
         </div>
     </div>

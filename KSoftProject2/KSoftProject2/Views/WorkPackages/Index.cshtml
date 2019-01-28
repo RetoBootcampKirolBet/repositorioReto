@@ -11,45 +11,49 @@
         <div class="col-md-4">
             <h2>@currentUser.FirstName @currentUser.LastName</h2>
         </div>
-        <div class="col-md-offset-6">
-            <div class="botones">
-                
-                @*<form @*asp-controller="WorkPackages" asp-action="Index">*@
-                    @*<input type="text" name="SearchString" />*@
+        <div class="col-md-offset-8">
+            <div class=" botones">
+                <div class="col-md-1 BtnNavMain">
                     <button type="button" id="btnSearch" class="btn btn-default btn-s">
-                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                    <a asp-action="SearchResult"></a>
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        <a asp-action="SearchResult"></a>
                     </button>
-                @*</form>*@
-                <button type="button" class="btn btn-default btn-s">
-                    Create
-                    <a asp-action="Create"></a>
-                </button>
-                <form id="viewDetailForm" asp-controller="WorkPackages" asp-action="Details">
-                    <button type="button" id="wp-details-view" class="btn btn-default btn-s" title="Detalles">
-                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                </div>
+                <div class="col-md-2 BtnNavMain">
+                    <button type="button" class="btn btn-default btn-s">
+                        Create
+                        <a asp-action="Create"></a>
                     </button>
-                </form>
-                <button class="btn btn-default btn-xs">
-                    Gestion
-                    <form asp-action="Gestion" method="post">
-                        <select name="dropdown " class="project_active">
-                            <option value=""></option>
-                            <option value="gestion">Gestion</option>
-                            <option value="formacion">Formacion</option>
-                            <option value="reuniones">Reuniones</option>
-                            <option value="mejoraContinua">Mejora Continua</option>
-                        </select>
-                        @*<input type="hidden" name="login" value="@u.Login" />*@
+                </div>
+                <div class="col-md-1 BtnNavMain">
+                    <form id="viewDetailForm" asp-controller="WorkPackages" asp-action="Details">
+                        <button type="button" id="wp-details-view" class="btn btn-default btn-s" title="Detalles">
+                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                        </button>
                     </form>
-                </button>
+                </div>
+                <div class="col-md-1 BtnNavMain">
+                    <button class="btn btn-default btn-xs">
+                        Gestion
+                        <form asp-action="Gestion" method="post">
+                            <select name="dropdown " class="project_active">
+                                <option value=""></option>
+                                <option value="gestion">Gestion</option>
+                                <option value="formacion">Formacion</option>
+                                <option value="reuniones">Reuniones</option>
+                                <option value="mejoraContinua">Mejora Continua</option>
+                            </select>
+                            @*<input type="hidden" name="login" value="@u.Login" />*@
+                        </form>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-md-2 col-sm-1">
+        <div class="col-md-1">
             <input id="BtnMain" type="button" value="My Sprint" class="btnMyS" />
             <hr />
             <input id="BtnMain" type="button" value="App" class="btnApp" />
@@ -115,8 +119,6 @@
                             @Html.DisplayNameFor(model => model.WorkPackage._Links.Priority.Title)
                         </th>
                         <th>
-                        </th>
-                        <th>
                             Project
                         </th>
                     </tr>
@@ -169,13 +171,6 @@
                                 @Html.DisplayFor(modelItem => item.WorkPackage._Links.Priority.Title)
                             </td>
                             <td>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" />
-                                    </label>
-                                </div>
-                            </td>
-                            <td>
                                 <button type="button" class="btn btn-primary btn-xs">move</button>
                             </td>
                             <td>
@@ -187,47 +182,6 @@
                     }
                 </tbody>
             </table>
-        </div>
-        <div id="information" class="col-sm-2" hidden>
-            <button type="button" id="wp-details-close" class="btn btn-default btn-s" title="Cerrar">
-                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                <a asp-action="Info"></a>
-            </button>
-            @foreach (var item in Model)
-            {
-                <h3>
-                    @Html.DisplayFor(modelItem => item.WorkPackage._Links.CustomField1.KsoftProject)
-                    @Html.DisplayFor(modelItem => item.WorkPackage.Description.Raw)
-                </h3>
-                <p>
-                    @Html.DisplayFor(modelItem => item.WorkPackage.IdOP): Created by @Html.DisplayFor(modelItem => item.WorkPackage._Links.Author.Name)
-                    <br />
-                    Status: @Html.DisplayFor(modelItem => item.WorkPackage._Links.Status.Estado)
-                </p>
-                <h2>DESCRIPTION</h2>
-                <P>
-                    @Html.DisplayFor(modelItem => item.WorkPackage.Description.Raw)
-                </P>
-                <h2>PEOPLE</h2>
-                <p>
-                    Assigne: @Html.DisplayFor(modelItem => item.WorkPackage._Links.Assignee.Name)
-                    <br />
-                    Responsible: @Html.DisplayFor(modelItem => item.WorkPackage._Links.Responsible.Name)
-                    <br />
-                </p>
-                <h2>DETAILS</h2>
-                <p>
-                    Ksoft Project: @Html.DisplayFor(modelItem => item.WorkPackage._Links.CustomField1.KsoftProject)
-                    <br />
-                    Priority: @Html.DisplayFor(modelItem => item.WorkPackage._Links.Priority.Title)
-                    <br />
-                    Delivery Date: @Html.DisplayFor(modelItem => item.WorkPackage.DueDate)
-                    <br />
-                    Spent Time <button type="button" class="btn btn-primary btn-xs">+</button>
-                    <br />
-                    Project <button type="button" class="btn btn-primary btn-xs">move</button>
-                </p>
-            }
         </div>
     </div>
 </div>
@@ -251,17 +205,8 @@
         $('.sprintCol').show("fast");
     });
     $('#btnSearch').on('click', function () {
-        ;
+        window.location.href = "/WorkPackages/SearchResult";
     });
-    //$('#btnSearch').on('click', function (e) {
-    //    var form = e.target.closest('form');
-    //    form.submit();
-    //});
-    //$('.optionKSP').on('click', function (e) {
-    //    var form = e.target.closest('form');
-    //    form.submit();
-    //});
-
     $('#wp-details-view').on('click', function () {
         $('.optionKSP').each(function () {
             if ($(this).is(':checked')) {
@@ -274,11 +219,6 @@
             }
         });
     });
-
-    $('#wp-details-close').on('click', function () {
-        $('#information').hide("fast");
-    })
-
 </script>
 @*<script>
         $('.project_active').on('click', function (e) {

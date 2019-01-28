@@ -2,6 +2,7 @@
 using KSoftProject2.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -81,7 +82,17 @@ namespace KSoftProject2.Services
             _context.SaveChanges();
         }
 
+        //public async Task Search(string searchString)
+        //{
+        //    var busqueda = from s in _context.WorkPackage select s;
 
+        //    if (!String.IsNullOrEmpty(searchString))
+        //    {
+        //        busqueda = busqueda.Where(s => s._Links.CustomField1.KsoftProject.Contains(searchString)
+        //                               || s._Links.CustomField2.Sprint.Contains(searchString));
+        //    }
+        //    var busquedaFinal = busqueda.ToListAsync();
+        //}
 
         public async Task<List<WorkPackage>> GetWorkPackagesApi()
         {
@@ -341,10 +352,7 @@ namespace KSoftProject2.Services
             _context.SaveChanges();
         }
 
-        public void HideKsoftP()
-        {
-
-        }
+        
 
     }
 }

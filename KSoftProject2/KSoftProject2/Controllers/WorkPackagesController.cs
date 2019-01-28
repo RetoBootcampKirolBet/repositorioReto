@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using KSoftProject2.Data;
 using KSoftProject2.Models;
 using Microsoft.AspNetCore.Identity;
+using KSoftProject2.Services;
 
 namespace KSoftProject2.Controllers
 {
@@ -15,26 +16,57 @@ namespace KSoftProject2.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<KSUser> _userManager;
+        private readonly KSProjectServices _services;
 
-
-        public WorkPackagesController(ApplicationDbContext context, UserManager<KSUser> userManager)
+        public WorkPackagesController(KSProjectServices services, ApplicationDbContext context, UserManager<KSUser> userManager)
         {
             _context = context;
             _userManager = userManager;
+            _services = services;
+        }
+
+        public IActionResult SearchResult()
+        {
+            return View();
         }
 
         //Busqueda
-        public async Task<ActionResult> SearchResult (string searchString)
-        {
-            var busqueda = from s in _context.WorkPackage select s;
+        //public async Task<IActionResult> SearchResult (string searchString)
+        //{
+        //    //KSUser currentUser = await _userManager.GetUserAsync(User);
+        //    //User usuario = _context.User.Where(x => x.Login == currentUser.Email).FirstOrDefault();
+        //    //List<UserWorkPackage> workPackages = new List<UserWorkPackage>();
 
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                busqueda = busqueda.Where(s => (s._Links.CustomField1.KsoftProject.Contains(searchString)
-                                       || s._Links.CustomField2.Sprint.Contains(searchString)));
-            }
-            return View(await busqueda.ToListAsync());
-        }
+        //    var busqueda = from s in _context.WorkPackage select s;
+
+        //    if (!String.IsNullOrEmpty(searchString))
+        //    {
+        //        busqueda = busqueda.Where(s => s._Links.CustomField1.KsoftProject.Contains(searchString)
+        //                               || s._Links.CustomField2.Sprint.Contains(searchString));
+        //    }
+        //        result = await _context.busqueda
+        //        //.Include(x => x.WorkPackage)
+        //        .Include(x => x._Links)
+        //        .Include(x => x._Links.Status)
+        //        .Include(x => x._Links.Type)
+        //        .Include(x => x._Links.Priority)
+        //        .Include(x => x._Links.Assignee)
+        //        .Include(x => x.Description)
+        //        .Include(x => x._Links.CustomField1)
+        //        .Include(x => x._Links.CustomField2)
+        //        .Include(x => x._Links.Responsible)
+        //        .Include(x => x._Links.Author)
+        //        //.Where(x => x.WorkPackage.User.Login == currentUser.Email)
+        //        .ToListAsync();
+        //    var busquedaFinal = busqueda.ToListAsync();
+        //    if (busqueda == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return View(workPackage);
+        //}
+        //}
 
         // GET: WorkPackages
         public async Task<IActionResult> Index()
@@ -97,6 +129,48 @@ namespace KSoftProject2.Controllers
 
             var workPackage = await _context.WorkPackage
                 .FirstOrDefaultAsync(m => m.Id == id);
+            KSUser currentUser = await _userManager.GetUserAsync(User);
+            User usuario = _context.User.Where(x => x.Login == currentUser.Email).FirstOrDefault();
+            List<UserWorkPackage> workPackages = new List<UserWorkPackage>();
+
+            //if (currentUser.Email == "administrador@gmail.com")
+            if (User.HasClaim("admin", "admin"))
+            {
+                workPackages = await _context.UserWorkPackage
+                .Include(x => x.WorkPackage)
+                //.Include(x => x.UserWorkPackages.Select(t => t.User.Login == currentUser.Email))
+                .Include(x => x.WorkPackage._Links)
+                .Include(x => x.WorkPackage._Links.Status)
+                .Include(x => x.WorkPackage._Links.Type)
+                .Include(x => x.WorkPackage._Links.Priority)
+                .Include(x => x.WorkPackage._Links.Assignee)
+                .Include(x => x.WorkPackage.Description)
+                .Include(x => x.WorkPackage._Links.CustomField1)
+                .Include(x => x.WorkPackage._Links.CustomField2)
+                .Include(x => x.WorkPackage._Links.Responsible)
+                .Include(x => x.WorkPackage._Links.Author)
+                //.Where(x => x.WorkPackage.User.Login == currentUser.Email)
+                .ToListAsync();
+            }
+            else
+            {
+                workPackages = await _context.UserWorkPackage
+                .Where(x => x.User.Login == currentUser.Email)
+                .Include(x => x.WorkPackage)
+                //.Include(x => x.UserWorkPackages.Select(t => t.User.Login == currentUser.Email))
+                .Include(x => x.WorkPackage._Links)
+                .Include(x => x.WorkPackage._Links.Status)
+                .Include(x => x.WorkPackage._Links.Type)
+                .Include(x => x.WorkPackage._Links.Priority)
+                .Include(x => x.WorkPackage._Links.Assignee)
+                .Include(x => x.WorkPackage.Description)
+                .Include(x => x.WorkPackage._Links.CustomField1)
+                .Include(x => x.WorkPackage._Links.CustomField2)
+                .Include(x => x.WorkPackage._Links.Responsible)
+                .Include(x => x.WorkPackage._Links.Author)
+                //.Where(x => x.WorkPackage.User.Login == currentUser.Email)
+                .ToListAsync();
+            }
             if (workPackage == null)
             {
                 return NotFound();
