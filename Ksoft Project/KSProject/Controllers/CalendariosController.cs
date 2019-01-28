@@ -54,7 +54,7 @@ namespace KSProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,FechaInicio,FechaFin,Lunes,Martes,Miercoles,Jueves,Viernes")] Calendario calendario)
+        public async Task<IActionResult> Create([Bind("Id,Nombre,FechaInicio,FechaFin,Lunes,Martes,Miercoles,Jueves,Viernes")] Calendario calendario)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace KSProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,FechaInicio,FechaFin,Lunes,Martes,Miercoles,Jueves,Viernes")] Calendario calendario)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,FechaInicio,FechaFin,Lunes,Martes,Miercoles,Jueves,Viernes")] Calendario calendario)
         {
             if (id != calendario.Id)
             {

@@ -54,7 +54,7 @@ namespace KSProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Desarrollo,Gestion,Formacion,Soporte,Investigacion,NoDedicadas")] Dedication dedication)
+        public async Task<IActionResult> Create([Bind("Id,Nombre,Desarrollo,Gestion,Formacion,Soporte,Investigacion,NoDedicadas")] Dedication dedication)
         {
             if (ModelState.IsValid)
             {
@@ -86,7 +86,7 @@ namespace KSProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Desarrollo,Gestion,Formacion,Soporte,Investigacion,NoDedicadas")] Dedication dedication)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Desarrollo,Gestion,Formacion,Soporte,Investigacion,NoDedicadas")] Dedication dedication)
         {
             if (id != dedication.Id)
             {
