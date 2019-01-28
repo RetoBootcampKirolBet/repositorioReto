@@ -1,0 +1,66 @@
+﻿@model KSoftProject2.Models.Calendario
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Calendario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaInicio)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaInicio)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaFin)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaFin)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Lunes)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Lunes)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Martes)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Martes)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Miercoles)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Miercoles)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Jueves)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Jueves)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Viernes)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Viernes)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,82 @@
+﻿@model IEnumerable<KSoftProject2.Models.Calendario>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaFin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lunes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Martes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Miercoles)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jueves)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Viernes)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaInicio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaFin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lunes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Martes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Miercoles)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Jueves)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Viernes)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+
+<footer class="container">
+    <a asp-area="" asp-controller="Personas" asp-action="Index">Return</a>
+</footer>

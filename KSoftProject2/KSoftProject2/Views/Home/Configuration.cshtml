@@ -126,12 +126,16 @@
                     @foreach (var item in Model)
                     {
                         <tr>
+                            @*<td>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox">
+                                        </label>
+                                    </div>
+                                </td>*@
                             <td>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox">
-                                    </label>
-                                </div>
+                                <input type="radio" name="election" class="optionKSP" />
+                                <input type="hidden" name="id" value="@item.Id" />
                             </td>
                             <td class="ksoftCol">
                                 @Html.DisplayFor(modelItem => item.WorkPackage._Links.CustomField1.KsoftProject)
@@ -199,7 +203,7 @@
         window.location.href = "/Home/Contact";
     });
     $('.btnPersons').on('click', function () {
-        window.location.href = "";
+        window.location.href = "/Personas/Index";
     });
     $('.btnUsers').on('click', function () {
         window.location.href = "/Home/About";
@@ -218,5 +222,20 @@
         $('.ksoftCol').show("fast");
         $('.sprintName').show("fast");
         $('.sprintCol').show("fast");
+    });
+    $('#btnSearch').on('click', function () {
+        window.location.href = "/WorkPackages/SearchResult";
+    });
+    $('#wp-details-view').on('click', function () {
+        $('.optionKSP').each(function () {
+            if ($(this).is(':checked')) {
+                let selectedId = $(this).siblings().val();
+                $('<input />').attr('type', 'hidden')
+                    .attr('name', "id")
+                    .attr('value', selectedId)
+                    .appendTo('#viewDetailForm');
+                $("#viewDetailForm").submit();
+            }
+        });
     });
 </script>

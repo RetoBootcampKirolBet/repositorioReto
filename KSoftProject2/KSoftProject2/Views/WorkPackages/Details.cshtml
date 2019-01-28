@@ -57,14 +57,36 @@
 <div class="container MainInfoWP">
     <div class="row" id="MainInfo">
         <div class="col-md-1" id="InfoMainBtn">
-            <input id="BtnMain" type="button" value="My Sprint" class="btnMyS" />
-            <hr />
-            <input id="BtnMain" type="button" value="App" class="btnApp" />
-            <hr />
+
+            @{
+                if (User.HasClaim("developer", "developer"))
+                {
+                    <input id="BtnMain" type="button" value="My Sprint" class="btnMyS" />
+                    <hr />
+                    <input id="BtnMain" type="button" value="App" class="btnApp" />
+                    <hr />
+                }
+            }
             @{
                 if (User.HasClaim("teamleader", "teamleader"))
                 {
+                    <input id="BtnMain" type="button" value="My Sprint" class="btnMyS" />
+                    <hr />
+                    <input id="BtnMain" type="button" value="App" class="btnApp" />
+                    <hr />
                     <input id="BtnMain" type="button" value="Planification" class="btnPlani" />
+                    <hr />
+                    <input id="BtnMain" type="button" value="Burdown" class="btnBurdown" />
+                }
+            }
+            @{
+                if (User.HasClaim("admin", "admin"))
+                {
+                    <input id="BtnMain" type="button" value="Panel de Configuración" class="btnPofC" />
+                    <hr />
+                    <input id="BtnMain" type="button" value="Personas" class="btnPersons" />
+                    <hr />
+                    <input id="BtnMain" type="button" value="Users" class="btnUsers" />
                     <hr />
                     <input id="BtnMain" type="button" value="Burdown" class="btnBurdown" />
                 }
@@ -128,103 +150,103 @@
                 </thead>
                 <tbody>
                     @*@foreach (var item in Model)
-                    {*@
-                        <tr>
-                            <td>
-                                <input type="radio" name="election" class="optionKSP" />
-                                <input type="hidden" name="id" value="@Model.Id" />
-                            </td>
-                            <td class="ksoftCol">
-                                @Html.DisplayFor(model => model._Links.CustomField1.KsoftProject)
-                            </td>
-                            <td class="sprintCol">
-                                @Html.DisplayFor(model => model._Links.CustomField2.Sprint)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model._Links.Type.Tipo)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.IdOP)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.Description.Raw)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model._Links.Status.Estado)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.EstimatedTime)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.SpentTime)
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-primary btn-xs">+</button>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.StartDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model.DueDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model._Links.Assignee.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(model => model._Links.Priority.Title)
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-primary btn-xs">move</button>
-                            </td>
-                            @*<td>
+                        {*@
+                    <tr>
+                        <td>
+                            <input type="radio" name="election" class="optionKSP" />
+                            <input type="hidden" name="id" value="@Model.Id" />
+                        </td>
+                        <td class="ksoftCol">
+                            @Html.DisplayFor(model => model._Links.CustomField1.KsoftProject)
+                        </td>
+                        <td class="sprintCol">
+                            @Html.DisplayFor(model => model._Links.CustomField2.Sprint)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model._Links.Type.Tipo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.IdOP)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Description.Raw)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model._Links.Status.Estado)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.EstimatedTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.SpentTime)
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-primary btn-xs">+</button>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.StartDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.DueDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model._Links.Assignee.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model._Links.Priority.Title)
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-primary btn-xs">move</button>
+                        </td>
+                        @*<td>
                                 <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
                                 <a asp-action="Details" asp-route-id="@Model.Id">Details</a> |
                                 <a asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
                             </td>*@
-                        </tr>
+                    </tr>
                     @*}*@
                 </tbody>
             </table>
         </div>
         <div id="InfoDetailsLat" class="col-md-2">
             @*<button type="button" id="wp-details-close" class="btn btn-default btn-s" title="Cerrar">
-                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                <a asp-action="Info"></a>
-            </button>*@
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    <a asp-action="Info"></a>
+                </button>*@
             @*@foreach (var item in Model)
-            {*@
-                <h4>
-                    <strong>@Html.DisplayFor(model => model._Links.CustomField1.KsoftProject)</strong>
-                    @Html.DisplayFor(model => model.Description.Raw)
-                </h4>
-                <p>
-                    <strong>@Html.DisplayFor(model => model.IdOP):</strong> Created by @Html.DisplayFor(model => model._Links.Author.Name)
-                    <br />
-                    <strong>Status:</strong> @Html.DisplayFor(model => model._Links.Status.Estado)
-                </p>
-                <h4>DESCRIPTION</h4>
-                <P>
-                    @Html.DisplayFor(model => model.Description.Raw)
-                </P>
-                <h4>PEOPLE</h4>
-                <p>
-                    <strong>Assigne:</strong> @Html.DisplayFor(model => model._Links.Assignee.Name)
-                    <br />
-                    <strong>Responsible:</strong> @Html.DisplayFor(model => model._Links.Responsible.Name)
-                    <br />
-                </p>
-                <h4>DETAILS</h4>
-                <p>
-                    <strong>Ksoft Project:</strong> @Html.DisplayFor(model => model._Links.CustomField1.KsoftProject)
-                    <br />
-                    <strong>Priority:</strong> @Html.DisplayFor(model => model._Links.Priority.Title)
-                    <br />
-                    <strong>Delivery Date:</strong> @Html.DisplayFor(model => model.DueDate)
-                    <br />
-                    <strong>Spent Time</strong> <button type="button" class="btn btn-primary btn-xs">+</button>
-                    <br />
-                    <strong>Project</strong> <button type="button" class="btn btn-primary btn-xs">move</button>
-                </p>
+                {*@
+            <h4>
+                <strong>@Html.DisplayFor(model => model._Links.CustomField1.KsoftProject)</strong>
+                @Html.DisplayFor(model => model.Description.Raw)
+            </h4>
+            <p>
+                <strong>@Html.DisplayFor(model => model.IdOP):</strong> Created by @Html.DisplayFor(model => model._Links.Author.Name)
+                <br />
+                <strong>Status:</strong> @Html.DisplayFor(model => model._Links.Status.Estado)
+            </p>
+            <h4>DESCRIPTION</h4>
+            <P>
+                @Html.DisplayFor(model => model.Description.Raw)
+            </P>
+            <h4>PEOPLE</h4>
+            <p>
+                <strong>Assigne:</strong> @Html.DisplayFor(model => model._Links.Assignee.Name)
+                <br />
+                <strong>Responsible:</strong> @Html.DisplayFor(model => model._Links.Responsible.Name)
+                <br />
+            </p>
+            <h4>DETAILS</h4>
+            <p>
+                <strong>Ksoft Project:</strong> @Html.DisplayFor(model => model._Links.CustomField1.KsoftProject)
+                <br />
+                <strong>Priority:</strong> @Html.DisplayFor(model => model._Links.Priority.Title)
+                <br />
+                <strong>Delivery Date:</strong> @Html.DisplayFor(model => model.DueDate)
+                <br />
+                <strong>Spent Time</strong> <button type="button" class="btn btn-primary btn-xs">+</button>
+                <br />
+                <strong>Project</strong> <button type="button" class="btn btn-primary btn-xs">move</button>
+            </p>
             @*}*@
         </div>
     </div>
@@ -234,8 +256,8 @@
     <a asp-action="Index">Back to List</a>
 </div>
 @*<footer class="container mainFoot">
-    <a asp-area="" asp-controller="Home" asp-action="Members">Return</a>
-</footer>*@
+        <a asp-area="" asp-controller="Home" asp-action="Members">Return</a>
+    </footer>*@
 <script src="https://code.jquery.com/jquery-3.3.1.js"
         integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous"></script>
@@ -274,51 +296,51 @@
 
 </script>
 @*<div>
-    <h4>WorkPackage</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.IdOP)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.IdOP)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Subject)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Subject)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.EstimatedTime)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.EstimatedTime)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.SpentTime)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.SpentTime)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DueDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DueDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Activation)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Activation)
-        </dd>
-    </dl>
-</div>*@
+        <h4>WorkPackage</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.IdOP)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.IdOP)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Subject)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Subject)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.EstimatedTime)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.EstimatedTime)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.SpentTime)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.SpentTime)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.StartDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DueDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DueDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Activation)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Activation)
+            </dd>
+        </dl>
+    </div>*@
 

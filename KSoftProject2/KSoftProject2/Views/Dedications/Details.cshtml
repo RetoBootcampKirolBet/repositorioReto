@@ -1,0 +1,60 @@
+﻿@model KSoftProject2.Models.Dedication
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Dedication</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Desarrollo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Desarrollo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Gestion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Gestion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Formacion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Formacion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Soporte)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Soporte)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Investigacion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Investigacion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NoDedicadas)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NoDedicadas)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

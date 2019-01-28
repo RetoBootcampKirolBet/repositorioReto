@@ -43,6 +43,12 @@ namespace KSoftProject2.Services
             return users;
         }
 
+        public List<Persona> GetPersonasDB()
+        {
+            List<Persona> personas = _context.Persona.ToList();
+            return personas;
+        }
+
         public List<UserWorkPackage> GetUserWorkPackagesDB()
         {
             List<UserWorkPackage> userWorkPackages = _context.UserWorkPackage.ToList();
