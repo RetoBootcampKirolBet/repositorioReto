@@ -54,14 +54,36 @@
 <div class="container">
     <div class="row">
         <div class="col-md-1">
-            <input id="BtnMain" type="button" value="My Sprint" class="btnMyS" />
-            <hr />
-            <input id="BtnMain" type="button" value="App" class="btnApp" />
-            <hr />
+           
+            @{
+                if (User.HasClaim("developer", "developer"))
+                {
+                    <input id="BtnMain" type="button" value="My Sprint" class="btnMyS" />
+                    <hr />
+                    <input id="BtnMain" type="button" value="App" class="btnApp" />
+                    <hr />
+                }
+            }
             @{
                 if (User.HasClaim("teamleader", "teamleader"))
                 {
+                    <input id="BtnMain" type="button" value="My Sprint" class="btnMyS" />
+                    <hr />
+                    <input id="BtnMain" type="button" value="App" class="btnApp" />
+                    <hr />
                     <input id="BtnMain" type="button" value="Planification" class="btnPlani" />
+                    <hr />
+                    <input id="BtnMain" type="button" value="Burdown" class="btnBurdown" />
+                }
+            }
+            @{
+                if (User.HasClaim("admin", "admin"))
+                {
+                    <input id="BtnMain" type="button" value="Panel de Configuración" class="btnPofC" />
+                    <hr />
+                    <input id="BtnMain" type="button" value="Personas" class="btnPersons" />
+                    <hr />
+                    <input id="BtnMain" type="button" value="Users" class="btnUsers" />
                     <hr />
                     <input id="BtnMain" type="button" value="Burdown" class="btnBurdown" />
                 }
